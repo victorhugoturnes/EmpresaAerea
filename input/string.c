@@ -8,7 +8,7 @@
 #include <string.h>
 
 char *readString(){
-    char *buffer = malloc(sizeof(char) * BUFFER);
+    char *buffer = malloc(sizeof(char) * MAXSTR);
     scanf("%[^\n]%*c", buffer);
     buffer = realloc(buffer, strlen(buffer) * sizeof(char));
     return buffer;

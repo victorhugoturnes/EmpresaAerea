@@ -5,7 +5,7 @@
 #ifndef UNTITLED_STRING_H
 #define UNTITLED_STRING_H
 
-#define BUFFER 255
+#define MAXSTR 255
 
 char *readString();
 

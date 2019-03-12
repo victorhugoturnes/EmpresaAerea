@@ -4,7 +4,6 @@
 
 #ifndef UNTITLED_AEROPORTO_H
 #define UNTITLED_AEROPORTO_H
-#define MAX 255
 
 typedef struct aeroporto{
     char *nome;
