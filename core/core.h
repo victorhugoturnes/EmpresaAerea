@@ -5,10 +5,6 @@
 #ifndef UNTITLED_CORE_H
 #define UNTITLED_CORE_H
 
-typedef struct aeroporto{
-    char *nome;
-    char *sigla;
-}aeroporto;
 
 typedef struct aeronave{
     char *prefixo;

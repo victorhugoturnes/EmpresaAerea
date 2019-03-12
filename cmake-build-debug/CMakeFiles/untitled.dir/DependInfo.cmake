@@ -4,9 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/last/CLionProjects/untitled/core/core.c" "/home/last/CLionProjects/untitled/cmake-build-debug/CMakeFiles/untitled.dir/core/core.c.o"
-  "/home/last/CLionProjects/untitled/input/string.c" "/home/last/CLionProjects/untitled/cmake-build-debug/CMakeFiles/untitled.dir/input/string.c.o"
-  "/home/last/CLionProjects/untitled/main.c" "/home/last/CLionProjects/untitled/cmake-build-debug/CMakeFiles/untitled.dir/main.c.o"
+  "/home/last/CLionProjects/EmpresaAerea/core/Aeroporto.c" "/home/last/CLionProjects/EmpresaAerea/cmake-build-debug/CMakeFiles/untitled.dir/core/Aeroporto.c.o"
+  "/home/last/CLionProjects/EmpresaAerea/core/core.c" "/home/last/CLionProjects/EmpresaAerea/cmake-build-debug/CMakeFiles/untitled.dir/core/core.c.o"
+  "/home/last/CLionProjects/EmpresaAerea/input/string.c" "/home/last/CLionProjects/EmpresaAerea/cmake-build-debug/CMakeFiles/untitled.dir/input/string.c.o"
+  "/home/last/CLionProjects/EmpresaAerea/main.c" "/home/last/CLionProjects/EmpresaAerea/cmake-build-debug/CMakeFiles/untitled.dir/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

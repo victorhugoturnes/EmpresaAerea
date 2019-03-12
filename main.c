@@ -1,10 +1,8 @@
 #include <stdio.h>
-#include "core/core.h"
+#include "core/Aeroporto.h"
 #include "input/string.h"
 int main() {
-    aeroporto aeroporto1;
-    aeroporto1.nome = readString();
-    printf("%s\n", aeroporto1.nome);
-    printf("Hello, World!\n");
+    Aeroporto *aeroporto = createAeroporto("aeroporto1", "aer");
+    printf("%s\n", readAeroport(aeroporto));
     return 0;
 }

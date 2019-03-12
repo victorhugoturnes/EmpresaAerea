@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/untitled.dir/core/Aeroporto.c.o"
   "CMakeFiles/untitled.dir/core/core.c.o"
   "CMakeFiles/untitled.dir/main.c.o"
   "CMakeFiles/untitled.dir/input/string.c.o"

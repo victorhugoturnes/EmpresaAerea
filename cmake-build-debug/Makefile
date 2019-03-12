@@ -48,10 +48,10 @@ RM = /home/last/IDEs/clion-2018.3.4/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/last/CLionProjects/untitled
+CMAKE_SOURCE_DIR = /home/last/CLionProjects/EmpresaAerea
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/last/CLionProjects/untitled/cmake-build-debug
+CMAKE_BINARY_DIR = /home/last/CLionProjects/EmpresaAerea/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/last/CLionProjects/untitled/cmake-build-debug/CMakeFiles /home/last/CLionProjects/untitled/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/last/CLionProjects/EmpresaAerea/cmake-build-debug/CMakeFiles /home/last/CLionProjects/EmpresaAerea/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/last/CLionProjects/untitled/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/last/CLionProjects/EmpresaAerea/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -122,6 +122,33 @@ untitled: cmake_check_build_system
 untitled/fast:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/build
 .PHONY : untitled/fast
+
+core/Aeroporto.o: core/Aeroporto.c.o
+
+.PHONY : core/Aeroporto.o
+
+# target to build an object file
+core/Aeroporto.c.o:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/core/Aeroporto.c.o
+.PHONY : core/Aeroporto.c.o
+
+core/Aeroporto.i: core/Aeroporto.c.i
+
+.PHONY : core/Aeroporto.i
+
+# target to preprocess a source file
+core/Aeroporto.c.i:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/core/Aeroporto.c.i
+.PHONY : core/Aeroporto.c.i
+
+core/Aeroporto.s: core/Aeroporto.c.s
+
+.PHONY : core/Aeroporto.s
+
+# target to generate assembly for a file
+core/Aeroporto.c.s:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/core/Aeroporto.c.s
+.PHONY : core/Aeroporto.c.s
 
 core/core.o: core/core.c.o
 
@@ -213,6 +240,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... untitled"
 	@echo "... edit_cache"
+	@echo "... core/Aeroporto.o"
+	@echo "... core/Aeroporto.i"
+	@echo "... core/Aeroporto.s"
 	@echo "... core/core.o"
 	@echo "... core/core.i"
 	@echo "... core/core.s"
