@@ -4,7 +4,6 @@
 
 #ifndef UNTITLED_AEROPORTO_H
 #define UNTITLED_AEROPORTO_H
-#define MAX 255
 
 typedef struct aeroporto{
     char *nome;
@@ -13,6 +12,10 @@ typedef struct aeroporto{
 
 Aeroporto *createAeroporto(char *nome, char*sigla);
 
-char *readAeroport(Aeroporto *aeroporto);
+char *readAeroporto(Aeroporto *aeroporto);
+
+void updateAeroporto(Aeroporto *aeroporto, void *update, char* field);
+
+void deleteAeroporto(Aeroporto **aeroporto);
 
 #endif //UNTITLED_AEROPORTO_H
