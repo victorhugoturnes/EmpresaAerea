@@ -13,6 +13,8 @@
 /home/last/CLionProjects/EmpresaAerea/main.c
 stdio.h
 -
+stdlib.h
+-
 core/Aeroporto.h
 /home/last/CLionProjects/EmpresaAerea/core/Aeroporto.h
 input/string.h

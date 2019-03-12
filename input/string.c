@@ -13,3 +13,10 @@ char *readString(){
     buffer = realloc(buffer, strlen(buffer) * sizeof(char));
     return buffer;
 }
+
+char *updateString(char *original, char*update){
+    free(original);
+    original = malloc(sizeof(char) * (strlen(update) + 1));
+    original = strcpy(original, update);
+    return original;
+}

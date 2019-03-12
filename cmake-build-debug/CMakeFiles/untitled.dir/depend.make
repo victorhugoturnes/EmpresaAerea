@@ -3,6 +3,7 @@
 
 CMakeFiles/untitled.dir/core/Aeroporto.c.o: ../core/Aeroporto.c
 CMakeFiles/untitled.dir/core/Aeroporto.c.o: ../core/Aeroporto.h
+CMakeFiles/untitled.dir/core/Aeroporto.c.o: ../input/string.h
 
 CMakeFiles/untitled.dir/core/core.c.o: ../core/core.c
 CMakeFiles/untitled.dir/core/core.c.o: ../core/core.h

@@ -9,4 +9,6 @@
 
 char *readString();
 
+char *updateString(char *original, char*update);
+
 #endif //UNTITLED_STRING_H
