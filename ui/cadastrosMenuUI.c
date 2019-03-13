@@ -1,5 +1,4 @@
 #include "cadastrosMenuUI.h"
-#include "../Environment.h"
 
 void menuCadastros() {
 	char escolha = 0;
@@ -17,13 +16,13 @@ void menuCadastros() {
 //				cadastrosAoronave();
 				break;
 			case '0':
-				ClearScreen;
+				ClearScreen();
 				printf("\nSaindo do menu de cadastros.\n\n");
-				Pause;
+				Pause();
 				break;
 			default:
 				printf("Nao eh uma opcao valida!\n\n");
-				Pause;
+				Pause();
 				break;
 		}
 
@@ -57,7 +56,7 @@ char escolhaCadastros() {
 	@postcondition nenhuma
 */
 void telaCadastros() {
-	ClearScreen;
+	ClearScreen();
 
 	printf("1) Cadastrar (V)oo\n");
 	printf("2) Cadastrar (C)liente\n");

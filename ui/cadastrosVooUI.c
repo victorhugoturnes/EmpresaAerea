@@ -1,5 +1,4 @@
 #include "cadastrosVooUI.h"
-#include "../Environment.h"
 
 void cadastrosVoo() {
 	char escolha = 0;
@@ -14,13 +13,13 @@ void cadastrosVoo() {
 //				consultarVoo();
 				break;
 			case '0':
-				ClearScreen;
+				ClearScreen();
 				printf("\nSaindo do menu de cadastros de voo.\n\n");
-				Pause;
+				Pause();
 				break;
 			default:
 				printf("Nao eh uma opcao valida!\n\n");
-				Pause;
+				Pause();
 				break;
 		}
 
@@ -42,7 +41,7 @@ char escolhaCadastrosVoo() {
 }
 
 void telaCadastrosVoo() {
-	ClearScreen;
+	ClearScreen();
 
 	printf("1) (I)nserir Voo\n");
 	printf("2) (C)onsultar Voo\n");

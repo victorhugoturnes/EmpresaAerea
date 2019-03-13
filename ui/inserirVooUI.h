@@ -7,6 +7,7 @@
 #include <ctype.h>
 
 #include "VooInfo.h"
+#include "../Environment.h"
 
 void inserirVoo();
 

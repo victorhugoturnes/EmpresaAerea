@@ -6,13 +6,13 @@
 #define UNTITLED_ENVIRONMENT_H
 
 #ifdef unix
-    #define ClearScreen system("clear")
+    #define ClearScreen() system("clear")
 #endif
 
 #ifdef _WIN32
-    #define ClearScreen system("cls")
+    #define ClearScreen() system("cls")
 #endif
 
-#define Pause getchar();
+#define Pause() getchar();
 
 #endif //UNTITLED_ENVIRONMENT_H
