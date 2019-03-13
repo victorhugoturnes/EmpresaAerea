@@ -3,5 +3,6 @@ project(untitled C)
 
 set(CMAKE_C_STANDARD 99)
 
-set(PROJECT_SOURCES core/Aeroporto.c core/Aeronave.c "main.c" "input/string.c")
-add_executable(untitled ${PROJECT_SOURCES})
+set(PROJECT_SOURCES core/Aeroporto.c core/Aeronave.c main.c input/string.c)
+set(UI_SOURCES ui/mainMenuUI.c ui/cadastrosMenuUI.c ui/cadastrosVooUI.c ui/inserirVooUI.c ui/VooInfo.c)
+add_executable(untitled ${PROJECT_SOURCES} ${UI_SOURCES})
