@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "../input/string.h"
 
-Aeronave *createAeronave(char *tipo, char*prefixo){
+Aeronave *createAeronave(char *tipo, char *prefixo){
     if(!tipo || !prefixo) return NULL;
     if(strlen(prefixo) != 3) return NULL;
 
