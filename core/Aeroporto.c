@@ -2,7 +2,7 @@
 // Created by last on 3/12/19.
 //
 
-#include "Aeroporto.h"
+#include "../core Headers/Aeroporto.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>

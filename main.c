@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "core/Aeroporto.h"
-#include "core/Aeronave.h"
+#include "core Headers/Aeroporto.h"
+#include "core Headers/Aeronave.h"
 #include "input/string.h"
 
 
