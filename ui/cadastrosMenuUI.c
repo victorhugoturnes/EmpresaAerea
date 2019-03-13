@@ -16,13 +16,13 @@ void menuCadastros() {
 //				cadastrosAoronave();
 				break;
 			case '0':
-				system("cls");
+				ClearScreen();
 				printf("\nSaindo do menu de cadastros.\n\n");
-				system("pause");
+				Pause();
 				break;
 			default:
 				printf("Nao eh uma opcao valida!\n\n");
-				system("pause");
+				Pause();
 				break;
 		}
 
@@ -56,7 +56,7 @@ char escolhaCadastros() {
 	@postcondition nenhuma
 */
 void telaCadastros() {
-	system("cls");
+	ClearScreen();
 
 	printf("1) Cadastrar (V)oo\n");
 	printf("2) Cadastrar (C)liente\n");

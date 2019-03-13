@@ -13,13 +13,13 @@ void cadastrosVoo() {
 //				consultarVoo();
 				break;
 			case '0':
-				system("cls");
+				ClearScreen();
 				printf("\nSaindo do menu de cadastros de voo.\n\n");
-				system("pause");
+				Pause();
 				break;
 			default:
 				printf("Nao eh uma opcao valida!\n\n");
-				system("pause");
+				Pause();
 				break;
 		}
 
@@ -41,7 +41,7 @@ char escolhaCadastrosVoo() {
 }
 
 void telaCadastrosVoo() {
-	system("cls");
+	ClearScreen();
 
 	printf("1) (I)nserir Voo\n");
 	printf("2) (C)onsultar Voo\n");

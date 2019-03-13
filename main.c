@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ui/mainMenuUI.h"
+#include "Environment.h"
 
 int main() {
     char escolha = 0;
@@ -30,7 +31,7 @@ int main() {
                 /// opção inválida escolhida
             default:
                 printf("Nao eh uma opcao valida!\n\n");
-                system("pause");
+                Pause();;
                 break;
         }
         /// enquanto escolha diferente de '0' e valida

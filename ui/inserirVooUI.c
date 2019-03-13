@@ -69,7 +69,7 @@ void inserirVoo() {
 }
 
 void telaCabecalhoInserirVoo() {
-	system("cls");
+	ClearScreen();
 
 	printf("Insira as informacoes do voo a seguir.\n");
 	printf("\n");
@@ -86,7 +86,7 @@ void lerPrefixoVoo(VooInfo *novoVoo) {
 
 	if(!ehValidoPrefixo(novoVoo->prefixo)) {
 		printf("\nPrefixo fornecido e invalido!\n");
-		system("pause");
+		Pause();
 
 		novoVoo->prefixo[0] = '\0';
 	}
@@ -103,7 +103,7 @@ void lerOrigemVoo(VooInfo *novoVoo) {
 
 	if(!ehValidoSiglaAeroporto(novoVoo->origemSigla)) {
 		printf("\nSigla fornecida e invalida!\n");
-		system("pause");
+		Pause();
 
 		novoVoo->origemSigla[0] = '\0';
 		return;
@@ -115,7 +115,7 @@ void lerOrigemVoo(VooInfo *novoVoo) {
 
 	if(!ehValidoNomeAeroporto(novoVoo->origem)) {
 		printf("\nOrigem fornecida e invalida!\n");
-		system("pause");
+		Pause();
 
 		novoVoo->origemSigla[0] = '\0';
 		novoVoo->origem[0] = '\0';
@@ -148,7 +148,7 @@ void lerDestinoVoo(VooInfo *novoVoo) {
 
 	if(!ehValidoSiglaAeroporto(novoVoo->destinoSigla)) {
 		printf("\nSigla fornecida e invalida!\n");
-		system("pause");
+		Pause();
 
 		novoVoo->destinoSigla[0] = '\0';
 		return;
@@ -156,7 +156,7 @@ void lerDestinoVoo(VooInfo *novoVoo) {
 
 	if(!strcmp(novoVoo->origemSigla, novoVoo->destinoSigla)) {
 		printf("\nDestino e origem nao podem ser o mesmo!\n");
-		system("pause");
+		Pause();
 
 		novoVoo->destinoSigla[0] = '\0';
 		return;
@@ -168,7 +168,7 @@ void lerDestinoVoo(VooInfo *novoVoo) {
 
 	if(!ehValidoNomeAeroporto(novoVoo->destino)) {
 		printf("\nDestino fornecido e invalido!\n");
-		system("pause");
+		Pause();
 
 		novoVoo->destinoSigla[0] = '\0';
 		novoVoo->destino[0] = '\0';
@@ -186,7 +186,7 @@ void lerPartidaVoo(VooInfo *novoVoo) {
 
 	if(!readCheck || !ehValidoHorario(novoVoo->partida)) {
 		printf("\nHorario de partida fornecido e invalido!\n");
-		system("pause");
+		Pause();
 
 		novoVoo->partida.hh = -1;
 		novoVoo->partida.mm = -1;
@@ -209,7 +209,7 @@ void lerChegadaVoo(VooInfo *novoVoo) {
 
 	if(!readCheck || !ehValidoHorario(novoVoo->chegada)) {
 		printf("\nHorario de chegada fornecido e invalido!\n");
-		system("pause");
+		Pause();
 
 		novoVoo->chegada.hh = -1;
 		novoVoo->chegada.mm = -1;
@@ -227,7 +227,7 @@ void lerDuracaoVoo(VooInfo *novoVoo) {
 
 	if(!readCheck || !ehValidoHorario(novoVoo->duracao)) {
 		printf("\nDuracao fornecida e invalida!\n");
-		system("pause");
+		Pause();
 
 		novoVoo->duracao.hh = -1;
 		novoVoo->duracao.mm = -1;
@@ -241,7 +241,7 @@ void lerModeloAeronaveVoo(VooInfo *novoVoo) {
 
 	if(!ehValidoModeloAeronave(novoVoo->modeloAeronave)) {
 		printf("\nAeronave fornecida e invalida!\n");
-		system("pause");
+		Pause();
 
 		novoVoo->modeloAeronave[0] = '\0';
 		return;
@@ -270,26 +270,26 @@ char mostrarCadastroVooOpcoes(VooInfo *novoVoo) {
 			printaSeparador();
 			printf("Funcionalidade ainda nao implementada!\n");
 			printaSeparador();
-			system("pause");
+			Pause();
 			return 0;
 		case 'a':
 //			alterarVoo();
 			printaSeparador();
 			printf("Funcionalidade ainda nao implementada!\n");
 			printaSeparador();
-			system("pause");
+			Pause();
 			return 0;
 		case 'c':
 		case '0':
-			system("cls");
+			ClearScreen();
 			printf("\nSaindo do menu de cadastro de voo.\n\n");
-			system("pause");
+			Pause();
 			return 1;
 		default:
 			printaSeparador();
 			printf("Nao eh uma opcao valida!\n\n");
 			printaSeparador();
-			system("pause");
+			Pause();
 			return 0;
 	}
 }

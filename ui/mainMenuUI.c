@@ -1,7 +1,5 @@
 #include "mainMenuUI.h"
-#include "../core/Aeroporto.h"
-#include "../core/Aeronave.h"
-#include "../input/string.h"
+
 
 /*!
 	@brief mainMenuEscolha, apresenta opções para o usuário e recolhe \
@@ -34,7 +32,7 @@ char mainMenuEscolha() {
 	@postcondition nenhuma
 */
 void telaMainMenu() {
-	system("cls");
+	ClearScreen();
 
 	printf("1) Menu (C)adastros\n");
 	printf("2) Menu (S)tatus\n");
@@ -43,14 +41,14 @@ void telaMainMenu() {
 }
 
 void menuStatus() {
-	system("cls");
+	ClearScreen();
 	printf("menuStatus\n");
 	printf("WORK IN PROGRESS...\n");
-	system("pause");
+	ClearScreen();
 }
 
 void testarCadastros() {
-	system("cls");
+	ClearScreen();
 
 	char *read;
 
@@ -101,7 +99,7 @@ void testarCadastros() {
 	deleteAeronave(&aeronave);
 	printf("%p\n", aeronave);
 
-	system("pause");
+	Pause();
 }
 
 /*!
@@ -114,7 +112,7 @@ char confirmacaoSaidaMainMenu() {
 	char escolha = 0;
 
 	/// pergunta ao usuário se deseja mesmo sair
-	system("cls");
+	ClearScreen();
 	printf("Voce deseja sair do programa?\n");
 	printf("S / N\n");
 
@@ -126,7 +124,7 @@ char confirmacaoSaidaMainMenu() {
 	/// enquanto resposta for inválida
 	while(escolha != 's' && escolha != 'n') {
 		/// limpa tela e pergunta confirmação de saida
-		system("cls");
+		ClearScreen();
 		printf("Escolha invalida!\n");
 		printf("Voce deseja sair do programa?\n");
 		printf("S / N\n");
