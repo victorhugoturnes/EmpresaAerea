@@ -7,6 +7,7 @@
 #include <ctype.h>
 
 #include "VooInfo.h"
+#include "../input/string.h"
 #include "../Environment.h"
 
 void inserirVoo();
@@ -29,7 +30,7 @@ void lerDestinoVoo(VooInfo *novoVoo);
 
 void lerPartidaVoo(VooInfo *novoVoo);
 
-char ehValidoHorario(Hora horario);
+char ehValidoHorario(Hora *horario);
 
 void lerChegadaVoo(VooInfo *novoVoo);
 

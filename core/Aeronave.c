@@ -8,17 +8,13 @@
 #include <stdio.h>
 #include "../input/string.h"
 
-Aeronave *createAeronave(char *tipo, char *prefixo){
-    if(!tipo || !prefixo) return NULL;
-    if(strlen(prefixo) != 3) return NULL;
+Aeronave *createAeronave(char *modelo){
+    if(!modelo) return NULL;
 
     Aeronave *Aeronave = malloc(sizeof(Aeronave));
 
-    Aeronave->tipo = malloc(sizeof(char) * (strlen(tipo)+1));
-    Aeronave->tipo = strcpy(Aeronave->tipo, tipo);
-
-    Aeronave->prefixo = malloc(sizeof(char) * (strlen(prefixo)+1));
-    Aeronave->prefixo = strcpy(Aeronave->prefixo, prefixo);
+    Aeronave->modelo = malloc(sizeof(char) * (strlen(modelo)+1));
+    Aeronave->modelo = strcpy(Aeronave->modelo, modelo);
 
     return Aeronave;
 }
@@ -28,7 +24,7 @@ char *readAeronave(Aeronave *Aeronave){
     int size;
     char *str;
 
-    size = sprintf(buffer, "Aeronave: %s - prefixo: %s", Aeronave->tipo, Aeronave->prefixo);
+    size = sprintf(buffer, "Aeronave: %s", Aeronave->modelo);
     str = malloc(sizeof(char) * size+1);
 
     strcpy(str, buffer);
@@ -37,17 +33,13 @@ char *readAeronave(Aeronave *Aeronave){
 
 void updateAeronave(Aeronave *Aeronave, void *update, char* field){
     if(!update) return;
-    if(!strcmp("tipo", field)) {
-        updateString(Aeronave->tipo, update);
-    }
-    if(!strcmp("prefixo", field)){
-        Aeronave->prefixo = updateString(Aeronave->prefixo, update);
+    if(!strcmp("modelo", field)) {
+        updateString(Aeronave->modelo, update);
     }
 }
 
 void deleteAeronave(Aeronave **Aeronave){
-    free((*Aeronave)->tipo);
-    free((*Aeronave)->prefixo);
+    free((*Aeronave)->modelo);
     free((*Aeronave));
     *Aeronave = NULL;
 }

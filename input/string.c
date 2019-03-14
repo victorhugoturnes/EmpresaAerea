@@ -14,7 +14,8 @@ char *readString(){
     return buffer;
 }
 
-char *updateString(char *original, char*update){
+char *updateString(char *original, char *update){
+//    return strcpy(realloc(original, (strlen(update)+1) * sizeof(char)), update);
     free(original);
     original = malloc(sizeof(char) * (strlen(update) + 1));
     original = strcpy(original, update);
