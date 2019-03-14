@@ -1,4 +1,4 @@
-#include "inserirVooUI.h"
+#include "VooInserir.h"
 
 void inserirVoo() {
 	VooInfo *novoVoo = createVooInfo();

@@ -5,11 +5,11 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#include "../Environment.h"
-#include "../input/string.h"
-#include "cadastrosMenuUI.h"
-#include "../core/Aeronave.h"
-#include "../core/Aeroporto.h"
+#include "../../../Environment.h"
+#include "../../../input/string.h"
+#include "Cadastros/MenuCadastros.h"
+#include "../../../core/Aeronave/Aeronave.h"
+#include "../../../core/Aeroporto/Aeroporto.h"
 /*!
 	@brief mainMenuEscolha, apresenta opções para o usuário e recolhe \
 	sua escolha

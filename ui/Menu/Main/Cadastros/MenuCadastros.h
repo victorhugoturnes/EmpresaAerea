@@ -5,8 +5,8 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#include "cadastrosVooUI.h"
-#include "../Environment.h"
+#include "VooCadastro/VooCadastros.h"
+#include "../../../../Environment.h"
 
 /*!
 	@brief menuCadastros, menu de opções de cadastros

@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "../input/string.h"
+#include "../../input/string.h"
 
 Aeronave *createAeronave(char *tipo, char *prefixo){
     if(!tipo || !prefixo) return NULL;

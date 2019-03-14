@@ -1,4 +1,4 @@
-#include "cadastrosVooUI.h"
+#include "VooCadastros.h"
 
 void cadastrosVoo() {
 	char escolha = 0;
@@ -43,8 +43,8 @@ char escolhaCadastrosVoo() {
 void telaCadastrosVoo() {
 	ClearScreen();
 
-	printf("1) (I)nserir Voo\n");
-	printf("2) (C)onsultar Voo\n");
+	printf("1) (I)nserir VooCadastro\n");
+	printf("2) (C)onsultar VooCadastro\n");
 	printf("\n");
 	printf("0) Sair do Menu de Cadastros\n");
 }

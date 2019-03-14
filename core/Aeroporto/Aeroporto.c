@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "../input/string.h"
+#include "../../input/string.h"
 
 Aeroporto *createAeroporto(char *nome, char*sigla){
     if(!nome || !sigla) return NULL;

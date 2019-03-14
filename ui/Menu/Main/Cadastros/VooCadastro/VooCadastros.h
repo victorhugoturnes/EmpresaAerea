@@ -5,8 +5,8 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#include "inserirVooUI.h"
-#include "../Environment.h"
+#include "VooInserir/VooInserir.h"
+#include "../../../../../Environment.h"
 
 void cadastrosVoo();
 

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ui/mainMenuUI.h"
+#include "ui/Menu/Main/MenuMain.h"
 #include "Environment.h"
 
 int main() {
