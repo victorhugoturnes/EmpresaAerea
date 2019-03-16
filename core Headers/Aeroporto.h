@@ -5,12 +5,12 @@
 #ifndef UNTITLED_AEROPORTO_H
 #define UNTITLED_AEROPORTO_H
 
-typedef struct aeroporto{
+typedef struct aeroporto {
     char *nome;
     char *sigla;
-}Aeroporto;
+} Aeroporto;
 
-Aeroporto *createAeroporto(char *nome, char*sigla);
+Aeroporto *createAeroporto(char *nome, char *sigla);
 
 char *readAeroporto(Aeroporto *aeroporto);
 

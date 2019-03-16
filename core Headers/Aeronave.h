@@ -7,11 +7,10 @@
 
 
 typedef struct aeronave{
-    char *prefixo;
-    char *tipo;
+    char *modelo;
 }Aeronave;
 
-Aeronave *createAeronave(char *nome, char*sigla);
+Aeronave *createAeronave(char *modelo);
 
 char *readAeronave(Aeronave *Aeronave);
 

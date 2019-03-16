@@ -7,7 +7,7 @@ void inserirVoo() {
 	while(!cadastroConcluido) {
 		telaCabecalhoInserirVoo();
 
-		if(novoVoo->prefixo[0] == '\0') {
+		if(novoVoo->prefixo == NULL) {
 			printaSeparador();
 			lerPrefixoVoo(novoVoo);
 			continue;
@@ -15,52 +15,52 @@ void inserirVoo() {
 			printf("Prefixo: %s\n", novoVoo->prefixo);
 		}
 
-		if(novoVoo->origem[0] == '\0') {
+		if(novoVoo->origem == NULL) {
 			printaSeparador();
 			lerOrigemVoo(novoVoo);
 			continue;
 		} else {
-			printf("Origem: (%s)%s\n", novoVoo->origemSigla, novoVoo->origem);
+			printf("Origem: (%s)%s\n", novoVoo->origem->sigla, novoVoo->origem->nome);
 		}
 
-		if(novoVoo->destino[0] == '\0') {
+		if(novoVoo->destino == NULL) {
 			printaSeparador();
 			lerDestinoVoo(novoVoo);
 			continue;
 		} else {
-			printf("Destino: (%s)%s\n", novoVoo->destinoSigla, novoVoo->destino);
+			printf("Destino: (%s)%s\n", novoVoo->destino->sigla, novoVoo->destino->nome);
 		}
 
-		if(novoVoo->partida.hh == -1) {
+		if(novoVoo->partida == NULL) {
 			printaSeparador();
 			lerPartidaVoo(novoVoo);
 			continue;
 		} else {
-			printf("Partida: %02d:%02d\n", novoVoo->partida.hh, novoVoo->partida.mm);
+			printf("Partida: %02d:%02d\n", novoVoo->partida->hh, novoVoo->partida->mm);
 		}
 
-		if(novoVoo->chegada.hh == -1) {
+		if(novoVoo->chegada == NULL) {
 			printaSeparador();
 			lerChegadaVoo(novoVoo);
 			continue;
 		} else {
-			printf("Chegada: %02d:%02d\n", novoVoo->chegada.hh, novoVoo->chegada.mm);
+			printf("Chegada: %02d:%02d\n", novoVoo->chegada->hh, novoVoo->chegada->mm);
 		}
 
-		if(novoVoo->duracao.hh == -1) {
+		if(novoVoo->duracao == NULL) {
 			printaSeparador();
 			lerDuracaoVoo(novoVoo);
 			continue;
 		} else {
-			printf("Duracao: %02d:%02d\n", novoVoo->duracao.hh, novoVoo->duracao.mm);
+			printf("Duracao: %02d:%02d\n", novoVoo->duracao->hh, novoVoo->duracao->mm);
 		}
 
-		if(novoVoo->modeloAeronave[0] == '\0') {
+		if(novoVoo->aeronave == NULL) {
 			printaSeparador();
 			lerModeloAeronaveVoo(novoVoo);
 			continue;
 		} else {
-			printf("Modelo aeronave: %s\n", novoVoo->modeloAeronave);
+			printf("Modelo aeronave: %s\n", novoVoo->aeronave->modelo);
 		}
 
 		cadastroConcluido = mostrarCadastroVooOpcoes(novoVoo);
@@ -80,16 +80,19 @@ void printaSeparador() {
 }
 
 void lerPrefixoVoo(VooInfo *novoVoo) {
+	char prefixo[MAX_PREFIXO_LENGTH];
 	printf("Prefixo: ");
 	fflush(stdin);
-	scanf("%[^\n]%*c", novoVoo->prefixo);
+	scanf("%[^\n]%*c", prefixo);
 
-	if(!ehValidoPrefixo(novoVoo->prefixo)) {
+	if(!ehValidoPrefixo(prefixo)) {
 		printf("\nPrefixo fornecido e invalido!\n");
 		Pause();
 
-		novoVoo->prefixo[0] = '\0';
+		return;
 	}
+
+	novoVoo->prefixo = updateString(NULL, prefixo);
 }
 
 char ehValidoPrefixo(char prefixo[]) {
@@ -97,29 +100,31 @@ char ehValidoPrefixo(char prefixo[]) {
 }
 
 void lerOrigemVoo(VooInfo *novoVoo) {
+	char origemSigla[MAX_AEROPORTO_SIGLA_LENGTH];
+	char origemNome[MAX_AEROPORTO_NAME_LENGTH];
 	printf("Sigla Origem: ");
 	fflush(stdin);
-	scanf("%[^\n]%*c", novoVoo->origemSigla);
+	scanf("%[^\n]%*c", origemSigla);
 
-	if(!ehValidoSiglaAeroporto(novoVoo->origemSigla)) {
+	if(!ehValidoSiglaAeroporto(origemSigla)) {
 		printf("\nSigla fornecida e invalida!\n");
 		Pause();
 
-		novoVoo->origemSigla[0] = '\0';
 		return;
 	}
 
 	printf("Origem: ");
 	fflush(stdin);
-	scanf("%[^\n]%*c", novoVoo->origem);
+	scanf("%[^\n]%*c", origemNome);
 
-	if(!ehValidoNomeAeroporto(novoVoo->origem)) {
+	if(!ehValidoNomeAeroporto(origemNome)) {
 		printf("\nOrigem fornecida e invalida!\n");
 		Pause();
 
-		novoVoo->origemSigla[0] = '\0';
-		novoVoo->origem[0] = '\0';
+		return;
 	}
+
+	novoVoo->origem = createAeroporto(origemNome, origemNome);
 }
 
 char ehValidoSiglaAeroporto(char sigla[]) {
@@ -142,111 +147,118 @@ char ehValidoNomeAeroporto(char nome[]) {
 }
 
 void lerDestinoVoo(VooInfo *novoVoo) {
+	char destinoSigla[MAX_AEROPORTO_SIGLA_LENGTH];
+	char destinoNome[MAX_AEROPORTO_NAME_LENGTH];
 	printf("Sigla Destino: ");
 	fflush(stdin);
-	scanf("%[^\n]%*c", novoVoo->destinoSigla);
+	scanf("%[^\n]%*c", destinoSigla);
 
-	if(!ehValidoSiglaAeroporto(novoVoo->destinoSigla)) {
+	if(!ehValidoSiglaAeroporto(destinoSigla)) {
 		printf("\nSigla fornecida e invalida!\n");
 		Pause();
 
-		novoVoo->destinoSigla[0] = '\0';
 		return;
 	}
 
-	if(!strcmp(novoVoo->origemSigla, novoVoo->destinoSigla)) {
+
+	if(!strcmp(novoVoo->origem->sigla, destinoSigla)) {
 		printf("\nDestino e origem nao podem ser o mesmo!\n");
 		Pause();
 
-		novoVoo->destinoSigla[0] = '\0';
 		return;
 	}
 
 	printf("Destino: ");
 	fflush(stdin);
-	scanf("%[^\n]%*c", novoVoo->destino);
+	scanf("%[^\n]%*c", destinoNome);
 
-	if(!ehValidoNomeAeroporto(novoVoo->destino)) {
+	if(!ehValidoNomeAeroporto(destinoNome)) {
 		printf("\nDestino fornecido e invalido!\n");
 		Pause();
 
-		novoVoo->destinoSigla[0] = '\0';
-		novoVoo->destino[0] = '\0';
+		return;
 	}
+
+	novoVoo->destino = createAeroporto(destinoNome, destinoSigla);
 }
 
 void lerPartidaVoo(VooInfo *novoVoo) {
 	int readCheck = 0, hh, mm;
+	Hora *horario;
 
 	printf("Horario da partida (hh:mm): ");
 	fflush(stdin);
 	scanf("%d:%d%n", &hh, &mm, &readCheck);
-	novoVoo->partida.hh = hh;
-	novoVoo->partida.mm = mm;
+	horario = createHora((char) hh, (char) mm);
 
-	if(!readCheck || !ehValidoHorario(novoVoo->partida)) {
+	if(!readCheck || !ehValidoHorario(horario)) {
 		printf("\nHorario de partida fornecido e invalido!\n");
 		Pause();
 
-		novoVoo->partida.hh = -1;
-		novoVoo->partida.mm = -1;
+		return;
 	}
+
+	novoVoo->partida = horario;
 }
 
-char ehValidoHorario(Hora horario) {
-	return (horario.hh >= 0 && horario.hh < 24 &&
-		horario.mm >= 0 && horario.mm < 59);
+char ehValidoHorario(Hora *horario) {
+	return (horario->hh >= 0 && horario->hh < 24 &&
+		horario->mm >= 0 && horario->mm < 59);
 }
 
 void lerChegadaVoo(VooInfo *novoVoo) {
 	int readCheck = 0, hh, mm;
+	Hora *horario;
 
 	printf("Horario de chegada (hh:mm): ");
 	fflush(stdin);
 	scanf("%d:%d%n", &hh, &mm, &readCheck);
-	novoVoo->chegada.hh = hh;
-	novoVoo->chegada.mm = mm;
+	horario = createHora((char) hh, (char) mm);
 
-	if(!readCheck || !ehValidoHorario(novoVoo->chegada)) {
+	if(!readCheck || !ehValidoHorario(horario)) {
 		printf("\nHorario de chegada fornecido e invalido!\n");
 		Pause();
 
-		novoVoo->chegada.hh = -1;
-		novoVoo->chegada.mm = -1;
+		return;
 	}
+
+	novoVoo->chegada = horario;
 }
 
 void lerDuracaoVoo(VooInfo *novoVoo) {
 	int readCheck = 0, hh, mm;
+	Hora *horario;
 
 	printf("Duracao do voo (hh:mm): ");
 	fflush(stdin);
 	scanf("%d:%d%n", &hh, &mm, &readCheck);
-	novoVoo->duracao.hh = hh;
-	novoVoo->duracao.mm = mm;
+	horario = createHora((char) hh, (char) mm);
 
-	if(!readCheck || !ehValidoHorario(novoVoo->duracao)) {
+	if(!readCheck || !ehValidoHorario(horario)) {
 		printf("\nDuracao fornecida e invalida!\n");
 		Pause();
 
-		novoVoo->duracao.hh = -1;
-		novoVoo->duracao.mm = -1;
-	}
-}
-
-void lerModeloAeronaveVoo(VooInfo *novoVoo) {
-	printf("Modelo aeronave: ");
-	fflush(stdin);
-	scanf("%[^\n]%*c", novoVoo->modeloAeronave);
-
-	if(!ehValidoModeloAeronave(novoVoo->modeloAeronave)) {
-		printf("\nAeronave fornecida e invalida!\n");
-		Pause();
-
-		novoVoo->modeloAeronave[0] = '\0';
 		return;
 	}
 
+	novoVoo->duracao = horario;
+}
+
+void lerModeloAeronaveVoo(VooInfo *novoVoo) {
+	char aeronaveModelo[MAXSTR];
+
+	printf("Modelo aeronave: ");
+	fflush(stdin);
+	scanf("%[^\n]%*c", aeronaveModelo);
+
+	if(!ehValidoModeloAeronave(aeronaveModelo)) {
+		printf("\nAeronave fornecida e invalida!\n");
+		Pause();
+
+		return;
+	}
+
+	novoVoo->aeronave = createAeronave(aeronaveModelo);
 }
 
 char ehValidoModeloAeronave(char modeloAeronave[]) {
@@ -295,7 +307,7 @@ char mostrarCadastroVooOpcoes(VooInfo *novoVoo) {
 }
 
 char escolhaInserirVoo(VooInfo *novoVoo) {
-	char escolha, choiceList[3] = "0sa";
+	char escolha, choiceList[4] = "0sa";
 
 	printaSeparador();
 	telaRodapeInserirVoo();
@@ -304,7 +316,7 @@ char escolhaInserirVoo(VooInfo *novoVoo) {
 	fflush(stdin);
 	scanf("%c", &escolha);
 
-	if(!isdigit(escolha)) return tolower(escolha);
+	if(!isdigit(escolha)) return (char) tolower(escolha);
 
 	return choiceList[escolha-'0'];
 }

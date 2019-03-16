@@ -31,7 +31,7 @@ int main() {
                 /// opção inválida escolhida
             default:
                 printf("Nao eh uma opcao valida!\n\n");
-                Pause();;
+                Pause();
                 break;
         }
         /// enquanto escolha diferente de '0' e valida

@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "../input/string.h"
 
-Aeroporto *createAeroporto(char *nome, char*sigla){
+Aeroporto *createAeroporto(char *nome, char *sigla){
     if(!nome || !sigla) return NULL;
     if(strlen(sigla) != 3) return NULL;
 
@@ -38,7 +38,7 @@ char *readAeroporto(Aeroporto *aeroporto){
 void updateAeroporto(Aeroporto *aeroporto, void *update, char* field){
     if(!update) return;
     if(!strcmp("nome", field)) {
-        updateString(aeroporto->nome, update);
+        aeroporto->nome = updateString(aeroporto->nome, update);
     }
     if(!strcmp("sigla", field)){
         if(strlen(update) != 3) return;

@@ -76,12 +76,12 @@ void testarCadastros() {
 	printf("%p\n", aeroporto);
 
 
-	Aeronave *aeronave = createAeronave("teste de aeronave 1", "aer");
+	Aeronave *aeronave = createAeronave("teste de aeronave 1");
 	read = readAeronave(aeronave);
 	printf("%s\n", read);
 	free(read);
 
-	updateAeronave(aeronave, "aeronave de teste 2", "tipo");
+	updateAeronave(aeronave, "aeronave de teste 2", "modelo");
 	read = readAeronave(aeronave);
 	printf("%s\n", read);
 	free(read);

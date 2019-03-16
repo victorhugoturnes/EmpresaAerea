@@ -13,6 +13,6 @@
     #define ClearScreen() system("cls")
 #endif
 
-#define Pause() getchar();
+#define Pause() printf("Aperte qualquer tecla para continuar..."); getchar(); getchar();
 
 #endif //UNTITLED_ENVIRONMENT_H
