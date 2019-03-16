@@ -8,8 +8,8 @@
 #include "../Environment.h"
 #include "../input/string.h"
 #include "cadastrosMenuUI.h"
-#include "../core/Aeronave.h"
-#include "../core/Aeroporto.h"
+#include "../core Headers/Aeronave.h"
+#include "../core Headers/Aeroporto.h"
 /*!
 	@brief mainMenuEscolha, apresenta opções para o usuário e recolhe \
 	sua escolha

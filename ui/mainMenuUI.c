@@ -9,7 +9,7 @@
 	@postcondition nenhuma
 */
 char mainMenuEscolha() {
-	char escolha, choiceList[3] = "0cs";
+	char escolha, choiceList[] = "0cs";
 
 	/// apresenta tela de menu e lê da entrada padrão a escolha \
 	do usuário
@@ -20,7 +20,7 @@ char mainMenuEscolha() {
 	scanf("%c", &escolha);
 
 	/// se não é número, retorna a letra minuscula
-	if(!isdigit(escolha)) return tolower(escolha);
+	if(!isdigit(escolha)) return (char) tolower(escolha);
 
 	/// se for número, converte e retorna letra equivalente
 	return choiceList[escolha-'0'];
@@ -73,7 +73,7 @@ void testarCadastros() {
 	free(read);
 
 	deleteAeroporto(&aeroporto);
-	printf("%d\n", aeroporto);
+	printf("%p\n", aeroporto);
 
 
 	Aeronave *aeronave = createAeronave("teste de aeronave 1", "aer");
@@ -119,7 +119,7 @@ char confirmacaoSaidaMainMenu() {
 	/// lê resposta do usuário
 	fflush(stdin);
 	scanf("%c", &escolha);
-	escolha = tolower(escolha);
+	escolha = (char) tolower(escolha);
 
 	/// enquanto resposta for inválida
 	while(escolha != 's' && escolha != 'n') {
@@ -132,7 +132,7 @@ char confirmacaoSaidaMainMenu() {
 		/// lê resposta do usuário
 		fflush(stdin);
 		scanf("%c", &escolha);
-		escolha = tolower(escolha);
+		escolha = (char) tolower(escolha);
 	}
 
 	/// se usuário deseja sair, retorna 1
