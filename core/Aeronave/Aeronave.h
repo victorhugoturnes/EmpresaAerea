@@ -2,8 +2,8 @@
 // Created by last on 3/7/19.
 //
 
-#ifndef UNTITLED_CORE_H
-#define UNTITLED_CORE_H
+#ifndef AERONAVE_H
+#define AERONAVE_H
 
 
 typedef struct aeronave{
@@ -18,4 +18,4 @@ void updateAeronave(Aeronave *Aeronave, void *update, char* field);
 
 void deleteAeronave(Aeronave **Aeronave);
 
-#endif //UNTITLED_CORE_H
+#endif //AERONAVE_H

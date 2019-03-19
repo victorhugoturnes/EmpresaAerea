@@ -9,8 +9,8 @@
 #define MAX_AEROPORTO_SIGLA_LENGTH 4
 #define MAX_MODELO_AERONAVE 64
 
-#include "../core/Aeroporto.h"
-#include "../core/Aeronave.h"
+#include "../Aeroporto/Aeroporto.h"
+#include "../Aeronave/Aeronave.h"
 
 typedef struct Hora {
 	char hh, mm;

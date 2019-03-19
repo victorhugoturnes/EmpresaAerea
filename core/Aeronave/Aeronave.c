@@ -2,11 +2,11 @@
 // Created by last on 3/7/19.
 //
 
-#include "../core Headers/Aeronave.h"
+#include "Aeronave.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "../input/string.h"
+#include "../../input/string.h"
 
 Aeronave *createAeronave(char *modelo){
     if(!modelo) return NULL;
