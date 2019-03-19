@@ -9,9 +9,9 @@
 #include "../../../../../../core/Voo/VooInfo.h"
 #include "../../../../../../Environment.h"
 
-void inserirVoo();
+void vooInserir();
 
-void telaCabecalhoInserirVoo();
+void telaCabecalhoVooInserir();
 
 void printaSeparador();
 
@@ -39,9 +39,9 @@ void lerModeloAeronaveVoo(VooInfo *novoVoo);
 
 char ehValidoModeloAeronave(char modeloAeronave[]);
 
-char escolhaInserirVoo(VooInfo *novoVoo);
+char escolhaVooInserir(VooInfo *novoVoo);
 
-void telaRodapeInserirVoo();
+void telaRodapeVooInserir();
 
 char mostrarCadastroVooOpcoes(VooInfo *novoVoo);
 

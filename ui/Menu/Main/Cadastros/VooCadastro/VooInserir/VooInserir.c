@@ -1,11 +1,13 @@
 #include "VooInserir.h"
 
-void inserirVoo() {
+void alterarNovoVoo(VooInfo *novoVoo);
+
+void vooInserir() {
 	VooInfo *novoVoo = createVooInfo();
 	char cadastroConcluido = 0;
 
 	while(!cadastroConcluido) {
-		telaCabecalhoInserirVoo();
+		telaCabecalhoVooInserir();
 
 		if(novoVoo->prefixo[0] == '\0') {
 			printaSeparador();
@@ -68,7 +70,7 @@ void inserirVoo() {
 	}
 }
 
-void telaCabecalhoInserirVoo() {
+void telaCabecalhoVooInserir() {
 	ClearScreen();
 
 	printf("Insira as informacoes do voo a seguir.\n");
@@ -181,8 +183,8 @@ void lerPartidaVoo(VooInfo *novoVoo) {
 	printf("Horario da partida (hh:mm): ");
 	fflush(stdin);
 	scanf("%d:%d%n", &hh, &mm, &readCheck);
-	novoVoo->partida.hh = hh;
-	novoVoo->partida.mm = mm;
+	novoVoo->partida.hh = (char) hh;
+	novoVoo->partida.mm = (char) mm;
 
 	if(!readCheck || !ehValidoHorario(novoVoo->partida)) {
 		printf("\nHorario de partida fornecido e invalido!\n");
@@ -204,8 +206,8 @@ void lerChegadaVoo(VooInfo *novoVoo) {
 	printf("Horario de chegada (hh:mm): ");
 	fflush(stdin);
 	scanf("%d:%d%n", &hh, &mm, &readCheck);
-	novoVoo->chegada.hh = hh;
-	novoVoo->chegada.mm = mm;
+	novoVoo->chegada.hh = (char) hh;
+	novoVoo->chegada.mm = (char) mm;
 
 	if(!readCheck || !ehValidoHorario(novoVoo->chegada)) {
 		printf("\nHorario de chegada fornecido e invalido!\n");
@@ -222,8 +224,8 @@ void lerDuracaoVoo(VooInfo *novoVoo) {
 	printf("Duracao do voo (hh:mm): ");
 	fflush(stdin);
 	scanf("%d:%d%n", &hh, &mm, &readCheck);
-	novoVoo->duracao.hh = hh;
-	novoVoo->duracao.mm = mm;
+	novoVoo->duracao.hh = (char) hh;
+	novoVoo->duracao.mm = (char) mm;
 
 	if(!readCheck || !ehValidoHorario(novoVoo->duracao)) {
 		printf("\nDuracao fornecida e invalida!\n");
@@ -263,7 +265,7 @@ char ehValidoModeloAeronave(char modeloAeronave[]) {
 char mostrarCadastroVooOpcoes(VooInfo *novoVoo) {
 	char escolha = 0;
 
-	escolha = escolhaInserirVoo(novoVoo);
+	escolha = escolhaVooInserir(novoVoo);
 	switch(escolha) {
 		case 's':
 //			salvarVoo(novoVoo);
@@ -273,7 +275,7 @@ char mostrarCadastroVooOpcoes(VooInfo *novoVoo) {
 			Pause();
 			return 0;
 		case 'a':
-//			alterarVoo();
+			alterarNovoVoo(novoVoo);
 			printaSeparador();
 			printf("Funcionalidade ainda nao implementada!\n");
 			printaSeparador();
@@ -294,22 +296,54 @@ char mostrarCadastroVooOpcoes(VooInfo *novoVoo) {
 	}
 }
 
-char escolhaInserirVoo(VooInfo *novoVoo) {
-	char escolha, choiceList[3] = "0sa";
+void alterarNovoVoo(VooInfo *novoVoo) {
+//	char escolha = 0;
+//
+//	escolha = escolhaAlterarNovoVoo();
+//	do {
+//		switch(escolha) {
+//			/// prefixo
+//			case 1:
+//			    break;
+//            /// aeroporto origem
+//            case 2:
+//                break;
+//            /// aeroporto destino
+//            case 3:
+//                break;
+//            /// hora partida
+//            case 4:
+//                break;
+//            /// hora chegada
+//            case 5:
+//                break;
+//            /// duração
+//            case 6:
+//                break;
+//            /// aeronave
+//            case 7:
+//                break;
+//            default: break;
+//        }
+//    } while(escolha != '0' && (escolha = escolhaAlterarNovoVoo()));
+}
+
+char escolhaVooInserir(VooInfo *novoVoo) {
+	char escolha, choiceList[] = "0sa";
 
 	printaSeparador();
-	telaRodapeInserirVoo();
+	telaRodapeVooInserir();
 	printf("\n");
 	printf("Opcao: ");
 	fflush(stdin);
 	scanf("%c", &escolha);
 
-	if(!isdigit(escolha)) return tolower(escolha);
+	if(!isdigit(escolha)) return (char) tolower(escolha);
 
 	return choiceList[escolha-'0'];
 }
 
-void telaRodapeInserirVoo() {
+void telaRodapeVooInserir() {
 	printf("1) (S)alvar - 2) (A)lterar\n");
 	printf("0) (C)ancelar Cadastro\n");
 }

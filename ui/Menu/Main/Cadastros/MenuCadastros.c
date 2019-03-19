@@ -7,7 +7,7 @@ void menuCadastros() {
 	do {
 		switch(escolha) {
 			case 'v':
-				cadastrosVoo();
+                vooCadastros();
 				break;
 			case 'c':
 //				cadastrosCliente();
@@ -37,7 +37,7 @@ void menuCadastros() {
 	@postcondition nenhuma
 */
 char escolhaCadastros() {
-	char escolha, choiceList[4] = "0vca";
+	char escolha, choiceList[] = "0vca";
 
 	telaCadastros();
 	printf("\n");
@@ -45,7 +45,7 @@ char escolhaCadastros() {
 	fflush(stdin);
 	scanf("%c", &escolha);
 
-	if(!isdigit(escolha)) return tolower(escolha);
+	if(!isdigit(escolha)) return (char) tolower(escolha);
 
 	return choiceList[escolha-'0'];
 }

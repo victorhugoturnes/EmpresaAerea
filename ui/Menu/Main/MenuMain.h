@@ -11,20 +11,20 @@
 #include "../../../core/Aeronave/Aeronave.h"
 #include "../../../core/Aeroporto/Aeroporto.h"
 /*!
-	@brief mainMenuEscolha, apresenta opções para o usuário e recolhe \
+	@brief menuMainEscolha, apresenta opções para o usuário e recolhe \
 	sua escolha
 	@return escolha feita pelo usuário
 	@precondition nenhuma
 	@postcondition nenhuma
 */
-char mainMenuEscolha();
+char menuMainEscolha();
 
 /*!
-	@brief telaMainMenu, apresenta tela de opções ao usuário
+	@brief telaMenuMain, apresenta tela de opções ao usuário
 	@precondition nenhuma
 	@postcondition nenhuma
 */
-void telaMainMenu();
+void telaMenuMain();
 
 // -- //
 
@@ -33,11 +33,11 @@ void menuStatus();
 void testarCadastros();
 
 /*!
-	@brief confirmacaoSaidaMainMenu, pergunta ao usuário se este confirma \
+	@brief confirmacaoSaidaMenuMain, pergunta ao usuário se este confirma \
 	saída do programa
 	@precondition nenhuma
 	@postcondition nenhuma
 */
-char confirmacaoSaidaMainMenu();
+char confirmacaoSaidaMenuMain();
 
 #endif // MAINMENUUI_H

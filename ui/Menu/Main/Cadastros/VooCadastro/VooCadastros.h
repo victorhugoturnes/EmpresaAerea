@@ -8,10 +8,10 @@
 #include "VooInserir/VooInserir.h"
 #include "../../../../../Environment.h"
 
-void cadastrosVoo();
+void vooCadastros();
 
-char escolhaCadastrosVoo();
+char escolhaVooCadastros();
 
-void telaCadastrosVoo();
+void telaVooCadastros();
 
 #endif // CADASTROSVOOUI_H

@@ -2,36 +2,36 @@
 
 
 /*!
-	@brief mainMenuEscolha, apresenta opções para o usuário e recolhe \
+	@brief menuMainEscolha, apresenta opções para o usuário e recolhe \
 	sua escolha
 	@return escolha feita pelo usuário
 	@precondition nenhuma
 	@postcondition nenhuma
 */
-char mainMenuEscolha() {
-	char escolha, choiceList[3] = "0cs";
+char menuMainEscolha() {
+	char escolha, choiceList[] = "0cs";
 
 	/// apresenta tela de menu e lê da entrada padrão a escolha \
 	do usuário
-	telaMainMenu();
+	telaMenuMain();
 	printf("\n");
 	printf("Opcao: ");
 	fflush(stdin);
 	scanf("%c", &escolha);
 
 	/// se não é número, retorna a letra minuscula
-	if(!isdigit(escolha)) return tolower(escolha);
+	if(!isdigit(escolha)) return (char) tolower(escolha);
 
 	/// se for número, converte e retorna letra equivalente
 	return choiceList[escolha-'0'];
 }
 
 /*!
-	@brief telaMainMenu, apresenta tela de opções ao usuário
+	@brief telaMenuMain, apresenta tela de opções ao usuário
 	@precondition nenhuma
 	@postcondition nenhuma
 */
-void telaMainMenu() {
+void telaMenuMain() {
 	ClearScreen();
 
 	printf("1) Menu (C)adastros\n");
@@ -103,12 +103,12 @@ void testarCadastros() {
 }
 
 /*!
-	@brief confirmacaoSaidaMainMenu, pergunta ao usuário se este confirma \
+	@brief confirmacaoSaidaMenuMain, pergunta ao usuário se este confirma \
 	saída do programa
 	@precondition nenhuma
 	@postcondition nenhuma
 */
-char confirmacaoSaidaMainMenu() {
+char confirmacaoSaidaMenuMain() {
 	char escolha = 0;
 
 	/// pergunta ao usuário se deseja mesmo sair
@@ -119,7 +119,7 @@ char confirmacaoSaidaMainMenu() {
 	/// lê resposta do usuário
 	fflush(stdin);
 	scanf("%c", &escolha);
-	escolha = tolower(escolha);
+	escolha = (char) tolower(escolha);
 
 	/// enquanto resposta for inválida
 	while(escolha != 's' && escolha != 'n') {
@@ -132,7 +132,7 @@ char confirmacaoSaidaMainMenu() {
 		/// lê resposta do usuário
 		fflush(stdin);
 		scanf("%c", &escolha);
-		escolha = tolower(escolha);
+		escolha = (char) tolower(escolha);
 	}
 
 	/// se usuário deseja sair, retorna 1

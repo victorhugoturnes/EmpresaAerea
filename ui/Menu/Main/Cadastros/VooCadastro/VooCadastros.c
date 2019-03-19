@@ -1,13 +1,13 @@
 #include "VooCadastros.h"
 
-void cadastrosVoo() {
+void vooCadastros() {
 	char escolha = 0;
 
-	escolha = escolhaCadastrosVoo();
+	escolha = escolhaVooCadastros();
 	do {
 		switch(escolha) {
 			case 'i':
-				inserirVoo();
+                vooInserir();
 				break;
 			case 'c':
 //				consultarVoo();
@@ -23,24 +23,24 @@ void cadastrosVoo() {
 				break;
 		}
 
-	} while(escolha != '0' && (escolha = escolhaCadastrosVoo()));
+	} while(escolha != '0' && (escolha = escolhaVooCadastros()));
 }
 
-char escolhaCadastrosVoo() {
-	char escolha, choiceList[3] = "0ic";
+char escolhaVooCadastros() {
+	char escolha, choiceList[] = "0ic";
 
-	telaCadastrosVoo();
+	telaVooCadastros();
 	printf("\n");
 	printf("Opcao: ");
 	fflush(stdin);
 	scanf("%c", &escolha);
 
-	if(!isdigit(escolha)) return tolower(escolha);
+	if(!isdigit(escolha)) return (char) tolower(escolha);
 
 	return choiceList[escolha-'0'];
 }
 
-void telaCadastrosVoo() {
+void telaVooCadastros() {
 	ClearScreen();
 
 	printf("1) (I)nserir VooCadastro\n");

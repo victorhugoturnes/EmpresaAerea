@@ -7,7 +7,7 @@ int main() {
     char escolha = 0;
 
     /// printa menu principal e recolhe escolha do usuário
-    escolha = mainMenuEscolha();
+    escolha = menuMainEscolha();
     do {
         /// entra no menu escolhido pelo usuário
         switch(escolha) {
@@ -25,7 +25,7 @@ int main() {
                 break;
                 /// caso de saída
             case '0':
-                if(!confirmacaoSaidaMainMenu())
+                if(!confirmacaoSaidaMenuMain())
                     escolha = 1;
                 break;
                 /// opção inválida escolhida
@@ -35,7 +35,7 @@ int main() {
                 break;
         }
         /// enquanto escolha diferente de '0' e valida
-    } while(escolha != '0' && (escolha = mainMenuEscolha()));
+    } while(escolha != '0' && (escolha = menuMainEscolha()));
 
     return 0;
 }
