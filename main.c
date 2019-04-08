@@ -1,7 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "ui/Menu/Main/mainMenuUI.h"
-#include "Environment.h"
 
 int main() {
     char escolha = 0;
@@ -10,7 +8,7 @@ int main() {
     escolha = mainMenuEscolha();
     do {
         /// entra no menu escolhido pelo usuário
-        switch(escolha) {
+        switch (escolha) {
             /// abre menu de cadastros
             case 'c':
                 menuCadastros();
@@ -25,7 +23,7 @@ int main() {
                 break;
                 /// caso de saída
             case '0':
-                if(!confirmacaoSaidaMainMenu())
+                if (!confirmacaoSaidaMainMenu())
                     escolha = 1;
                 break;
                 /// opção inválida escolhida
@@ -35,7 +33,7 @@ int main() {
                 break;
         }
         /// enquanto escolha diferente de '0' e valida
-    } while(escolha != '0' && (escolha = mainMenuEscolha()));
+    } while (escolha != '0' && (escolha = mainMenuEscolha()));
 
     return 0;
 }

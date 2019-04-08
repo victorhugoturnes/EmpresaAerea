@@ -6,15 +6,15 @@
 #define AERONAVE_H
 
 
-typedef struct aeronave{
+typedef struct aeronave {
     char *modelo;
-}Aeronave;
+} Aeronave;
 
 Aeronave *createAeronave(char *modelo);
 
 char *readAeronave(Aeronave *Aeronave);
 
-void updateAeronave(Aeronave *Aeronave, void *update, char* field);
+void updateAeronave(Aeronave *Aeronave, void *update, char *field);
 
 void deleteAeronave(Aeronave **Aeronave);
 

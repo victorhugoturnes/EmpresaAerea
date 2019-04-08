@@ -5,7 +5,9 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#include "../../Voos/cadastrosVooUI.h"
+#include "Voo/cadastrosVooUI.h"
+#include "Cliente/cadastrosClienteUI.h"
+
 #include "../../../../Environment.h"
 
 /*!
