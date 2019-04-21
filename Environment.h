@@ -6,13 +6,15 @@
 #define UNTITLED_ENVIRONMENT_H
 
 #ifdef unix
-    #define ClearScreen() system("clear")
+#define ClearScreen() system("clear")
 #endif
 
 #ifdef _WIN32
-    #define ClearScreen() system("cls")
+#define ClearScreen() system("cls")
 #endif
 
-#define Pause() printf("Aperte qualquer tecla para continuar..."); getchar(); getchar();
+#define Pause() fflush(stdin); printf("Aperte qualquer tecla para continuar...\n"); getchar();
+
+#define PrintaSeparador() printf("---------------------------\n");
 
 #endif //UNTITLED_ENVIRONMENT_H

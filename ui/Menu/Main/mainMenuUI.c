@@ -1,6 +1,5 @@
 #include "mainMenuUI.h"
 
-
 /*!
 	@brief mainMenuEscolha, apresenta opções para o usuário e recolhe \
 	sua escolha
@@ -9,21 +8,21 @@
 	@postcondition nenhuma
 */
 char mainMenuEscolha() {
-	char escolha, choiceList[] = "0cs";
+    char escolha, choiceList[] = "0cs";
 
-	/// apresenta tela de menu e lê da entrada padrão a escolha \
+    /// apresenta tela de menu e lê da entrada padrão a escolha \
 	do usuário
-	telaMainMenu();
-	printf("\n");
-	printf("Opcao: ");
-	fflush(stdin);
-	scanf("%c", &escolha);
+    telaMainMenu();
+    printf("\n");
+    printf("Opcao: ");
+    fflush(stdin);
+    scanf("%c", &escolha);
 
-	/// se não é número, retorna a letra minuscula
-	if(!isdigit(escolha)) return (char) tolower(escolha);
+    /// se não é número, retorna a letra minuscula
+    if (!isdigit(escolha)) return (char) tolower(escolha);
 
-	/// se for número, converte e retorna letra equivalente
-	return choiceList[escolha-'0'];
+    /// se for número, converte e retorna letra equivalente
+    return choiceList[escolha - '0'];
 }
 
 /*!
@@ -32,74 +31,74 @@ char mainMenuEscolha() {
 	@postcondition nenhuma
 */
 void telaMainMenu() {
-	ClearScreen();
+    ClearScreen();
 
-	printf("1) Menu (C)adastros\n");
-	printf("2) Menu (S)tatus\n");
-	printf("\n");
-	printf("0) Sair do Programa\n");
+    printf("1) Menu (C)adastros\n");
+    printf("2) Menu (S)tatus\n");
+    printf("\n");
+    printf("0) Sair do Programa\n");
 }
 
 void menuStatus() {
-	ClearScreen();
-	printf("menuStatus\n");
-	printf("WORK IN PROGRESS...\n");
-	ClearScreen();
+    ClearScreen();
+    printf("menuStatus\n");
+    printf("WORK IN PROGRESS...\n");
+    ClearScreen();
 }
 
 void testarCadastros() {
-	ClearScreen();
+    ClearScreen();
 
-	char *read;
+    char *read;
 
-	Aeroporto *aeroporto = createAeroporto("aeroporto de teste 1", "aer");
-	read = readAeroporto(aeroporto);
-	printf("%s\n", read);
-	free(read);
+    Aeroporto *aeroporto = createAeroporto("aeroporto de teste 1", "aer");
+    read = readAeroporto(aeroporto);
+    printf("%s\n", read);
+    free(read);
 
-	updateAeroporto(aeroporto, "teste aeroporto 2", "nome");
-	read = readAeroporto(aeroporto);
-	printf("%s\n", read);
-	free(read);
+    updateAeroporto(aeroporto, "teste aeroporto 2", "nome");
+    read = readAeroporto(aeroporto);
+    printf("%s\n", read);
+    free(read);
 
-	updateAeroporto(aeroporto, "teste aeroporto 2", "sigla");
-	read = readAeroporto(aeroporto);
-	printf("%s\n", read);
-	free(read);
+    updateAeroporto(aeroporto, "teste aeroporto 2", "sigla");
+    read = readAeroporto(aeroporto);
+    printf("%s\n", read);
+    free(read);
 
-	updateAeroporto(aeroporto, "123", "sigla");
-	read = readAeroporto(aeroporto);
-	printf("%s\n", read);
-	free(read);
+    updateAeroporto(aeroporto, "123", "sigla");
+    read = readAeroporto(aeroporto);
+    printf("%s\n", read);
+    free(read);
 
-	deleteAeroporto(&aeroporto);
-	printf("%p\n", aeroporto);
+    deleteAeroporto(&aeroporto);
+    printf("%p\n", aeroporto);
 
 
-	Aeronave *aeronave = createAeronave("teste de aeronave 1");
-	read = readAeronave(aeronave);
-	printf("%s\n", read);
-	free(read);
+    Aeronave *aeronave = createAeronave("teste de aeronave 1");
+    read = readAeronave(aeronave);
+    printf("%s\n", read);
+    free(read);
 
-	updateAeronave(aeronave, "aeronave de teste 2", "modelo");
-	read = readAeronave(aeronave);
-	printf("%s\n", read);
-	free(read);
+    updateAeronave(aeronave, "aeronave de teste 2", "modelo");
+    read = readAeronave(aeronave);
+    printf("%s\n", read);
+    free(read);
 
-	updateAeronave(aeronave, "aeronave de teste 2", "prefixo");
-	read = readAeronave(aeronave);
-	printf("%s\n", read);
-	free(read);
+    updateAeronave(aeronave, "aeronave de teste 2", "prefixo");
+    read = readAeronave(aeronave);
+    printf("%s\n", read);
+    free(read);
 
-	updateAeronave(aeronave, "123", "prefixo");
-	read = readAeronave(aeronave);
-	printf("%s\n", read);
-	free(read);
+    updateAeronave(aeronave, "123", "prefixo");
+    read = readAeronave(aeronave);
+    printf("%s\n", read);
+    free(read);
 
-	deleteAeronave(&aeronave);
-	printf("%p\n", aeronave);
+    deleteAeronave(&aeronave);
+    printf("%p\n", aeronave);
 
-	Pause();
+    Pause();
 }
 
 /*!
@@ -109,35 +108,35 @@ void testarCadastros() {
 	@postcondition nenhuma
 */
 char confirmacaoSaidaMainMenu() {
-	char escolha = 0;
+    char escolha = 0;
 
-	/// pergunta ao usuário se deseja mesmo sair
-	ClearScreen();
-	printf("Voce deseja sair do programa?\n");
-	printf("S / N\n");
+    /// pergunta ao usuário se deseja mesmo sair
+    ClearScreen();
+    printf("Voce deseja sair do programa?\n");
+    printf("S / N\n");
 
-	/// lê resposta do usuário
-	fflush(stdin);
-	scanf("%c", &escolha);
-	escolha = (char) tolower(escolha);
+    /// lê resposta do usuário
+    fflush(stdin);
+    scanf("%c", &escolha);
+    escolha = (char) tolower(escolha);
 
-	/// enquanto resposta for inválida
-	while(escolha != 's' && escolha != 'n') {
-		/// limpa tela e pergunta confirmação de saida
-		ClearScreen();
-		printf("Escolha invalida!\n");
-		printf("Voce deseja sair do programa?\n");
-		printf("S / N\n");
+    /// enquanto resposta for inválida
+    while (escolha != 's' && escolha != 'n') {
+        /// limpa tela e pergunta confirmação de saida
+        ClearScreen();
+        printf("Escolha invalida!\n");
+        printf("Voce deseja sair do programa?\n");
+        printf("S / N\n");
 
-		/// lê resposta do usuário
-		fflush(stdin);
-		scanf("%c", &escolha);
-		escolha = (char) tolower(escolha);
-	}
+        /// lê resposta do usuário
+        fflush(stdin);
+        scanf("%c", &escolha);
+        escolha = (char) tolower(escolha);
+    }
 
-	/// se usuário deseja sair, retorna 1
-	if(escolha == 's') return 1;
+    /// se usuário deseja sair, retorna 1
+    if (escolha == 's') return 1;
 
-	/// caso contrário, retorna 0
-	return 0;
+    /// caso contrário, retorna 0
+    return 0;
 }

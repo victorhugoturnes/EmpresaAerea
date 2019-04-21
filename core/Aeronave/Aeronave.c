@@ -6,7 +6,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+
 #include "../../input/string.h"
+
 
 /*
     Nome da Funcao : createAeronave
@@ -19,7 +21,7 @@ Aeronave *createAeronave(char *modelo){
 
     Aeronave *Aeronave = malloc(sizeof(Aeronave));
 
-    Aeronave->modelo = malloc(sizeof(char) * (strlen(modelo)+1));
+    Aeronave->modelo = malloc(sizeof(char) * (strlen(modelo) + 1));
     Aeronave->modelo = strcpy(Aeronave->modelo, modelo);
 
     return Aeronave;
@@ -36,7 +38,7 @@ char *readAeronave(Aeronave *Aeronave){
     char *str;
 
     size = sprintf(buffer, "Aeronave: %s", Aeronave->modelo);
-    str = malloc(sizeof(char) * size+1);
+    str = malloc(sizeof(char) * size + 1);
 
     strcpy(str, buffer);
     return str;

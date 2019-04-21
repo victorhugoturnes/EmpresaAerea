@@ -6,15 +6,13 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "../../../core/Voo/VooInfo.h"
-#include "../../../input/string.h"
-#include "../../../Environment.h"
+#include "../../../../../core/Voo/VooInfo.h"
+#include "../../../../../input/string.h"
+#include "../../../../../Environment.h"
 
 void inserirVoo();
 
 void telaCabecalhoInserirVoo();
-
-void printaSeparador();
 
 void lerPrefixoVoo(VooInfo *novoVoo);
 
@@ -42,8 +40,14 @@ char ehValidoModeloAeronave(char modeloAeronave[]);
 
 char escolhaInserirVoo(VooInfo *novoVoo);
 
+char mostrarCadastroVooOpcoes(VooInfo *novoVoo);
+
 void telaRodapeInserirVoo();
 
-char mostrarCadastroVooOpcoes(VooInfo *novoVoo);
+void alterarNovoVoo(VooInfo *novoVoo);
+
+char escolhaAlterarNovoVoo();
+
+void telaAlterarNovoVoo();
 
 #endif // INSERIRVOOUI_H

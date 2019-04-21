@@ -2,26 +2,31 @@
 #include "VooInfo.h"
 
 VooInfo *createVooInfo() {
-	VooInfo *novoVooInfo = (VooInfo*)malloc(sizeof(VooInfo));
+    VooInfo *novoVooInfo = (VooInfo *) malloc(sizeof(VooInfo));
 
-	novoVooInfo->prefixo = NULL;
-	novoVooInfo->origem = NULL;
-	novoVooInfo->destino = NULL;
+    novoVooInfo->prefixo = NULL;
+    novoVooInfo->origem = NULL;
+    novoVooInfo->destino = NULL;
 
-	novoVooInfo->partida = NULL;
-	novoVooInfo->chegada = NULL;
-	novoVooInfo->duracao = NULL;
+    novoVooInfo->partida = NULL;
+    novoVooInfo->chegada = NULL;
+    novoVooInfo->duracao = NULL;
 
-	novoVooInfo->aeronave = NULL;
+    novoVooInfo->aeronave = NULL;
 
-	return novoVooInfo;
+    return novoVooInfo;
 }
 
 Hora *createHora(char hh, char mm) {
-	Hora *novaHora = (Hora *)malloc(sizeof(Hora));
+    Hora *novaHora = (Hora *) malloc(sizeof(Hora));
 
-	novaHora->hh = hh;
-	novaHora->mm = mm;
+    novaHora->hh = hh;
+    novaHora->mm = mm;
 
-	return novaHora;
+    return novaHora;
+}
+
+void deleteHora(Hora **hora) {
+    free(*hora);
+    *hora = NULL;
 }
