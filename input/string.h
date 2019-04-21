@@ -11,4 +11,6 @@ char *readString();
 
 char *updateString(char *original, char *update);
 
+char *trim(char *src);
+
 #endif //STRING_H

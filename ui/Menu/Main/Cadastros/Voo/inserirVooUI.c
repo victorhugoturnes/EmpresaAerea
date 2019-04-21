@@ -79,7 +79,8 @@ void lerPrefixoVoo(VooInfo *novoVoo) {
     char prefixo[MAX_PREFIXO_LENGTH];
     printf("Prefixo: ");
     fflush(stdin);
-    scanf("%[^\n]%*c", prefixo);
+    fgets(prefixo, MAX_PREFIXO_LENGTH, stdin);
+    trim(prefixo);
 
     if (!ehValidoPrefixo(prefixo)) {
         printf("\nPrefixo fornecido e invalido!\n");
@@ -100,7 +101,8 @@ void lerOrigemVoo(VooInfo *novoVoo) {
     char origemNome[MAX_AEROPORTO_NAME_LENGTH];
     printf("Sigla Origem: ");
     fflush(stdin);
-    scanf("%[^\n]%*c", origemSigla);
+    fgets(origemSigla, MAX_AEROPORTO_SIGLA_LENGTH, stdin);
+    trim(origemSigla);
 
     if (!ehValidoSiglaAeroporto(origemSigla)) {
         printf("\nSigla fornecida e invalida!\n");
@@ -111,7 +113,8 @@ void lerOrigemVoo(VooInfo *novoVoo) {
 
     printf("Origem: ");
     fflush(stdin);
-    scanf("%[^\n]%*c", origemNome);
+    fgets(origemNome, MAX_AEROPORTO_NAME_LENGTH, stdin);
+    trim(origemNome);
 
     if (!ehValidoNomeAeroporto(origemNome)) {
         printf("\nOrigem fornecida e invalida!\n");
@@ -147,7 +150,8 @@ void lerDestinoVoo(VooInfo *novoVoo) {
     char destinoNome[MAX_AEROPORTO_NAME_LENGTH];
     printf("Sigla Destino: ");
     fflush(stdin);
-    scanf("%[^\n]%*c", destinoSigla);
+    fgets(destinoSigla, MAX_AEROPORTO_NAME_LENGTH, stdin);
+    trim(destinoSigla);
 
     if (!ehValidoSiglaAeroporto(destinoSigla)) {
         printf("\nSigla fornecida e invalida!\n");
@@ -166,7 +170,8 @@ void lerDestinoVoo(VooInfo *novoVoo) {
 
     printf("Destino: ");
     fflush(stdin);
-    scanf("%[^\n]%*c", destinoNome);
+    fgets(destinoNome, MAX_AEROPORTO_NAME_LENGTH, stdin);
+    trim(destinoNome);
 
     if (!ehValidoNomeAeroporto(destinoNome)) {
         printf("\nDestino fornecido e invalido!\n");
@@ -179,16 +184,26 @@ void lerDestinoVoo(VooInfo *novoVoo) {
 }
 
 void lerPartidaVoo(VooInfo *novoVoo) {
-    int readCheck = 0, hh, mm;
+    int hh, mm;
     Hora *horario;
+    char buff[MAXSTR], *shh, *smm;
 
     printf("Horario da partida (hh:mm): ");
     fflush(stdin);
-    scanf("%d:%d%n", &hh, &mm, &readCheck);
+    fgets(buff, MAXSTR, stdin);
+    trim(buff);
+
+    shh = strtok(buff, ":");
+    smm = strtok(NULL, ":");
+
+    hh = strtol(shh, NULL, 10);
+    mm = strtol(smm, NULL, 10);
+
     horario = createHora((char) hh, (char) mm);
 
-    if (!readCheck || !ehValidoHorario(horario)) {
+    if (!ehValidoHorario(horario)) {
         printf("\nHorario de partida fornecido e invalido!\n");
+        free(horario);
         Pause();
 
         return;
@@ -203,15 +218,23 @@ char ehValidoHorario(Hora *horario) {
 }
 
 void lerChegadaVoo(VooInfo *novoVoo) {
-    int readCheck = 0, hh, mm;
+    int hh, mm;
     Hora *horario;
+    char buff[MAXSTR], *shh, *smm;
 
     printf("Horario de chegada (hh:mm): ");
     fflush(stdin);
-    scanf("%d:%d%n", &hh, &mm, &readCheck);
+    fgets(buff, MAXSTR, stdin);
+    trim(buff);
+
+    shh = strtok(buff, ":");
+    smm = strtok(NULL, ":");
+
+    hh = strtol(shh, NULL, 10);
+    mm = strtol(smm, NULL, 10);
     horario = createHora((char) hh, (char) mm);
 
-    if (!readCheck || !ehValidoHorario(horario)) {
+    if (!ehValidoHorario(horario)) {
         printf("\nHorario de chegada fornecido e invalido!\n");
         Pause();
 
@@ -222,15 +245,23 @@ void lerChegadaVoo(VooInfo *novoVoo) {
 }
 
 void lerDuracaoVoo(VooInfo *novoVoo) {
-    int readCheck = 0, hh, mm;
+    int hh, mm;
     Hora *horario;
+    char buff[MAXSTR], *shh, *smm;
 
     printf("Duracao do voo (hh:mm): ");
     fflush(stdin);
-    scanf("%d:%d%n", &hh, &mm, &readCheck);
+    fgets(buff, MAXSTR, stdin);
+    trim(buff);
+
+    shh = strtok(buff, ":");
+    smm = strtok(NULL, ":");
+
+    hh = strtol(shh, NULL, 10);
+    mm = strtol(smm, NULL, 10);
     horario = createHora((char) hh, (char) mm);
 
-    if (!readCheck || !ehValidoHorario(horario)) {
+    if (!ehValidoHorario(horario)) {
         printf("\nDuracao fornecida e invalida!\n");
         Pause();
 
@@ -282,10 +313,6 @@ char mostrarCadastroVooOpcoes(VooInfo *novoVoo) {
             return 0;
         case 'a':
             alterarNovoVoo(novoVoo);
-//            PrintaSeparador();
-//            printf("Funcionalidade ainda nao implementada!\n");
-//            PrintaSeparador();
-//            Pause();
             return 0;
         case 'c':
         case '0':
@@ -353,7 +380,7 @@ void alterarNovoVoo(VooInfo *novoVoo) {
             default:
                 break;
         }
-        if(escolha >= 1 && escolha <= 7)
+        if (escolha >= 1 && escolha <= 7)
             escolha = 0;
     } while (escolha != 0 && (escolha = escolhaAlterarNovoVoo()));
 }

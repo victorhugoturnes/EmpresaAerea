@@ -10,7 +10,7 @@ void menuCadastros() {
                 cadastrosVoo();
                 break;
             case 'c':
-				cadastrosCliente();
+                cadastrosCliente();
                 break;
             case 'n':
 //				cadastrosAeronave();

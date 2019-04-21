@@ -5,7 +5,7 @@
 #include "Cliente.h"
 
 Cliente *createCliente() {
-    Cliente *novoCliente = (Cliente *)malloc(sizeof(Cliente));
+    Cliente *novoCliente = (Cliente *) malloc(sizeof(Cliente));
 
     novoCliente->nomePrograma = NULL;
     novoCliente->nomeCliente = NULL;

@@ -57,7 +57,8 @@ void lerNomePrograma(Cliente *novoCliente) {
     char nomePrograma[MAX_NOMEPROGRAMA_LENGTH];
     printf("Nome do Programa: ");
     fflush(stdin);
-    scanf("%[^\n]%*c", nomePrograma);
+    fgets(nomePrograma, MAX_NOMEPROGRAMA_LENGTH, stdin);
+    trim(nomePrograma);
 
     if (!ehValidoNomePrograma(nomePrograma)) {
         printf("\nNome de programa fornecido e invalido!\n");
@@ -126,25 +127,25 @@ void lerCpf(Cliente *novoCliente) {
 }
 
 char ehValidoCpf(char *cpf) {
-    int i, j , k;
+    int i, j, k;
     int sumJ = 0, sumK = 0;
 
     if (cpf[0] != '\0' && strlen(cpf) == MAX_CPF_LENGTH - 1) {
         for (i = 0; cpf[i]; ++i) {
             if (!isdigit(cpf[i])) return 0;
 
-            if(i < 10) {
-                if(i < 9)
+            if (i < 10) {
+                if (i < 9)
                     sumJ += (cpf[i] - '0') * (10 - i);
                 sumK += (cpf[i] - '0') * (11 - i);
             }
         }
 
-        j = (sumJ%11 <= 1) ? 0 : 11-sumJ%11;
-        k = (sumK%11 <= 1) ? 0 : 11-sumK%11;
+        j = (sumJ % 11 <= 1) ? 0 : 11 - sumJ % 11;
+        k = (sumK % 11 <= 1) ? 0 : 11 - sumK % 11;
 
-        if((cpf[9] - '0') != j) return 0;
-        if((cpf[10] - '0') != k) return 0;
+        if ((cpf[9] - '0') != j) return 0;
+        if ((cpf[10] - '0') != k) return 0;
 
         return 1;
     }
@@ -163,7 +164,7 @@ void lerCategoria(Cliente *novoCliente) {
 
     fflush(stdin);
     scanf("%[^\n]%*c", input);
-    if(!(choice = strtol(input, NULL, 10)) || choice >= CATEGORIA_LENGTH) {
+    if (!(choice = strtol(input, NULL, 10)) || choice >= CATEGORIA_LENGTH) {
         printf("Escolha invalida!\n");
         Pause();
         return;
@@ -270,7 +271,7 @@ void alterarNovoCliente(Cliente *novoCliente) {
             default:
                 break;
         }
-        if(escolha >= 1 && escolha <= 7)
+        if (escolha >= 1 && escolha <= 7)
             escolha = 0;
     } while (escolha != 0 && (escolha = escolhaAlterarNovoCliente()));
 }
