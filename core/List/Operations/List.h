@@ -5,6 +5,9 @@
 #ifndef AEROTRACKER_LIST_H
 #define AEROTRACKER_LIST_H
 
+#include <malloc.h>
+#include <stdio.h>
+
 typedef struct List{
     void *info;
     struct List* next;

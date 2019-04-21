@@ -106,7 +106,7 @@ void testarCadastros() {
     free(read);
 
     printf("pesquisando todas aronaves com palavra \"teste\"\n");
-    List* result = search("teste", aeronaves, &searchModelo);
+    List* result = search("teste", aeronaves, (int (*)(void *, void *)) &searchModelo);
     List* tmp =  result;
 
     while(tmp){
@@ -117,7 +117,7 @@ void testarCadastros() {
     }
 
     printf("pesquisando todas aronaves com palavra \"aaaa\"\n");
-    result = search("aaaa", aeronaves, &searchModelo);
+    result = search("aaaa", aeronaves, (int (*)(void *, void *)) &searchModelo);
     tmp =  result;
 
     while(tmp){
@@ -129,7 +129,7 @@ void testarCadastros() {
 
 
     printf("pesquisando todas aronaves com palavra \"atual\"\n");
-    result = search("atual", aeronaves, &searchModelo);
+    result = search("atual", aeronaves, (int (*)(void *, void *)) &searchModelo);
     tmp =  result;
 
     while(tmp){

@@ -2,7 +2,6 @@
 // Created by last on 4/16/19.
 //
 
-#include <malloc.h>
 #include "List.h"
 
 List *insert(List *list, void *info) {
