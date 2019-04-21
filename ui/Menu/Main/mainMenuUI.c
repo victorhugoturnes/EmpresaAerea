@@ -1,4 +1,6 @@
 #include "mainMenuUI.h"
+#include "../../../core/List/Operations/List.h"
+#include "../../../core/Aeronave/Comparator.h"
 
 /*!
 	@brief mainMenuEscolha, apresenta opções para o usuário e recolhe \
@@ -51,6 +53,8 @@ void testarCadastros() {
 
     char *read;
 
+    List *aeronaves = NULL;
+
     Aeroporto *aeroporto = createAeroporto("aeroporto de teste 1", "aer");
     read = readAeroporto(aeroporto);
     printf("%s\n", read);
@@ -74,29 +78,69 @@ void testarCadastros() {
     deleteAeroporto(&aeroporto);
     printf("%p\n", aeroporto);
 
-
     Aeronave *aeronave = createAeronave("teste de aeronave 1");
     read = readAeronave(aeronave);
     printf("%s\n", read);
     free(read);
 
-    updateAeronave(aeronave, "aeronave de teste 2", "modelo");
+    aeronaves = insert(aeronaves, aeronave);
+
+    updateAeronave(aeronave, "teste de atualizacao", "modelo");
     read = readAeronave(aeronave);
     printf("%s\n", read);
     free(read);
 
-    updateAeronave(aeronave, "aeronave de teste 2", "prefixo");
+    read = readAeronave(aeronaves->info);
+    printf("%s\n", read);
+    free(read);
+
+    aeronave = createAeronave("teste de lista");
     read = readAeronave(aeronave);
     printf("%s\n", read);
     free(read);
 
-    updateAeronave(aeronave, "123", "prefixo");
-    read = readAeronave(aeronave);
+    aeronaves = insert(aeronaves, aeronave);
+
+    read = readAeronave(aeronaves->info);
     printf("%s\n", read);
     free(read);
+
+    printf("pesquisando todas aronaves com palavra \"teste\"\n");
+    List* result = search("teste", aeronaves, (int (*)(void *, void *)) &searchModelo);
+    List* tmp =  result;
+
+    while(tmp){
+        read = readAeronave(tmp->info);
+        printf("%s\n", read);
+        free(read);
+        tmp = delete(tmp);
+    }
+
+    printf("pesquisando todas aronaves com palavra \"aaaa\"\n");
+    result = search("aaaa", aeronaves, (int (*)(void *, void *)) &searchModelo);
+    tmp =  result;
+
+    while(tmp){
+        read = readAeronave(tmp->info);
+        printf("%s\n", read);
+        free(read);
+        tmp = delete(tmp);
+    }
+
+
+    printf("pesquisando todas aronaves com palavra \"atual\"\n");
+    result = search("atual", aeronaves, (int (*)(void *, void *)) &searchModelo);
+    tmp =  result;
+
+    while(tmp){
+        read = readAeronave(tmp->info);
+        printf("%s\n", read);
+        free(read);
+        tmp = delete(tmp);
+    }
 
     deleteAeronave(&aeronave);
-    printf("%p\n", aeronave);
+    printf("teste de ponteiro: %p\n", aeronave);
 
     Pause();
 }
