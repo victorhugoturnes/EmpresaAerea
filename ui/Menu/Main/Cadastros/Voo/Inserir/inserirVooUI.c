@@ -71,6 +71,8 @@ void inserirVoo() {
 void telaCabecalhoInserirVoo() {
     ClearScreen();
 
+    printf("Menu Cadastro de Voo:\n\n");
+
     printf("Insira as informacoes do voo a seguir.\n");
     printf("\n");
 }
@@ -404,6 +406,8 @@ char escolhaAlterarNovoVoo() {
 
 void telaAlterarNovoVoo() {
     ClearScreen();
+
+    printf("Menu Alterar Novo Voo:\n\n");
 
     printf("Selecione o campo a ser alterado:\n\n");
 

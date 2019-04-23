@@ -3,6 +3,7 @@
 //
 
 #include "cadastrosClienteUI.h"
+#include "Consultar/consultarCliente.h"
 
 void cadastrosCliente() {
     char escolha = 0;
@@ -14,7 +15,7 @@ void cadastrosCliente() {
                 inserirCliente();
                 break;
             case 'c':
-//				consultarCliente();
+				consultarCliente();
                 break;
             case '0':
                 ClearScreen();
@@ -49,6 +50,9 @@ char escolhaCadastrosCliente() {
 void telaCadastrosCliente() {
     ClearScreen();
 
+    printf("Menu Cadastro de Cliente:\n\n");
+
+    printf("Escolha uma opcao:\n");
     printf("1) (I)nserir Cliente\n");
     printf("2) (C)onsultar Cliente\n");
     printf("\n");

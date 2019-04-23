@@ -10,10 +10,10 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "../../../../../Environment.h"
-#include "../../../../../input/string.h"
-#include "../../../../../core/Cliente/Cliente.h"
-#include "../../../../../core/Cliente/Comparator.h"
+#include "../../../../../../Environment.h"
+#include "../../../../../../input/string.h"
+#include "../../../../../../core/Cliente/Cliente.h"
+#include "../../../../../../core/Cliente/Comparator.h"
 
 void inserirCliente();
 
@@ -32,8 +32,6 @@ void lerCpf(Cliente *novoCliente);
 char ehValidoCpf(char *cpf);
 
 void lerCategoria(Cliente *novoCliente);
-
-char *categoriaParaString(Categoria categoria);
 
 char mostrarCadastroClienteOpcoes(Cliente *novoCliente);
 

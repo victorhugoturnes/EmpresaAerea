@@ -12,7 +12,7 @@ typedef struct aeroporto {
 
 Aeroporto *createAeroporto(char *nome, char *sigla);
 
-char *readAeroporto(Aeroporto *aeroporto);
+char *aeroportoToString(Aeroporto *aeroporto);
 
 void updateAeroporto(Aeroporto *aeroporto, void *update, char *field);
 

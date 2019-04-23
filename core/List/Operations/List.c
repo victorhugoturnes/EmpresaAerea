@@ -50,3 +50,7 @@ int contains(void *value, List *src, int (*cmp)(void *, void *)) {
     }
     return 0;
 }
+
+int length(List *l) {
+    return (!l) ? 0 : length(l->next) + 1;
+}

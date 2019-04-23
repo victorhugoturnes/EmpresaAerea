@@ -43,6 +43,10 @@ char escolhaCadastrosVoo() {
 void telaCadastrosVoo() {
     ClearScreen();
 
+    printf("Menu Cadastro de Voo:\n\n");
+
+    printf("Escolha uma opcao:\n");
+
     printf("1) (I)nserir Voo\n");
     printf("2) (C)onsultar Voo\n");
     printf("\n");

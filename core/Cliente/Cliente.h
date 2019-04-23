@@ -11,9 +11,11 @@
 #define CATEGORIA_LENGTH 9
 
 
-#include "stdio.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-#include "stdlib.h"
+#include "../../input/string.h"
 
 typedef enum Categoria {
     Nenhuma,
@@ -36,6 +38,10 @@ typedef struct Cliente {
 
 Cliente *createCliente();
 
+char *clienteToString(Cliente *cliente);
+
 void deleteCliente(Cliente **pCliente);
+
+char *categoriaParaString(Categoria categoria);
 
 #endif //CLIENTE_H

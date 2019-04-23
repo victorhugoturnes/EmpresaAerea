@@ -12,7 +12,7 @@ typedef struct aeronave {
 
 Aeronave *createAeronave(char *modelo);
 
-char *readAeronave(Aeronave *Aeronave);
+char *aeronaveToString(Aeronave *Aeronave);
 
 void updateAeronave(Aeronave *Aeronave, void *update, char *field);
 

@@ -35,6 +35,9 @@ char mainMenuEscolha() {
 void telaMainMenu() {
     ClearScreen();
 
+    printf("Menu Principal:\n\n");
+
+    printf("Escolha uma opcao:\n");
     printf("1) Menu (C)adastros\n");
     printf("2) Menu (S)tatus\n");
     printf("\n");
@@ -56,22 +59,22 @@ void testarCadastros() {
     List *aeronaves = NULL;
 
     Aeroporto *aeroporto = createAeroporto("aeroporto de teste 1", "aer");
-    read = readAeroporto(aeroporto);
+    read = aeroportoToString(aeroporto);
     printf("%s\n", read);
     free(read);
 
     updateAeroporto(aeroporto, "teste aeroporto 2", "nome");
-    read = readAeroporto(aeroporto);
+    read = aeroportoToString(aeroporto);
     printf("%s\n", read);
     free(read);
 
     updateAeroporto(aeroporto, "teste aeroporto 2", "sigla");
-    read = readAeroporto(aeroporto);
+    read = aeroportoToString(aeroporto);
     printf("%s\n", read);
     free(read);
 
     updateAeroporto(aeroporto, "123", "sigla");
-    read = readAeroporto(aeroporto);
+    read = aeroportoToString(aeroporto);
     printf("%s\n", read);
     free(read);
 
@@ -79,29 +82,29 @@ void testarCadastros() {
     printf("%p\n", aeroporto);
 
     Aeronave *aeronave = createAeronave("teste de aeronave 1");
-    read = readAeronave(aeronave);
+    read = aeronaveToString(aeronave);
     printf("%s\n", read);
     free(read);
 
     aeronaves = insert(aeronaves, aeronave);
 
     updateAeronave(aeronave, "teste de atualizacao", "modelo");
-    read = readAeronave(aeronave);
+    read = aeronaveToString(aeronave);
     printf("%s\n", read);
     free(read);
 
-    read = readAeronave(aeronaves->info);
+    read = aeronaveToString(aeronaves->info);
     printf("%s\n", read);
     free(read);
 
     aeronave = createAeronave("teste de lista");
-    read = readAeronave(aeronave);
+    read = aeronaveToString(aeronave);
     printf("%s\n", read);
     free(read);
 
     aeronaves = insert(aeronaves, aeronave);
 
-    read = readAeronave(aeronaves->info);
+    read = aeronaveToString(aeronaves->info);
     printf("%s\n", read);
     free(read);
 
@@ -110,7 +113,7 @@ void testarCadastros() {
     List* tmp =  result;
 
     while(tmp){
-        read = readAeronave(tmp->info);
+        read = aeronaveToString(tmp->info);
         printf("--> %s\n", read);
         free(read);
         tmp = delete(tmp);
@@ -121,7 +124,7 @@ void testarCadastros() {
     tmp =  result;
 
     while(tmp){
-        read = readAeronave(tmp->info);
+        read = aeronaveToString(tmp->info);
         printf("--> %s\n", read);
         free(read);
         tmp = delete(tmp);
@@ -133,7 +136,7 @@ void testarCadastros() {
     tmp =  result;
 
     while(tmp){
-        read = readAeronave(tmp->info);
+        read = aeronaveToString(tmp->info);
         printf("%s\n", read);
         free(read);
         tmp = delete(tmp);

@@ -23,4 +23,6 @@ List *delete(List *src);
 
 int contains(void *value, List *src, int (*cmp)(void *, void *));
 
+int length(List *l);
+
 #endif //AEROTRACKER_LIST_H

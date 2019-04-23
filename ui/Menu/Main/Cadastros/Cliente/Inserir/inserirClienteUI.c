@@ -176,31 +176,6 @@ void lerCategoria(Cliente *novoCliente) {
     novoCliente->categoria = (Categoria) choice;
 }
 
-char *categoriaParaString(Categoria categoria) {
-    switch (categoria) {
-        case Nenhuma:
-            return "Nenhuma";
-        case Papel:
-            return "Papel";
-        case Madeira:
-            return "Madeira";
-        case Pedra:
-            return "Pedra";
-        case Ferro:
-            return "Ferro";
-        case Ouro:
-            return "Ouro";
-        case Diamante:
-            return "Diamante";
-        case Obsidian:
-            return "Obsidian";
-        case Bedrock:
-            return "Bedrock";
-    }
-
-    return NULL;
-}
-
 char mostrarCadastroClienteOpcoes(Cliente *novoCliente) {
     char escolha = 0;
 
@@ -302,6 +277,8 @@ char escolhaAlterarNovoCliente() {
 
 void telaAlterarNovoCliente() {
     ClearScreen();
+
+    printf("Menu Alterar Novo Cliente:\n\n");
 
     printf("Selecione o campo a ser alterado:\n\n");
 

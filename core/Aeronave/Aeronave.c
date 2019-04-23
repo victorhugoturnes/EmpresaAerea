@@ -27,12 +27,12 @@ Aeronave *createAeronave(char *modelo){
     return Aeronave;
 }
 /*
-    Nome da Funcao : readAeronave
+    Nome da Funcao : aeronaveToString
     Recebe como parametro um ponteiro de Aeronave
     Objetivo : ler e criar uma string contendo qual o modelo da aeronave
     Returno : devolver string dizendo qual o modelo da aeronave
  */
-char *readAeronave(Aeronave *Aeronave){
+char *aeronaveToString(Aeronave *Aeronave){
     char buffer[MAXSTR];
     int size;
     char *str;
