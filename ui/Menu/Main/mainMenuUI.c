@@ -111,7 +111,7 @@ void testarCadastros() {
 
     while(tmp){
         read = readAeronave(tmp->info);
-        printf("%s\n", read);
+        printf("--> %s\n", read);
         free(read);
         tmp = delete(tmp);
     }
@@ -122,7 +122,7 @@ void testarCadastros() {
 
     while(tmp){
         read = readAeronave(tmp->info);
-        printf("%s\n", read);
+        printf("--> %s\n", read);
         free(read);
         tmp = delete(tmp);
     }

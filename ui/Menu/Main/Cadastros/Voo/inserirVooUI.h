@@ -38,7 +38,7 @@ void lerModeloAeronaveVoo(VooInfo *novoVoo);
 
 char ehValidoModeloAeronave(char modeloAeronave[]);
 
-char escolhaInserirVoo(VooInfo *novoVoo);
+char escolhaInserirVoo();
 
 char mostrarCadastroVooOpcoes(VooInfo *novoVoo);
 
@@ -49,5 +49,7 @@ void alterarNovoVoo(VooInfo *novoVoo);
 char escolhaAlterarNovoVoo();
 
 void telaAlterarNovoVoo();
+
+int salvarNovoVoo(VooInfo *novoVoo);
 
 #endif // INSERIRVOOUI_H

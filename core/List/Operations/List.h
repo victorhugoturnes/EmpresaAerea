@@ -21,4 +21,6 @@ List *search(void *value, List *src, int (*cmp)(void *, void *));
 
 List *delete(List *src);
 
+int contains(void *value, List *src, int (*cmp)(void *, void *));
+
 #endif //AEROTRACKER_LIST_H

@@ -83,10 +83,11 @@ char ehValidoNomePrograma(char *nome) {
 }
 
 void lerNomeCliente(Cliente *novoCliente) {
-    char nomeCliente[MAX_NOMEPROGRAMA_LENGTH];
+    char nomeCliente[MAX_NOMECLIENTE_LENGTH];
     printf("Nome do Cliente: ");
     fflush(stdin);
-    scanf("%[^\n]%*c", nomeCliente);
+    fgets(nomeCliente, MAX_NOMECLIENTE_LENGTH, stdin);
+    trim(nomeCliente);
 
     if (!ehValidoNomeCliente(nomeCliente)) {
         printf("\nNome do cliente fornecido e invalido!\n");
@@ -111,10 +112,11 @@ char ehValidoNomeCliente(char *nome) {
 }
 
 void lerCpf(Cliente *novoCliente) {
-    char cpf[MAX_NOMEPROGRAMA_LENGTH];
+    char cpf[MAX_CPF_LENGTH];
     printf("CPF do Cliente: ");
     fflush(stdin);
-    scanf("%[^\n]%*c", cpf);
+    fgets(cpf, MAX_CPF_LENGTH, stdin);
+    trim(cpf);
 
     if (!ehValidoCpf(cpf)) {
         printf("\nCPF do cliente fornecido e invalido!\n");
@@ -161,9 +163,10 @@ void lerCategoria(Cliente *novoCliente) {
     for (i = 1; i < CATEGORIA_LENGTH; ++i) {
         printf("\t%d) %s\n", i, categoriaParaString((Categoria) i));
     }
+    printf("Escolha: ");
 
     fflush(stdin);
-    scanf("%[^\n]%*c", input);
+    fgets(input, MAXSTR, stdin);
     if (!(choice = strtol(input, NULL, 10)) || choice >= CATEGORIA_LENGTH) {
         printf("Escolha invalida!\n");
         Pause();
@@ -177,6 +180,8 @@ char *categoriaParaString(Categoria categoria) {
     switch (categoria) {
         case Nenhuma:
             return "Nenhuma";
+        case Papel:
+            return "Papel";
         case Madeira:
             return "Madeira";
         case Pedra:
@@ -199,14 +204,17 @@ char *categoriaParaString(Categoria categoria) {
 char mostrarCadastroClienteOpcoes(Cliente *novoCliente) {
     char escolha = 0;
 
-    escolha = escolhaInserirCliente(novoCliente);
+    escolha = escolhaInserirCliente();
     switch (escolha) {
         case 's':
-//			salvarNovoCliente(novoVoo);
-            PrintaSeparador();
-            printf("Funcionalidade ainda nao implementada!\n");
-            PrintaSeparador();
-            Pause();
+            if (salvarNovoCliente(novoCliente)) {
+                ClearScreen();
+                PrintaSeparador();
+                printf("Cliente salvo com sucesso!\n");
+                PrintaSeparador();
+                Pause();
+                return 1;
+            }
             return 0;
         case 'a':
             alterarNovoCliente(novoCliente);
@@ -216,6 +224,7 @@ char mostrarCadastroClienteOpcoes(Cliente *novoCliente) {
             ClearScreen();
             printf("\nSaindo do menu de cadastro de cliente.\n\n");
             Pause();
+            deleteCliente(&novoCliente);
             return 1;
         default:
             PrintaSeparador();
@@ -226,7 +235,7 @@ char mostrarCadastroClienteOpcoes(Cliente *novoCliente) {
     }
 }
 
-char escolhaInserirCliente(Cliente *novoCliente) {
+char escolhaInserirCliente() {
     char escolha, choiceList[] = "0sa";
 
     PrintaSeparador();
@@ -301,4 +310,17 @@ void telaAlterarNovoCliente() {
 
     printf("\n");
     printf("0) Cancelar alteracao\n");
+}
+
+int salvarNovoCliente(Cliente *novoCliente) {
+    if (!contains(novoCliente->cpf, ListaClientes, (int (*)(void *, void *)) &searchCpf)) {
+        ListaClientes = insert(ListaClientes, novoCliente);
+        return 1;
+    }
+    PrintaSeparador();
+    printf("Cliente com o mesmo CPF ja cadastrado!\n");
+    PrintaSeparador();
+    Pause();
+
+    return 0;
 }

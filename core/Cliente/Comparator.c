@@ -5,16 +5,6 @@
 #include <stdio.h>
 #include "Comparator.h"
 
-int saldoMilhas;
-
-int searchModelo(char *str, Cliente *clie) {
-    return strstr(clie->modelo, str);
-}
-
-int sortModelo(Cliente *src, Cliente *dst) {
-    return strcmp(src->modelo, dst->modelo);
-}
-
 int searchCategoria(Categoria cat, Cliente *clie) {
     return clie->categoria == cat;
 }
@@ -25,7 +15,7 @@ int sortCategoria(Cliente *src, Cliente *dst) {
 }
 
 int searchCpf(char *str, Cliente *clie) {
-    return strstr(clie->cpf, str);
+    return (strstr(clie->cpf, str) != NULL);
 }
 
 int sortCpf(Cliente *src, Cliente *dst) {
@@ -33,7 +23,7 @@ int sortCpf(Cliente *src, Cliente *dst) {
 }
 
 int searchNomeCliente(char *str, Cliente *clie) {
-    return strstr(clie->nomeCliente, str);
+    return (strstr(clie->nomeCliente, str) != NULL);
 }
 
 int sortNomeCliente(Cliente *src, Cliente *dst) {
@@ -41,7 +31,7 @@ int sortNomeCliente(Cliente *src, Cliente *dst) {
 }
 
 int searchNomePrograma(char *str, Cliente *clie) {
-    return strstr(clie->nomePrograma, str);
+    return (strstr(clie->nomePrograma, str) != NULL);
 }
 
 int sortNomePrograma(Cliente *src, Cliente *dst) {

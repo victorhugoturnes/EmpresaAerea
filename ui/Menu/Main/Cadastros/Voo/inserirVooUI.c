@@ -302,14 +302,17 @@ char ehValidoModeloAeronave(char modeloAeronave[]) {
 char mostrarCadastroVooOpcoes(VooInfo *novoVoo) {
     char escolha = 0;
 
-    escolha = escolhaInserirVoo(novoVoo);
+    escolha = escolhaInserirVoo();
     switch (escolha) {
         case 's':
-//			salvarNovoVoo(novoVoo);
-            PrintaSeparador();
-            printf("Funcionalidade ainda nao implementada!\n");
-            PrintaSeparador();
-            Pause();
+            if (salvarNovoVoo(novoVoo)) {
+                ClearScreen();
+                PrintaSeparador();
+                printf("Voo salvo com sucesso!\n");
+                PrintaSeparador();
+                Pause();
+                return 1;
+            }
             return 0;
         case 'a':
             alterarNovoVoo(novoVoo);
@@ -329,7 +332,7 @@ char mostrarCadastroVooOpcoes(VooInfo *novoVoo) {
     }
 }
 
-char escolhaInserirVoo(VooInfo *novoVoo) {
+char escolhaInserirVoo() {
     char escolha, choiceList[] = "0sa";
 
     PrintaSeparador();
@@ -411,4 +414,18 @@ void telaAlterarNovoVoo() {
 
     printf("\n");
     printf("0) Cancelar alteracao\n");
+}
+
+
+int salvarNovoVoo(VooInfo *novoVoo) {
+    if (!contains(novoVoo->prefixo, ListaVoos, (int (*)(void *, void *)) &search)) {
+        ListaVoos = insert(ListaVoos, novoVoo);
+        return 1;
+    }
+    PrintaSeparador();
+    printf("Voo com o mesmo prefixo ja cadastrado!\n");
+    PrintaSeparador();
+    Pause();
+
+    return 0;
 }

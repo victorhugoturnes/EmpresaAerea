@@ -13,6 +13,7 @@
 #include "../../../../../Environment.h"
 #include "../../../../../input/string.h"
 #include "../../../../../core/Cliente/Cliente.h"
+#include "../../../../../core/Cliente/Comparator.h"
 
 void inserirCliente();
 
@@ -42,8 +43,10 @@ char escolhaAlterarNovoCliente();
 
 void telaAlterarNovoCliente();
 
-char escolhaInserirCliente(Cliente *novoCliente);
+char escolhaInserirCliente();
 
 void telaRodapeInserirCliente();
+
+int salvarNovoCliente(Cliente *novoCliente);
 
 #endif //AEROTRACKER_INSERIRCLIENTEUI_H
