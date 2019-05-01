@@ -8,7 +8,7 @@
 #include "Cliente.h"
 #include <string.h>
 
-int searchCategoria(Categoria cat, Cliente *clie);
+int searchCategoria(Categoria *cat, Cliente *clie);
 
 int sortCategoria(Cliente *src, Cliente *dst);
 

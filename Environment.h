@@ -23,6 +23,7 @@
 #define GLOBAL_LISTS
 extern List *ListaClientes;
 extern List *ListaVoos;
+extern List *ListaAeronaves;
 #endif
 
 #endif //ENVIRONMENT_H

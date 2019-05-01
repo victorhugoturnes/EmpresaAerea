@@ -5,12 +5,14 @@
 #ifndef AERONAVE_H
 #define AERONAVE_H
 
+#define MAX_MODELO_LENGTH 64
 
 typedef struct aeronave {
     char *modelo;
+    double comprimento, altura, envergadura, velocidadeCruzeiro, alcanceMaximo, qntAcentos, qntBanheiros;
 } Aeronave;
 
-Aeronave *createAeronave(char *modelo);
+Aeronave *createAeronave();
 
 char *aeronaveToString(Aeronave *Aeronave);
 

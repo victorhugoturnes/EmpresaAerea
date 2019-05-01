@@ -19,23 +19,23 @@ void inserirCliente();
 
 void telaCabecalhoInserirCliente();
 
-void lerNomePrograma(Cliente *novoCliente);
+void lerNomePrograma(Cliente *cliente);
 
 char ehValidoNomePrograma(char *nome);
 
-void lerNomeCliente(Cliente *novoCliente);
+void lerNomeCliente(Cliente *cliente);
 
 char ehValidoNomeCliente(char *nome);
 
-void lerCpf(Cliente *novoCliente);
+void lerCpf(Cliente *cliente);
 
 char ehValidoCpf(char *cpf);
 
-void lerCategoria(Cliente *novoCliente);
+void lerCategoria(Cliente *cliente);
 
-char mostrarCadastroClienteOpcoes(Cliente *novoCliente);
+char mostrarCadastroClienteOpcoes(Cliente *cliente);
 
-void alterarNovoCliente(Cliente *novoCliente);
+void alterarNovoCliente(Cliente *cliente);
 
 char escolhaAlterarNovoCliente();
 
@@ -45,6 +45,6 @@ char escolhaInserirCliente();
 
 void telaRodapeInserirCliente();
 
-int salvarNovoCliente(Cliente *novoCliente);
+int salvarNovoCliente(Cliente *cliente);
 
 #endif //AEROTRACKER_INSERIRCLIENTEUI_H

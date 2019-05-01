@@ -11,6 +11,7 @@
 typedef struct List{
     void *info;
     struct List* next;
+    char active;
 }List;
 
 List *newList();

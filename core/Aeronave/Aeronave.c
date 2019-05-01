@@ -9,20 +9,16 @@
 
 #include "../../input/string.h"
 
-
 /*
     Nome da Funcao : createAeronave
     Recebe como parametro um ponteiro de char contendo modelo da aeronave
     Objetivo : Criar aeronave com modelo passado
     Retorno : Aeronave criada
  */
-Aeronave *createAeronave(char *modelo){
-    if(!modelo) return NULL;
-
+Aeronave *createAeronave() {
     Aeronave *Aeronave = malloc(sizeof(Aeronave));
 
-    Aeronave->modelo = malloc(sizeof(char) * (strlen(modelo) + 1));
-    Aeronave->modelo = strcpy(Aeronave->modelo, modelo);
+    Aeronave->modelo = NULL;
 
     return Aeronave;
 }
@@ -37,7 +33,7 @@ char *aeronaveToString(Aeronave *Aeronave){
     int size;
     char *str;
 
-    size = sprintf(buffer, "Aeronave: %s", Aeronave->modelo);
+    size = sprintf(buffer, "Modelo: %s", Aeronave->modelo);
     str = malloc(sizeof(char) * size + 1);
 
     strcpy(str, buffer);

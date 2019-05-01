@@ -102,6 +102,7 @@ void lerOrigemVoo(VooInfo *novoVoo) {
     char origemSigla[MAX_AEROPORTO_SIGLA_LENGTH];
     char origemNome[MAX_AEROPORTO_NAME_LENGTH];
     printf("Sigla Origem: ");
+
     fflush(stdin);
     fgets(origemSigla, MAX_AEROPORTO_SIGLA_LENGTH, stdin);
     trim(origemSigla);
@@ -161,7 +162,6 @@ void lerDestinoVoo(VooInfo *novoVoo) {
 
         return;
     }
-
 
     if (!strcmp(novoVoo->origem->sigla, destinoSigla)) {
         printf("\nDestino e origem nao podem ser o mesmo!\n");
@@ -287,7 +287,8 @@ void lerModeloAeronaveVoo(VooInfo *novoVoo) {
         return;
     }
 
-    novoVoo->aeronave = createAeronave(aeronaveModelo);
+    novoVoo->aeronave = createAeronave();
+    novoVoo->aeronave->modelo = updateString(NULL, aeronaveModelo);
 }
 
 char ehValidoModeloAeronave(char modeloAeronave[]) {
@@ -335,18 +336,18 @@ char mostrarCadastroVooOpcoes(VooInfo *novoVoo) {
 }
 
 char escolhaInserirVoo() {
-    char escolha, choiceList[] = "0sa";
+    char escolha[3], choiceList[] = "0sa";
 
     PrintaSeparador();
     telaRodapeInserirVoo();
     printf("\n");
     printf("Opcao: ");
     fflush(stdin);
-    scanf("%c", &escolha);
+    fgets(escolha, 2, stdin);
 
-    if (!isdigit(escolha)) return (char) tolower(escolha);
+    if (!isdigit(escolha[0])) return (char) tolower(escolha[0]);
 
-    return choiceList[escolha - '0'];
+return (char) ((escolha[0] - '0' < strlen(choiceList)) ? choiceList[escolha[0] - '0'] : 0);
 }
 
 void telaRodapeInserirVoo() {
@@ -391,17 +392,17 @@ void alterarNovoVoo(VooInfo *novoVoo) {
 }
 
 char escolhaAlterarNovoVoo() {
-    char escolha;
+    char escolha[3];
 
     telaAlterarNovoVoo();
     printf("\n");
     printf("Opcao: ");
     fflush(stdin);
-    scanf("%c", &escolha);
+    fgets(escolha, 2, stdin);
 
-    if (!isdigit(escolha)) return -1;
+    if (!isdigit(escolha[0])) return -1;
 
-    return (char) (escolha - '0');
+    return (char) (escolha[0] - '0');
 }
 
 void telaAlterarNovoVoo() {

@@ -13,14 +13,16 @@ List *insert(List *list, void *info) {
 
 List *newList() {
     List *list = malloc(sizeof(List));
-    list->next = 0;
+    list->info = NULL;
+    list->next = NULL;
+    list->active = 1;
     return list;
 }
 
 List *search(void *value, List *src, int (*cmp)(void *, void *)) {
     List *result = NULL;
     while (src) {
-        if (cmp(value, src->info)) {
+        if (src->active && cmp(value, src->info)) {
             if (!result) {
                 result = newList();
                 result->info = src->info;

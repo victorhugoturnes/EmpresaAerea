@@ -1,5 +1,4 @@
 #include "mainMenuUI.h"
-#include "../../../core/List/Operations/List.h"
 #include "../../../core/Aeronave/Comparator.h"
 
 /*!
@@ -10,7 +9,7 @@
 	@postcondition nenhuma
 */
 char mainMenuEscolha() {
-    char escolha, choiceList[] = "0cs";
+    char escolha[3], choiceList[] = "0cs";
 
     /// apresenta tela de menu e lê da entrada padrão a escolha \
 	do usuário
@@ -18,13 +17,13 @@ char mainMenuEscolha() {
     printf("\n");
     printf("Opcao: ");
     fflush(stdin);
-    scanf("%c", &escolha);
+    fgets(escolha, 2, stdin);
 
     /// se não é número, retorna a letra minuscula
-    if (!isdigit(escolha)) return (char) tolower(escolha);
+    if (!isdigit(escolha[0])) return (char) tolower(escolha[0]);
 
     /// se for número, converte e retorna letra equivalente
-    return choiceList[escolha - '0'];
+    return (char) ((escolha[0] - '0' < strlen(choiceList)) ? choiceList[escolha[0] - '0'] : 0);
 }
 
 /*!
@@ -81,7 +80,7 @@ void testarCadastros() {
     deleteAeroporto(&aeroporto);
     printf("%p\n", aeroporto);
 
-    Aeronave *aeronave = createAeronave("teste de aeronave 1");
+    Aeronave *aeronave = createAeronave();
     read = aeronaveToString(aeronave);
     printf("%s\n", read);
     free(read);
@@ -97,7 +96,7 @@ void testarCadastros() {
     printf("%s\n", read);
     free(read);
 
-    aeronave = createAeronave("teste de lista");
+    aeronave = createAeronave();
     read = aeronaveToString(aeronave);
     printf("%s\n", read);
     free(read);
@@ -109,10 +108,10 @@ void testarCadastros() {
     free(read);
 
     printf("pesquisando todas aronaves com palavra \"teste\"\n");
-    List* result = search("teste", aeronaves, (int (*)(void *, void *)) &searchModelo);
-    List* tmp =  result;
+    List *result = search("teste", aeronaves, (int (*)(void *, void *)) &searchModelo);
+    List *tmp = result;
 
-    while(tmp){
+    while (tmp) {
         read = aeronaveToString(tmp->info);
         printf("--> %s\n", read);
         free(read);
@@ -121,9 +120,9 @@ void testarCadastros() {
 
     printf("pesquisando todas aronaves com palavra \"aaaa\"\n");
     result = search("aaaa", aeronaves, (int (*)(void *, void *)) &searchModelo);
-    tmp =  result;
+    tmp = result;
 
-    while(tmp){
+    while (tmp) {
         read = aeronaveToString(tmp->info);
         printf("--> %s\n", read);
         free(read);
@@ -133,9 +132,9 @@ void testarCadastros() {
 
     printf("pesquisando todas aronaves com palavra \"atual\"\n");
     result = search("atual", aeronaves, (int (*)(void *, void *)) &searchModelo);
-    tmp =  result;
+    tmp = result;
 
-    while(tmp){
+    while (tmp) {
         read = aeronaveToString(tmp->info);
         printf("%s\n", read);
         free(read);
@@ -155,7 +154,7 @@ void testarCadastros() {
 	@postcondition nenhuma
 */
 char confirmacaoSaidaMainMenu() {
-    char escolha = 0;
+    char escolha[3] = {0};
 
     /// pergunta ao usuário se deseja mesmo sair
     ClearScreen();
@@ -164,11 +163,11 @@ char confirmacaoSaidaMainMenu() {
 
     /// lê resposta do usuário
     fflush(stdin);
-    scanf("%c", &escolha);
-    escolha = (char) tolower(escolha);
+    fgets(escolha, 2, stdin);
+    escolha[0] = (char) tolower(escolha[0]);
 
     /// enquanto resposta for inválida
-    while (escolha != 's' && escolha != 'n') {
+    while (escolha[0] != 's' && escolha[0] != 'n') {
         /// limpa tela e pergunta confirmação de saida
         ClearScreen();
         printf("Escolha invalida!\n");
@@ -177,12 +176,12 @@ char confirmacaoSaidaMainMenu() {
 
         /// lê resposta do usuário
         fflush(stdin);
-        scanf("%c", &escolha);
-        escolha = (char) tolower(escolha);
+        fgets(escolha, 2, stdin);
+        escolha[0] = (char) tolower(escolha[0]);
     }
 
     /// se usuário deseja sair, retorna 1
-    if (escolha == 's') return 1;
+    if (escolha[0] == 's') return 1;
 
     /// caso contrário, retorna 0
     return 0;

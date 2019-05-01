@@ -7,7 +7,7 @@
 
 #include "Voo/cadastrosVooUI.h"
 #include "Cliente/cadastrosClienteUI.h"
-
+#include "Aeronave/cadastrosAeronaveUI.h"
 #include "../../../../Environment.h"
 
 /*!
