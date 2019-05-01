@@ -11,17 +11,18 @@ List *insert(List *list, void *info) {
     return tmp;
 }
 
-
 List *newList() {
     List *list = malloc(sizeof(List));
-    list->next = 0;
+    list->info = NULL;
+    list->next = NULL;
+    list->active = 1;
     return list;
 }
 
 List *search(void *value, List *src, int (*cmp)(void *, void *)) {
     List *result = NULL;
     while (src) {
-        if (cmp(value, src->info)) {
+        if (src->active && cmp(value, src->info)) {
             if (!result) {
                 result = newList();
                 result->info = src->info;
@@ -34,10 +35,24 @@ List *search(void *value, List *src, int (*cmp)(void *, void *)) {
     return result;
 }
 
-
 List *delete(List *src) {
     if (!src) return NULL;
     List *tmp = src->next;
     free(src);
     return tmp;
+}
+
+
+int contains(void *value, List *src, int (*cmp)(void *, void *)) {
+    while (src) {
+        if (cmp(value, src->info)) {
+            return 1;
+        }
+        src = src->next;
+    }
+    return 0;
+}
+
+int length(List *l) {
+    return (!l) ? 0 : length(l->next) + 1;
 }

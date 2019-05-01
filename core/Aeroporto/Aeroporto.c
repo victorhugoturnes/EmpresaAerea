@@ -24,7 +24,7 @@ Aeroporto *createAeroporto(char *nome, char *sigla) {
     return aeroporto;
 }
 
-char *readAeroporto(Aeroporto *aeroporto) {
+char *aeroportoToString(Aeroporto *aeroporto) {
     char buffer[MAXSTR];
     int size;
     char *str;

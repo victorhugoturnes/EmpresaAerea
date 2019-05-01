@@ -71,6 +71,8 @@ void inserirVoo() {
 void telaCabecalhoInserirVoo() {
     ClearScreen();
 
+    printf("Menu Cadastro de Voo:\n\n");
+
     printf("Insira as informacoes do voo a seguir.\n");
     printf("\n");
 }
@@ -100,6 +102,7 @@ void lerOrigemVoo(VooInfo *novoVoo) {
     char origemSigla[MAX_AEROPORTO_SIGLA_LENGTH];
     char origemNome[MAX_AEROPORTO_NAME_LENGTH];
     printf("Sigla Origem: ");
+
     fflush(stdin);
     fgets(origemSigla, MAX_AEROPORTO_SIGLA_LENGTH, stdin);
     trim(origemSigla);
@@ -159,7 +162,6 @@ void lerDestinoVoo(VooInfo *novoVoo) {
 
         return;
     }
-
 
     if (!strcmp(novoVoo->origem->sigla, destinoSigla)) {
         printf("\nDestino e origem nao podem ser o mesmo!\n");
@@ -285,7 +287,8 @@ void lerModeloAeronaveVoo(VooInfo *novoVoo) {
         return;
     }
 
-    novoVoo->aeronave = createAeronave(aeronaveModelo);
+    novoVoo->aeronave = createAeronave();
+    novoVoo->aeronave->modelo = updateString(NULL, aeronaveModelo);
 }
 
 char ehValidoModeloAeronave(char modeloAeronave[]) {
@@ -302,14 +305,17 @@ char ehValidoModeloAeronave(char modeloAeronave[]) {
 char mostrarCadastroVooOpcoes(VooInfo *novoVoo) {
     char escolha = 0;
 
-    escolha = escolhaInserirVoo(novoVoo);
+    escolha = escolhaInserirVoo();
     switch (escolha) {
         case 's':
-//			salvarNovoVoo(novoVoo);
-            PrintaSeparador();
-            printf("Funcionalidade ainda nao implementada!\n");
-            PrintaSeparador();
-            Pause();
+            if (salvarNovoVoo(novoVoo)) {
+                ClearScreen();
+                PrintaSeparador();
+                printf("Voo salvo com sucesso!\n");
+                PrintaSeparador();
+                Pause();
+                return 1;
+            }
             return 0;
         case 'a':
             alterarNovoVoo(novoVoo);
@@ -329,19 +335,19 @@ char mostrarCadastroVooOpcoes(VooInfo *novoVoo) {
     }
 }
 
-char escolhaInserirVoo(VooInfo *novoVoo) {
-    char escolha, choiceList[] = "0sa";
+char escolhaInserirVoo() {
+    char escolha[3], choiceList[] = "0sa";
 
     PrintaSeparador();
     telaRodapeInserirVoo();
     printf("\n");
     printf("Opcao: ");
     fflush(stdin);
-    scanf("%c", &escolha);
+    fgets(escolha, 2, stdin);
 
-    if (!isdigit(escolha)) return (char) tolower(escolha);
+    if (!isdigit(escolha[0])) return (char) tolower(escolha[0]);
 
-    return choiceList[escolha - '0'];
+return (char) ((escolha[0] - '0' < strlen(choiceList)) ? choiceList[escolha[0] - '0'] : 0);
 }
 
 void telaRodapeInserirVoo() {
@@ -386,21 +392,23 @@ void alterarNovoVoo(VooInfo *novoVoo) {
 }
 
 char escolhaAlterarNovoVoo() {
-    char escolha;
+    char escolha[3];
 
     telaAlterarNovoVoo();
     printf("\n");
     printf("Opcao: ");
     fflush(stdin);
-    scanf("%c", &escolha);
+    fgets(escolha, 2, stdin);
 
-    if (!isdigit(escolha)) return -1;
+    if (!isdigit(escolha[0])) return -1;
 
-    return (char) (escolha - '0');
+    return (char) (escolha[0] - '0');
 }
 
 void telaAlterarNovoVoo() {
     ClearScreen();
+
+    printf("Menu Alterar Novo Voo:\n\n");
 
     printf("Selecione o campo a ser alterado:\n\n");
 
@@ -411,4 +419,18 @@ void telaAlterarNovoVoo() {
 
     printf("\n");
     printf("0) Cancelar alteracao\n");
+}
+
+
+int salvarNovoVoo(VooInfo *novoVoo) {
+    if (!contains(novoVoo->prefixo, ListaVoos, (int (*)(void *, void *)) &search)) {
+        ListaVoos = insert(ListaVoos, novoVoo);
+        return 1;
+    }
+    PrintaSeparador();
+    printf("Voo com o mesmo prefixo ja cadastrado!\n");
+    PrintaSeparador();
+    Pause();
+
+    return 0;
 }

@@ -12,11 +12,8 @@ void menuCadastros() {
             case 'c':
                 cadastrosCliente();
                 break;
-            case 'n':
-//				cadastrosAeronave();
-                break;
-            case 'p':
-//                cadastrosAeroporto();
+            case 'a':
+				cadastrosAeronave();
                 break;
             case '0':
                 ClearScreen();
@@ -40,17 +37,17 @@ void menuCadastros() {
 	@postcondition nenhuma
 */
 char escolhaCadastros() {
-    char escolha, choiceList[] = "0vcpn";
+    char escolha[3], choiceList[] = "0vca";
 
     telaCadastros();
     printf("\n");
     printf("Opcao: ");
     fflush(stdin);
-    scanf("%c", &escolha);
+    fgets(escolha, 2, stdin);
 
-    if (!isdigit(escolha)) return (char) tolower(escolha);
+    if (!isdigit(escolha[0])) return (char) tolower(escolha[0]);
 
-    return choiceList[escolha - '0'];
+    return (char) ((escolha[0] - '0' < strlen(choiceList)) ? choiceList[escolha[0] - '0'] : 0);
 }
 
 /*!
@@ -61,10 +58,13 @@ char escolhaCadastros() {
 void telaCadastros() {
     ClearScreen();
 
+    printf("Menu Cadastro de Voo:\n\n");
+
+    printf("Escolha uma opcao:\n");
+
     printf("1) Cadastrar (V)oo\n");
     printf("2) Cadastrar (C)liente\n");
-    printf("3) Cadastrar Aero(p)orto\n");
-    printf("4) Cadastrar Aero(n)ave\n");
+    printf("4) Cadastrar (A)eronave\n");
     printf("\n");
     printf("0) Sair do Menu de Cadastros\n");
 }

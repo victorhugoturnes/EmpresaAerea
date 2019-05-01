@@ -8,15 +8,18 @@
 #define MAX_NOMEPROGRAMA_LENGTH 64
 #define MAX_NOMECLIENTE_LENGTH 64
 #define MAX_CPF_LENGTH 12
-#define CATEGORIA_LENGTH 8
+#define CATEGORIA_LENGTH 9
 
 
-#include "stdio.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-#include "stdlib.h"
+#include "../../input/string.h"
 
 typedef enum Categoria {
     Nenhuma,
+    Papel,
     Madeira,
     Pedra,
     Ferro,
@@ -35,6 +38,10 @@ typedef struct Cliente {
 
 Cliente *createCliente();
 
+char *clienteToString(Cliente *cliente);
+
 void deleteCliente(Cliente **pCliente);
+
+char *categoriaParaString(Categoria categoria);
 
 #endif //CLIENTE_H

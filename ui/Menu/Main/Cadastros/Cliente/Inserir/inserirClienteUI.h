@@ -10,40 +10,41 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "../../../../../Environment.h"
-#include "../../../../../input/string.h"
-#include "../../../../../core/Cliente/Cliente.h"
+#include "../../../../../../Environment.h"
+#include "../../../../../../input/string.h"
+#include "../../../../../../core/Cliente/Cliente.h"
+#include "../../../../../../core/Cliente/Comparator.h"
 
 void inserirCliente();
 
 void telaCabecalhoInserirCliente();
 
-void lerNomePrograma(Cliente *novoCliente);
+void lerNomePrograma(Cliente *cliente);
 
 char ehValidoNomePrograma(char *nome);
 
-void lerNomeCliente(Cliente *novoCliente);
+void lerNomeCliente(Cliente *cliente);
 
 char ehValidoNomeCliente(char *nome);
 
-void lerCpf(Cliente *novoCliente);
+void lerCpf(Cliente *cliente);
 
 char ehValidoCpf(char *cpf);
 
-void lerCategoria(Cliente *novoCliente);
+void lerCategoria(Cliente *cliente);
 
-char *categoriaParaString(Categoria categoria);
+char mostrarCadastroClienteOpcoes(Cliente *cliente);
 
-char mostrarCadastroClienteOpcoes(Cliente *novoCliente);
-
-void alterarNovoCliente(Cliente *novoCliente);
+void alterarNovoCliente(Cliente *cliente);
 
 char escolhaAlterarNovoCliente();
 
 void telaAlterarNovoCliente();
 
-char escolhaInserirCliente(Cliente *novoCliente);
+char escolhaInserirCliente();
 
 void telaRodapeInserirCliente();
+
+int salvarNovoCliente(Cliente *cliente);
 
 #endif //AEROTRACKER_INSERIRCLIENTEUI_H

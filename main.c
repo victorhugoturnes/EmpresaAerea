@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include "ui/Menu/Main/mainMenuUI.h"
 
+List *ListaClientes = NULL;
+List *ListaVoos = NULL;
+List *ListaAeronaves = NULL;
+
 int main() {
     char escolha = 0;
 

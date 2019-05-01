@@ -8,9 +8,20 @@
 #include "Cliente.h"
 #include <string.h>
 
+int searchCategoria(Categoria *cat, Cliente *clie);
 
-int searchModelo(char *str, Aeronave *aer);
+int sortCategoria(Cliente *src, Cliente *dst);
 
-int sortModelo(Aeronave *src, Aeronave *dst);
+int searchCpf(char *str, Cliente *clie);
+
+int sortCpf(Cliente *src, Cliente *dst);
+
+int searchNomeCliente(char *str, Cliente *clie);
+
+int sortNomeCliente(Cliente *src, Cliente *dst);
+
+int searchNomePrograma(char *str, Cliente *clie);
+
+int sortNomePrograma(Cliente *src, Cliente *dst);
 
 #endif //AEROTRACKER_CLIENTE_COMPARATOR_H

@@ -24,3 +24,41 @@ void deleteCliente(Cliente **pCliente) {
     free(*pCliente);
     *pCliente = NULL;
 }
+
+char *clienteToString(Cliente *cliente) {
+    char buffer[MAXSTR];
+    int size;
+    char *str;
+
+    size = sprintf(buffer, "Cliente: %s - CPF: %s - Programa: %s - Rank: %s - Saldo: %d\n", cliente->nomeCliente, cliente->cpf, cliente->nomePrograma, categoriaParaString(cliente->categoria), cliente->saldoMilhas);
+    str = malloc(sizeof(char) * size + 1);
+
+    strcpy(str, buffer);
+    return str;
+}
+
+
+char *categoriaParaString(Categoria categoria) {
+    switch (categoria) {
+        case Nenhuma:
+            return "Nenhuma";
+        case Papel:
+            return "Papel";
+        case Madeira:
+            return "Madeira";
+        case Pedra:
+            return "Pedra";
+        case Ferro:
+            return "Ferro";
+        case Ouro:
+            return "Ouro";
+        case Diamante:
+            return "Diamante";
+        case Obsidian:
+            return "Obsidian";
+        case Bedrock:
+            return "Bedrock";
+    }
+
+    return NULL;
+}

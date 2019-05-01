@@ -2,10 +2,12 @@
 #define VOOINFO_H
 
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 
 #include "../Aeroporto/Aeroporto.h"
 #include "../Aeronave/Aeronave.h"
+
 
 #define MAX_PREFIXO_LENGTH 16
 #define MAX_AEROPORTO_NAME_LENGTH 64
@@ -25,8 +27,12 @@ typedef struct VooInfo {
 
 VooInfo *createVooInfo();
 
+char *vooInfoToString(VooInfo *voo);
+
 Hora *createHora(char hh, char mm);
 
 void deleteHora(Hora **hora);
+
+char *horaToString(Hora *hora);
 
 #endif // VOOINFO_H

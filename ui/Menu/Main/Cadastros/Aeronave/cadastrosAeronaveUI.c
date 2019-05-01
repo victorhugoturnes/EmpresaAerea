@@ -2,24 +2,24 @@
 // Created by Jedson on 3/19/2019.
 //
 
-#include "cadastrosClienteUI.h"
-#include "Consultar/consultarClienteUI.h"
+#include "cadastrosAeronaveUI.h"
+#include "Consultar/consultarAeronaveUI.h"
 
-void cadastrosCliente() {
+void cadastrosAeronave() {
     char escolha = 0;
 
-    escolha = escolhaCadastrosCliente();
+    escolha = escolhaCadastrosAeronave();
     do {
         switch (escolha) {
             case 'i':
-                inserirCliente();
+                inserirAeronave();
                 break;
             case 'c':
-				consultarCliente();
+				consultarAeronave();
                 break;
             case '0':
                 ClearScreen();
-                printf("\nSaindo do menu de cadastros de cliente.\n\n");
+                printf("\nSaindo do menu de cadastros de aeronave.\n\n");
                 Pause();
                 break;
             default:
@@ -28,14 +28,14 @@ void cadastrosCliente() {
                 break;
         }
 
-    } while (escolha != '0' && (escolha = escolhaCadastrosCliente()));
+    } while (escolha != '0' && (escolha = escolhaCadastrosAeronave()));
 
 }
 
-char escolhaCadastrosCliente() {
+char escolhaCadastrosAeronave() {
     char escolha[3], choiceList[] = "0ic";
 
-    telaCadastrosCliente();
+    telaCadastrosAeronave();
     printf("\n");
     printf("Opcao: ");
     fflush(stdin);
@@ -47,14 +47,14 @@ return (char) ((escolha[0] - '0' < strlen(choiceList)) ? choiceList[escolha[0] -
 
 }
 
-void telaCadastrosCliente() {
+void telaCadastrosAeronave() {
     ClearScreen();
 
-    printf("Menu Cadastro de Cliente:\n\n");
+    printf("Menu Cadastro de Aeronave:\n\n");
 
     printf("Escolha uma opcao:\n");
-    printf("1) (I)nserir Cliente\n");
-    printf("2) (C)onsultar Cliente\n");
+    printf("1) (I)nserir Aeronave\n");
+    printf("2) (C)onsultar Aeronave\n");
     printf("\n");
     printf("0) Sair do Menu de Cadastros\n");
 }

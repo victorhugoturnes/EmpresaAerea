@@ -2,8 +2,10 @@
 // Created by last on 3/13/19.
 //
 
-#ifndef UNTITLED_ENVIRONMENT_H
-#define UNTITLED_ENVIRONMENT_H
+#ifndef ENVIRONMENT_H
+#define ENVIRONMENT_H
+
+#include "core/List/Operations/List.h"
 
 #ifdef unix
 #define ClearScreen() system("clear")
@@ -17,4 +19,11 @@
 
 #define PrintaSeparador() printf("---------------------------\n");
 
-#endif //UNTITLED_ENVIRONMENT_H
+#ifndef GLOBAL_LISTS
+#define GLOBAL_LISTS
+extern List *ListaClientes;
+extern List *ListaVoos;
+extern List *ListaAeronaves;
+#endif
+
+#endif //ENVIRONMENT_H
