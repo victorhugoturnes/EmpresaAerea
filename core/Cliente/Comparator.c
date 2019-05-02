@@ -10,7 +10,7 @@ int searchCategoria(Categoria *cat, Cliente *cliente) {
 }
 
 int sortCategoria(Cliente *src, Cliente *dst) {
-    if(dst->categoria <  src->categoria) return -1;
+    if (dst->categoria < src->categoria) return -1;
     return src->categoria > dst->categoria;
 }
 

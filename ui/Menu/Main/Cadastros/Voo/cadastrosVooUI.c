@@ -10,7 +10,7 @@ void cadastrosVoo() {
                 inserirVoo();
                 break;
             case 'c':
-//				consultarVoo();
+				consultarVoo();
                 break;
             case '0':
                 ClearScreen();
@@ -37,7 +37,7 @@ char escolhaCadastrosVoo() {
 
     if (!isdigit(escolha[0])) return (char) tolower(escolha[0]);
 
-return (char) ((escolha[0] - '0' < strlen(choiceList)) ? choiceList[escolha[0] - '0'] : 0);
+    return (char) ((escolha[0] - '0' < strlen(choiceList)) ? choiceList[escolha[0] - '0'] : 0);
 }
 
 void telaCadastrosVoo() {

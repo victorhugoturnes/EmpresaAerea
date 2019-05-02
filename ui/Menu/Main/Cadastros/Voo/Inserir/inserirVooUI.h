@@ -6,6 +6,9 @@
 #include <string.h>
 #include <ctype.h>
 
+#include "../../../../../../core/Aeroporto/Comparator.h"
+#include "../../../../../../core/Aeronave/Comparator.h"
+#include "../../../../../../core/Voo/Comparator.h"
 #include "../../../../../../core/Voo/VooInfo.h"
 #include "../../../../../../input/string.h"
 #include "../../../../../../Environment.h"
@@ -26,6 +29,8 @@ char ehValidoNomeAeroporto(char nome[]);
 
 void lerDestinoVoo(VooInfo *novoVoo);
 
+Aeroporto *procurarAeroportoSigla(char *sigla);
+
 void lerPartidaVoo(VooInfo *novoVoo);
 
 char ehValidoHorario(Hora *horario);
@@ -35,6 +40,8 @@ void lerChegadaVoo(VooInfo *novoVoo);
 void lerDuracaoVoo(VooInfo *novoVoo);
 
 void lerModeloAeronaveVoo(VooInfo *novoVoo);
+
+Aeronave *procurarAeronaveModelo(char *modelo);
 
 char ehValidoModeloAeronave(char modeloAeronave[]);
 

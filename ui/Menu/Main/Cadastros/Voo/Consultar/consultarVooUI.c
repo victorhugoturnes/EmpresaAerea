@@ -1,21 +1,21 @@
 //
-// Created by Jedson on 4/22/2019.
+// Created by Jedson on 5/2/2019.
 //
 
-#include "consultarAeronaveUI.h"
+#include "consultarVooUI.h"
 
-void consultarAeronave() {
+void consultarVoo() {
     char escolha = 0;
 
-    escolha = consultarAeronaveEscolha();
+    escolha = consultarVooEscolha();
     do {
         switch (escolha) {
-            case 'm': //< consulta por modelo
-                consultaModelo();
+            case 'p': //< consulta por prefixo
+                consultaPrefixo();
                 break;
             case '0':
                 ClearScreen();
-                printf("\nSaindo do menu de consulta de aeronaves.\n\n");
+                printf("\nSaindo do menu de consulta de voos.\n\n");
                 Pause();
                 break;
             default:
@@ -23,16 +23,16 @@ void consultarAeronave() {
                 Pause();
                 break;
         }
-    } while (escolha != '0' && (escolha = consultarAeronaveEscolha()));
+    } while (escolha != '0' && (escolha = consultarVooEscolha()));
 
 }
 
-char consultarAeronaveEscolha() {
-    char escolha[3], choiceList[] = "0m";
+char consultarVooEscolha() {
+    char escolha[3], choiceList[] = "0p";
 
     /// apresenta tela de menu e lê da entrada padrão a escolha \
 	do usuário
-    telaConsultaAeronave();
+    telaConsultaVoo();
     printf("\n");
     printf("Opcao: ");
     fflush(stdin);
@@ -45,26 +45,26 @@ char consultarAeronaveEscolha() {
     return (char) ((escolha[0] - '0' < strlen(choiceList)) ? choiceList[escolha[0] - '0'] : 0);
 }
 
-void telaConsultaAeronave() {
+void telaConsultaVoo() {
     ClearScreen();
 
-    printf("Menu Cadastro de Aeronave:\n\n");
+    printf("Menu Cadastro de Voo:\n\n");
 
     printf("Escolha uma opcao:\n");
 
-    printf("1) Consulta por (M)odelo\n");
+    printf("1) Consulta por (P)refixo\n");
     printf("\n");
     printf("0) Sair do Menu de Consultas\n");
 }
 
-void consultaModelo() {
+void consultaPrefixo() {
     char pesquisa[MAXSTR] = {0};
     List *searchResult = NULL;
 
     ClearScreen();
 
     /// lê entrada
-    printf("Pesquisa de aeronave por modelo\n\n");
+    printf("Pesquisa de voo por prefixo\n\n");
     printf("Digite sua pesquisa: ");
 
     fflush(stdin);
@@ -72,15 +72,15 @@ void consultaModelo() {
     trim(pesquisa);
 
     /// pesquisa na lista
-    searchResult = search(pesquisa, ListaAeronaves, (int (*)(void *, void *)) &searchModelo);
+    searchResult = search(pesquisa, ListaVoos, (int (*)(void *, void *)) &searchPrefixo);
 
-    mostrarResultadoPesquisaAeronave(searchResult);
+    mostrarResultadoPesquisaVoo(searchResult);
 }
 
-void mostrarResultadoPesquisaAeronave(List *searchResult) {
+void mostrarResultadoPesquisaVoo(List *searchResult) {
     char *str;
     int searchResultLength = length(searchResult);
-    Aeronave *aeronaveEscolhida = NULL;
+    VooInfo *vooEscolhido = NULL;
 
     /// mostra resultados
     if (searchResultLength == 0) {
@@ -88,25 +88,52 @@ void mostrarResultadoPesquisaAeronave(List *searchResult) {
         Pause();
         return;
     } else if (searchResultLength == 1) {
-        printf("%s\n", str = aeronaveToString(searchResult->info));
+        printf("%s\n", str = vooInfoToString(searchResult->info));
         free(str);
         Pause();
-        aeronaveEscolhida = (Aeronave *) searchResult->info;
+        vooEscolhido = (VooInfo *) searchResult->info;
     } else if (searchResultLength > 1) {
-        aeronaveEscolhida = menuEscolhaListaAeronave(searchResult);
+        vooEscolhido = menuEscolhaListaVoo(searchResult);
         Pause();
     }
 
-    menuOpcoesAeronave(aeronaveEscolhida);
+    menuOpcoesVoo(vooEscolhido);
 }
 
-Aeronave *menuEscolhaListaAeronave(List *listaAeronave) {
+void menuOpcoesVoo(VooInfo *voo) {
+    char escolha = 0;
+
+    escolha = escolhaVoo();
+    do {
+        switch (escolha) {
+            case 'a':
+                alterarVoo(voo);
+                break;
+            case 'd':
+                deletarVoo(voo);
+                escolha = '0';
+                break;
+            case '0':
+                ClearScreen();
+                printf("\nSaindo do menu opcoes voo.\n\n");
+                Pause();
+                break;
+            default:
+                printf("Nao eh uma opcao valida!\n\n");
+                Pause();
+                break;
+        }
+
+    } while (escolha != '0' && (escolha = escolhaVoo()));
+}
+
+VooInfo *menuEscolhaListaVoo(List *listaVoo) {
     int i = 1, escolha = 0;
     List *current = NULL;
     char buf[MAXSTR], *str;
 
-    for (current = listaAeronave; current; current = current->next) {
-        printf("[%d] %s", i++, str = aeronaveToString(current->info));
+    for (current = listaVoo; current; current = current->next) {
+        printf("[%d] %s", i++, str = vooInfoToString(current->info));
         free(str);
     }
 
@@ -123,7 +150,7 @@ Aeronave *menuEscolhaListaAeronave(List *listaAeronave) {
 
     } while (escolha < 0 && escolha > i);
 
-    for (current = listaAeronave; i; --i) {
+    for (current = listaVoo; i; --i) {
         if (current) {
             current = current->next;
         }
@@ -134,37 +161,10 @@ Aeronave *menuEscolhaListaAeronave(List *listaAeronave) {
     return current->info;
 }
 
-void menuOpcoesAeronave(Aeronave *aeronave) {
-    char escolha = 0;
-
-    escolha = escolhaAeronave();
-    do {
-        switch (escolha) {
-            case 'a':
-                alterarAeronave(aeronave);
-                break;
-            case 'd':
-                deletarAeronave(aeronave);
-                escolha = '0';
-                break;
-            case '0':
-                ClearScreen();
-                printf("\nSaindo do menu opcoes aeronave.\n\n");
-                Pause();
-                break;
-            default:
-                printf("Nao eh uma opcao valida!\n\n");
-                Pause();
-                break;
-        }
-
-    } while (escolha != '0' && (escolha = escolhaAeronave()));
-}
-
-char escolhaAeronave() {
+char escolhaVoo() {
     char escolha[3], choiceList[] = "0ad";
 
-    telaOpcoesAeronave();
+    telaOpcoesVoo();
     printf("\n");
     printf("Opcao: ");
     fflush(stdin);
@@ -175,15 +175,15 @@ char escolhaAeronave() {
     return (char) ((escolha[0] - '0' < strlen(choiceList)) ? choiceList[escolha[0] - '0'] : 0);
 }
 
-void telaOpcoesAeronave() {
+void telaOpcoesVoo() {
     ClearScreen();
 
-    printf("Menu Opcoes Aeronave:\n\n");
+    printf("Menu Opcoes Voo:\n\n");
 
     printf("Escolha uma opcao:\n");
-    printf("1) (A)lterar Aeronave\n");
-    printf("2) (D)eletar Aeronave\n");
+    printf("1) (A)lterar Voo\n");
+    printf("2) (D)eletar Voo\n");
     printf("\n");
-    printf("0) Sair do Menu de Opcoes Aeronave\n");
+    printf("0) Sair do Menu de Opcoes Voo\n");
 }
 

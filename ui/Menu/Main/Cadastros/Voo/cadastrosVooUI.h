@@ -6,6 +6,7 @@
 #include <ctype.h>
 
 #include "Inserir/inserirVooUI.h"
+#include "Consultar/consultarVooUI.h"
 #include "../../../../../Environment.h"
 
 void cadastrosVoo();

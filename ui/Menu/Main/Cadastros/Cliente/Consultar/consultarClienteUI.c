@@ -75,7 +75,7 @@ void consultaNomePrograma() {
 
     ClearScreen();
 
-    // lê entrada
+    /// lê entrada
     printf("Pesquisa de cliente por programa de milhagem\n\n");
     printf("Digite sua pesquisa: ");
 
@@ -83,7 +83,7 @@ void consultaNomePrograma() {
     fgets(pesquisa, MAXSTR, stdin);
     trim(pesquisa);
 
-    // pesquisa na lista
+    /// pesquisa na lista
     searchResult = search(pesquisa, ListaClientes, (int (*)(void *, void *)) &searchNomePrograma);
 
     mostrarResultadoPesquisaCliente(searchResult);
@@ -95,7 +95,7 @@ void consultaNome() {
 
     ClearScreen();
 
-    // lê entrada
+    /// lê entrada
     printf("Pesquisa de cliente por nome do cliente\n\n");
     printf("Digite sua pesquisa: ");
 
@@ -103,7 +103,7 @@ void consultaNome() {
     fgets(pesquisa, MAXSTR, stdin);
     trim(pesquisa);
 
-    // pesquisa na lista
+    /// pesquisa na lista
     searchResult = search(pesquisa, ListaClientes, (int (*)(void *, void *)) &searchNomeCliente);
 
     mostrarResultadoPesquisaCliente(searchResult);
@@ -115,7 +115,7 @@ void consultaCPF() {
 
     ClearScreen();
 
-    // lê entrada
+    /// lê entrada
     printf("Pesquisa de cliente por CPF\n\n");
     printf("Digite sua pesquisa: ");
 
@@ -123,7 +123,7 @@ void consultaCPF() {
     fgets(pesquisa, MAXSTR, stdin);
     trim(pesquisa);
 
-    // pesquisa na lista
+    /// pesquisa na lista
     searchResult = search(pesquisa, ListaClientes, (int (*)(void *, void *)) &searchCpf);
 
     mostrarResultadoPesquisaCliente(searchResult);
@@ -138,7 +138,7 @@ void consultaCategoria() {
 
     ClearScreen();
 
-    // lê entrada
+    /// lê entrada
     printf("Pesquisa de cliente por Categoria\n\n");
 
     printf("Selecione uma categoria:\n");
@@ -157,7 +157,7 @@ void consultaCategoria() {
 
     escolhida = (Categoria) choice;
 
-    // escolha na lista
+    /// escolha na lista
     searchResult = search(&escolhida, ListaClientes, (int (*)(void *, void *)) &searchCategoria);
 
     mostrarResultadoPesquisaCliente(searchResult);
@@ -168,17 +168,17 @@ void mostrarResultadoPesquisaCliente(List *searchResult) {
     int searchResultLength = length(searchResult);
     Cliente *clienteEscolhido = NULL;
 
-    // mostra resultados
-    if(searchResultLength == 0) {
+    /// mostra resultados
+    if (searchResultLength == 0) {
         printf("Nenhum resultado encontrado!\n");
         Pause();
         return;
-    } else if(searchResultLength == 1) {
+    } else if (searchResultLength == 1) {
         printf("%s\n", str = clienteToString(searchResult->info));
         free(str);
         Pause();
         clienteEscolhido = (Cliente *) searchResult->info;
-    } else if(searchResultLength > 1) {
+    } else if (searchResultLength > 1) {
         clienteEscolhido = menuEscolhaListaCliente(searchResult);
         Pause();
     }
@@ -191,7 +191,7 @@ Cliente *menuEscolhaListaCliente(List *listaCliente) {
     List *current = NULL;
     char buf[MAXSTR], *str;
 
-    for(current = listaCliente; current; current = current->next) {
+    for (current = listaCliente; current; current = current->next) {
         printf("[%d] %s", i++, str = clienteToString(current->info));
         free(str);
     }
@@ -202,20 +202,20 @@ Cliente *menuEscolhaListaCliente(List *listaCliente) {
 
         escolha = strtol(buf, NULL, 10);
 
-        if(escolha < 0 && escolha > i) {
+        if (escolha < 0 && escolha > i) {
             printf("Escolha invalida!\n");
             Pause();
         }
 
-    } while(escolha < 0 && escolha > i);
+    } while (escolha < 0 && escolha > i);
 
-    for(current = listaCliente; i; --i) {
-        if(current) {
+    for (current = listaCliente; i; --i) {
+        if (current) {
             current = current->next;
         }
     }
 
-    if(!current) return NULL;
+    if (!current) return NULL;
 
     return current->info;
 }
@@ -258,7 +258,7 @@ char escolhaCliente() {
 
     if (!isdigit(escolha[0])) return (char) tolower(escolha[0]);
 
-return (char) ((escolha[0] - '0' < strlen(choiceList)) ? choiceList[escolha[0] - '0'] : 0);
+    return (char) ((escolha[0] - '0' < strlen(choiceList)) ? choiceList[escolha[0] - '0'] : 0);
 }
 
 void telaOpcoesCliente() {

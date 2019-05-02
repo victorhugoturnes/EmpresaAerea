@@ -24,6 +24,7 @@
 extern List *ListaClientes;
 extern List *ListaVoos;
 extern List *ListaAeronaves;
+extern List *ListaAeroportos;
 #endif
 
 #endif //ENVIRONMENT_H

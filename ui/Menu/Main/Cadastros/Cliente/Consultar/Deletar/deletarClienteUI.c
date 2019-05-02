@@ -7,7 +7,7 @@
 void deletarCliente(Cliente *cliente) {
     List *tracer = NULL;
 
-    if(!cliente) return;
+    if (!cliente) return;
 
     for (tracer = ListaClientes; tracer; tracer = tracer->next) {
         if (tracer->active && !strcmp(((Cliente *) tracer->info)->cpf, cliente->cpf)) {
@@ -16,9 +16,8 @@ void deletarCliente(Cliente *cliente) {
         }
     }
 
-    if(tracer) {
+    if (tracer) {
         printf("Cliente deletado com sucesso!\n");
         Pause();
     }
-
 }
