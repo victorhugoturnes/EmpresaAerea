@@ -136,7 +136,7 @@ int lerOrigemVoo(VooInfo *novoVoo) {
 
             return 0;
         }
-        novoVoo->origem = createAeroporto(origemNome, origemSigla);
+        novoVoo->origem = createAeroporto(origemSigla, origemNome);
         ListaAeroportos = insert(ListaAeroportos, novoVoo->origem);
     }
     return 1;
@@ -197,7 +197,7 @@ int lerDestinoVoo(VooInfo *novoVoo) {
 
             return 0;
         }
-        novoVoo->destino = createAeroporto(destinoNome, destinoSigla);
+        novoVoo->destino = createAeroporto(destinoSigla, destinoNome);
         ListaAeroportos = insert(ListaAeroportos, novoVoo->destino);
     }
 

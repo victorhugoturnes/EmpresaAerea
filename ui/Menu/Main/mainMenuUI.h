@@ -33,6 +33,16 @@ void menuStatus();
 
 void testarCadastros();
 
+void populateLists();
+
+void populateAeroportos();
+
+void populateAeronaves();
+
+void populateClientes();
+
+void populateVoos();
+
 /*!
 	@brief confirmacaoSaidaMainMenu, pergunta ao usuário se este confirma \
 	saída do programa

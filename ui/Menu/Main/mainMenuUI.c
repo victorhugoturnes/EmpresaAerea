@@ -42,13 +42,6 @@ void telaMainMenu() {
     printf("0) Sair do Programa\n");
 }
 
-void menuStatus() {
-    ClearScreen();
-    printf("menuStatus\n");
-    printf("WORK IN PROGRESS...\n");
-    ClearScreen();
-}
-
 void testarCadastros() {
     ClearScreen();
 
@@ -56,7 +49,7 @@ void testarCadastros() {
 
     List *aeronaves = NULL;
 
-    Aeroporto *aeroporto = createAeroporto("aeroporto de teste 1", "aer");
+    Aeroporto *aeroporto = createAeroporto("aer", "aeroporto de teste 1");
     read = aeroportoToString(aeroporto);
     printf("%s\n", read);
     free(read);
@@ -184,4 +177,121 @@ char confirmacaoSaidaMainMenu() {
 
     /// caso contrário, retorna 0
     return 0;
+}
+
+void populateLists() {
+    populateAeroportos();
+    populateAeronaves();
+    populateClientes();
+    populateVoos();
+    Pause();
+}
+
+void populateAeroportos() {
+    FILE *f = fopen("./populate files/aeroportos.txt", "r");
+    char line[MAXSTR];
+    char sigla[MAXSTR], nome[MAXSTR];
+
+    printf("\nAeroportos:\n");
+    while (!feof(f)) {
+        fgets(line, MAXSTR, f);
+        printf("%s\n", line);
+        sscanf(line, "%[^;];%[^;];", sigla, nome);
+        if (!contains(sigla, ListaAeroportos, (int (*)(void *, void *)) &searchSigla))
+            ListaAeroportos = insert(ListaAeroportos, createAeroporto(sigla, nome));
+    }
+
+    fclose(f);
+}
+
+void populateAeronaves() {
+    FILE *f = fopen("./populate files/aeronaves.txt", "r");
+    Aeronave *aeronave = NULL;
+    char line[MAXSTR], modelo[MAXSTR];
+    double comprimento, altura, envergadura, velocidadeCruzeiro, alcanceMaximo;
+    int qntAcentos, qntBanheiros;
+
+    printf("\nAeronaves:\n");
+    while (!feof(f)) {
+        fgets(line, MAXSTR, f);
+        printf("%s\n", line);
+        sscanf(line, "%[^;];%lf;%lf;%lf;%lf;%lf;%d;%d;", // NOLINT(cert-err34-c)
+               modelo, &comprimento, &altura, &envergadura, &velocidadeCruzeiro, &alcanceMaximo, &qntAcentos,
+               &qntBanheiros);
+        if (!contains(modelo, ListaAeronaves, (int (*)(void *, void *)) &searchModelo)) {
+            aeronave = createAeronave();
+            aeronave->modelo = updateString(NULL, modelo);
+            aeronave->comprimento = comprimento;
+            aeronave->altura = altura;
+            aeronave->envergadura = envergadura;
+            aeronave->velocidadeCruzeiro = velocidadeCruzeiro;
+            aeronave->alcanceMaximo = alcanceMaximo;
+            aeronave->qntAcentos = qntAcentos;
+            aeronave->qntBanheiros = qntBanheiros;
+            ListaAeronaves = insert(ListaAeronaves, aeronave);
+        }
+    }
+
+    fclose(f);
+}
+
+void populateClientes() {
+    Cliente *cliente = NULL;
+    FILE *f = fopen("./populate files/clientes.txt", "r");
+    char line[MAXSTR];
+    char nomePrograma[MAXSTR], nomeCliente[MAXSTR];
+    char cpf[MAXSTR];
+    Categoria categoria;
+    int saldoMilhas;
+
+    printf("\nClientes:n");
+    while (!feof(f)) {
+        fgets(line, MAXSTR, f);
+        printf("%s\n", line);
+        sscanf(line, "%[^;];%[^;];%[^;];%d;%d", // NOLINT(cert-err34-c)
+               nomePrograma, nomeCliente, cpf, &categoria, &saldoMilhas);
+        if (!contains(cpf, ListaClientes, (int (*)(void *, void *)) &searchCpf)) {
+            cliente = createCliente();
+            cliente->nomeCliente = updateString(NULL, nomeCliente);
+            cliente->nomePrograma = updateString(NULL, nomePrograma);
+            cliente->cpf = updateString(NULL, cpf);
+            cliente->categoria = categoria;
+            cliente->saldoMilhas = saldoMilhas;
+            ListaClientes = insert(ListaClientes, cliente);
+        }
+    }
+
+    fclose(f);
+}
+
+void populateVoos() {
+    VooInfo *vooInfo = NULL;
+    FILE *f = fopen("./populate files/voos.txt", "r");
+    char line[MAXSTR];
+    char prefixo[MAXSTR], origem[MAXSTR], destino[MAXSTR];
+    int partidaHH, partidaMM, chegadaHH, chegadaMM, duracaoHH, duracaoMM;
+    char aeronave[MAXSTR];
+
+    printf("\nVoos:\n");
+    while (!feof(f)) {
+        fgets(line, MAXSTR, f);
+        printf("%s\n", line);
+        sscanf(line, "%[^;];%[^;];%[^;];%d:%d;%d:%d;%d:%d;%[^;];", // NOLINT(cert-err34-c)
+               prefixo, origem, destino, &partidaHH, &partidaMM, &chegadaHH, &chegadaMM, &duracaoHH, &duracaoMM,
+               aeronave);
+        if (!contains(prefixo, ListaVoos, (int (*)(void *, void *)) &searchPrefixo)) {
+            vooInfo = createVooInfo();
+            vooInfo->prefixo = updateString(NULL, prefixo);
+            vooInfo->origem = procurarAeroportoSigla(origem);
+            vooInfo->destino = procurarAeroportoSigla(destino);
+            vooInfo->partida = createHora((char) partidaHH, (char) partidaMM);
+            vooInfo->chegada = createHora((char) chegadaHH, (char) chegadaMM);
+            vooInfo->duracao = createHora((char) duracaoHH, (char) duracaoMM);
+            vooInfo->aeronave = procurarAeronaveModelo(aeronave);
+
+            ListaVoos = insert(ListaVoos, vooInfo);
+        }
+    }
+
+    fclose(f);
 }
