@@ -1,12 +1,14 @@
 #ifndef VOOINFO_H
 #define VOOINFO_H
 
+#include <time.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "../Aeroporto/Aeroporto.h"
 #include "../Aeronave/Aeronave.h"
+#include "../../input/string.h"
 
 
 #define MAX_PREFIXO_LENGTH 16

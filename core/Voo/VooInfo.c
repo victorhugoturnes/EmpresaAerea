@@ -1,6 +1,6 @@
-#include <stdio.h>
 #include "VooInfo.h"
-#include "../../input/string.h"
+
+Hora *horaAtual();
 
 VooInfo *createVooInfo() {
     VooInfo *novoVooInfo = (VooInfo *) malloc(sizeof(VooInfo));
@@ -58,4 +58,38 @@ char *horaToString(Hora *hora) {
 
     strcpy(str, buffer);
     return str;
+}
+
+char *statusVoo(VooInfo *voo) {
+    char *result = NULL;
+    Hora *horaSistema = horaAtual();
+    int horaSistemaSeg = horaSistema->hh * 3600 + horaSistema->mm * 60;
+    int horaVooSeg = voo->partida->hh * 3600 + voo->partida->mm * 60;
+    int horaDif = horaVooSeg - horaSistemaSeg;
+
+    if (horaDif >= 3600) { //< 1 hora
+        result = "check in aberto";
+    } else if (horaDif < 3600) {
+        result = "check in fechado";
+    } else if (horaDif < 1800) {
+        result = "embarque proximo";
+    } else if (horaDif < 1200) {
+        result = "embarque imediato";
+    } else if (horaDif < 600) {
+        result = "ultima chamada";
+    } else if (horaDif < -600) {
+        result = "partindo";
+    } else {
+        result = "voo encerrado";
+    }
+
+    deleteHora(&horaSistema);
+    return result;
+}
+
+Hora *horaAtual() {
+    time_t T = time(NULL);
+    struct tm tm = *localtime(&T);
+
+    return createHora((char) tm.tm_hour, (char) tm.tm_min);
 }
