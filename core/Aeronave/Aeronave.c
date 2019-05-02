@@ -46,7 +46,7 @@ char *aeronaveToString(Aeronave *aeronave) {
                            "\t- Altura: %.2lf\n"
                            "\t- Envergadura: %.2lf\n"
                            "\t- Alcance maximo: %.2lf\n"
-                           "\t- Quantidade de acentoa: %d\n"
+                           "\t- Quantidade de acentos: %d\n"
                            "\t- Quantidade de banheiros: %d\n",
                    aeronave->modelo, aeronave->comprimento, aeronave->altura,
                    aeronave->envergadura, aeronave->alcanceMaximo, aeronave->qntAcentos,

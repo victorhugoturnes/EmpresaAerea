@@ -16,7 +16,7 @@ void deletarCliente(Cliente *cliente) {
 
         fflush(stdin);
         fgets(escolha, 3, stdin);
-    } while (toupper(escolha[0]) == 'Y' || toupper(escolha[0]) == 'N');
+    } while (toupper(escolha[0]) != 'Y' && toupper(escolha[0]) != 'N');
 
     if (toupper(escolha[0]) == 'N') return;
 
