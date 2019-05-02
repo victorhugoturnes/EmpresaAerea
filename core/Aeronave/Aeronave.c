@@ -16,11 +16,18 @@
     Retorno : Aeronave criada
  */
 Aeronave *createAeronave() {
-    Aeronave *Aeronave = malloc(sizeof(Aeronave));
+    Aeronave *aeronave = malloc(sizeof(Aeronave));
 
-    Aeronave->modelo = NULL;
+    aeronave->modelo = NULL;
+    aeronave->comprimento = -1;
+    aeronave->altura = -1;
+    aeronave->envergadura = -1;
+    aeronave->velocidadeCruzeiro = -1;
+    aeronave->alcanceMaximo = -1;
+    aeronave->qntAcentos = -1;
+    aeronave->qntBanheiros = -1;
 
-    return Aeronave;
+    return aeronave;
 }
 
 /*
@@ -29,12 +36,21 @@ Aeronave *createAeronave() {
     Objetivo : ler e criar uma string contendo qual o modelo da aeronave
     Returno : devolver string dizendo qual o modelo da aeronave
  */
-char *aeronaveToString(Aeronave *Aeronave) {
+char *aeronaveToString(Aeronave *aeronave) {
     char buffer[MAXSTR];
     int size;
     char *str;
 
-    size = sprintf(buffer, "[%s]", Aeronave->modelo);
+    size = sprintf(buffer, "Aeronave %s:\n"
+                           "\t- Comprimento: %.2lf\n"
+                           "\t- Altura: %.2lf\n"
+                           "\t- Envergadura: %.2lf\n"
+                           "\t- Alcance maximo: %.2lf\n"
+                           "\t- Quantidade de acentoa: %d\n"
+                           "\t- Quantidade de banheiros: %d\n",
+                   aeronave->modelo, aeronave->comprimento, aeronave->altura,
+                   aeronave->envergadura, aeronave->alcanceMaximo, aeronave->qntAcentos,
+                   aeronave->qntBanheiros);
     str = malloc(sizeof(char) * size + 1);
 
     strcpy(str, buffer);
@@ -47,10 +63,10 @@ char *aeronaveToString(Aeronave *Aeronave) {
     Objetivo : atualizar o modelo da aeronave
     Retorno : Nada
  */
-void updateAeronave(Aeronave *Aeronave, void *update, char *field) {
+void updateAeronave(Aeronave *aeronave, void *update, char *field) {
     if (!update) return;
     if (!strcmp("modelo", field)) {
-        updateString(Aeronave->modelo, update);
+        updateString(aeronave->modelo, update);
     }
 }
 
@@ -60,8 +76,8 @@ void updateAeronave(Aeronave *Aeronave, void *update, char *field) {
     Objetivo : Limpar memoria q esta sendo usada para alocar Aeronave]
     Retorno : Nada
  */
-void deleteAeronave(Aeronave **Aeronave) {
-    free((*Aeronave)->modelo);
-    free((*Aeronave));
-    *Aeronave = NULL;
+void deleteAeronave(Aeronave **aeronave) {
+    free((*aeronave)->modelo);
+    free((*aeronave));
+    *aeronave = NULL;
 }

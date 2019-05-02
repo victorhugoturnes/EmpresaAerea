@@ -24,6 +24,7 @@ void alterarAeronave(Aeronave *aeronave) {
 //                free(aeronave->cpf);
 //                aeronave->cpf = NULL;
 //                lerCpf(aeronave);
+
                 break;
             case 4: //< Categoria
 //                lerCategoria(aeronave);

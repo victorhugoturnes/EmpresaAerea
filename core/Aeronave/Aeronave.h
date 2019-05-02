@@ -9,15 +9,16 @@
 
 typedef struct aeronave {
     char *modelo;
-    double comprimento, altura, envergadura, velocidadeCruzeiro, alcanceMaximo, qntAcentos, qntBanheiros;
+    double comprimento, altura, envergadura, velocidadeCruzeiro, alcanceMaximo;
+    int qntAcentos, qntBanheiros;
 } Aeronave;
 
 Aeronave *createAeronave();
 
-char *aeronaveToString(Aeronave *Aeronave);
+char *aeronaveToString(Aeronave *aeronave);
 
-void updateAeronave(Aeronave *Aeronave, void *update, char *field);
+void updateAeronave(Aeronave *aeronave, void *update, char *field);
 
-void deleteAeronave(Aeronave **Aeronave);
+void deleteAeronave(Aeronave **aeronave);
 
 #endif //AERONAVE_H

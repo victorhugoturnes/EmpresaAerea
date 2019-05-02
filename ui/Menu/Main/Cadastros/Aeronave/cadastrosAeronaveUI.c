@@ -12,7 +12,7 @@ void cadastrosAeronave() {
     do {
         switch (escolha) {
             case 'i':
-                inserirAeronave();
+                inserirAeronave(NULL);
                 break;
             case 'c':
                 consultarAeronave();

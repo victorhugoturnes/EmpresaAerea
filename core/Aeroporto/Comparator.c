@@ -6,11 +6,11 @@
 #include "Comparator.h"
 
 int searchNome(char *str, Aeroporto *aer) {
-    return (strstr(aer->nome, str) != NULL);
+    return (aer->nome && strstr(aer->nome, str) != NULL);
 }
 
 int searchSigla(char *str, Aeroporto *aer) {
-    return (strstr(aer->sigla, str) != NULL);
+    return (aer->nome && strstr(aer->sigla, str) != NULL);
 }
 
 int sortNome(Aeroporto *src, Aeroporto *dst) {

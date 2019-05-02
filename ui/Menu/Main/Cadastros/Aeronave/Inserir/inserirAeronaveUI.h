@@ -15,13 +15,27 @@
 #include "../../../../../../core/Aeronave/Aeronave.h"
 #include "../../../../../../core/aeronave/Comparator.h"
 
-void inserirAeronave();
+void inserirAeronave(Aeronave *novaAeronave);
 
 void telaCabecalhoInserirAeronave();
 
-void lerModelo(Aeronave *aeronave);
+int lerModelo(Aeronave *aeronave);
 
 char ehValidoModelo(char *nome);
+
+int lerComprimento(Aeronave *aeronave);
+
+int lerAltura(Aeronave *aeronave);
+
+int lerEnvergadura(Aeronave *aeronave);
+
+int lerVelocidadeCruzeiro(Aeronave *aeronave);
+
+int lerAlcanceMaximo(Aeronave *aeronave);
+
+int lerQntAcentos(Aeronave *aeronave);
+
+int lerQntBanheiros(Aeronave *aeronave);
 
 char mostrarCadastroAeronaveOpcoes(Aeronave *aeronave);
 

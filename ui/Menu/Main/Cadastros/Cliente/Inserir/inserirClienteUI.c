@@ -12,8 +12,8 @@ void inserirCliente() {
         telaCabecalhoInserirCliente();
 
         if (novoCliente->nomePrograma == NULL) {
-            lerNomePrograma(novoCliente);
             PrintaSeparador();
+            lerNomePrograma(novoCliente);
             continue;
         } else {
             printf("Nome do Programa: %s\n", novoCliente->nomePrograma);
@@ -50,10 +50,13 @@ void inserirCliente() {
 void telaCabecalhoInserirCliente() {
     ClearScreen();
 
-    printf("Menu Inserir Cliente\n");
+    printf("Menu Inserir Cliente\n\n");
+
+    printf("Insira as informacoes do cliente a seguir.\n");
+    printf("\n");
 }
 
-void lerNomePrograma(Cliente *cliente) {
+int lerNomePrograma(Cliente *cliente) {
     char nomePrograma[MAX_NOMEPROGRAMA_LENGTH];
     printf("Nome do Programa: ");
     fflush(stdin);
@@ -64,10 +67,11 @@ void lerNomePrograma(Cliente *cliente) {
         printf("\nNome de programa fornecido e invalido!\n");
         Pause();
 
-        return;
+        return 0;
     }
 
     cliente->nomePrograma = updateString(cliente->nomePrograma, nomePrograma);
+    return 1;
 }
 
 char ehValidoNomePrograma(char *nome) {
@@ -82,7 +86,7 @@ char ehValidoNomePrograma(char *nome) {
     return 0;
 }
 
-void lerNomeCliente(Cliente *cliente) {
+int lerNomeCliente(Cliente *cliente) {
     char nomeCliente[MAX_NOMECLIENTE_LENGTH];
     printf("Nome do Cliente: ");
     fflush(stdin);
@@ -93,10 +97,11 @@ void lerNomeCliente(Cliente *cliente) {
         printf("\nNome do cliente fornecido e invalido!\n");
         Pause();
 
-        return;
+        return 0;
     }
 
     cliente->nomeCliente = updateString(cliente->nomeCliente, nomeCliente);
+    return 1;
 }
 
 char ehValidoNomeCliente(char *nome) {
@@ -111,7 +116,7 @@ char ehValidoNomeCliente(char *nome) {
     return 0;
 }
 
-void lerCpf(Cliente *cliente) {
+int lerCpf(Cliente *cliente) {
     char cpf[MAX_CPF_LENGTH];
     printf("CPF do Cliente: ");
     fflush(stdin);
@@ -122,10 +127,18 @@ void lerCpf(Cliente *cliente) {
         printf("\nCPF do cliente fornecido e invalido!\n");
         Pause();
 
-        return;
+        return 0;
+    }
+
+    if (contains(cpf, ListaClientes, (int (*)(void *, void *)) &searchCpf)) {
+        printf("Um cliente com o mesmo cpf ja existe!\n");
+        Pause();
+
+        return 0;
     }
 
     cliente->cpf = updateString(cliente->cpf, cpf);
+    return 1;
 }
 
 char ehValidoCpf(char *cpf) {
@@ -154,7 +167,7 @@ char ehValidoCpf(char *cpf) {
     return 0;
 }
 
-void lerCategoria(Cliente *cliente) {
+int lerCategoria(Cliente *cliente) {
     int i = 0;
     char input[MAXSTR] = {0};
     int choice;
@@ -170,10 +183,11 @@ void lerCategoria(Cliente *cliente) {
     if (!(choice = strtol(input, NULL, 10)) || choice >= CATEGORIA_LENGTH) {
         printf("Escolha invalida!\n");
         Pause();
-        return;
+        return 0;
     }
 
     cliente->categoria = (Categoria) choice;
+    return 1;
 }
 
 char mostrarCadastroClienteOpcoes(Cliente *cliente) {
@@ -255,7 +269,7 @@ void alterarNovoCliente(Cliente *cliente) {
             default:
                 break;
         }
-        if (escolha >= 1 && escolha <= 7)
+        if (escolha >= 1 && escolha <= 4)
             escolha = 0;
     } while (escolha != 0 && (escolha = escolhaAlterarNovoCliente()));
 }

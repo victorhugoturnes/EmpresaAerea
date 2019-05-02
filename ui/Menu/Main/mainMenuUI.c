@@ -1,5 +1,4 @@
 #include "mainMenuUI.h"
-#include "../../../core/Aeronave/Comparator.h"
 
 /*!
 	@brief mainMenuEscolha, apresenta opções para o usuário e recolhe \

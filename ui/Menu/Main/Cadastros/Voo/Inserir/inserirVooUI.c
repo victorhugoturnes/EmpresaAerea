@@ -77,7 +77,7 @@ void telaCabecalhoInserirVoo() {
     printf("\n");
 }
 
-void lerPrefixoVoo(VooInfo *novoVoo) {
+int lerPrefixoVoo(VooInfo *novoVoo) {
     char prefixo[MAX_PREFIXO_LENGTH];
     printf("Prefixo: ");
     fflush(stdin);
@@ -88,17 +88,25 @@ void lerPrefixoVoo(VooInfo *novoVoo) {
         printf("\nPrefixo fornecido e invalido!\n");
         Pause();
 
-        return;
+        return 0;
+    }
+
+    if (contains(prefixo, ListaVoos, (int (*)(void *, void *)) &searchPrefixo)) {
+        printf("Um voo com o mesmo prefixo ja existe!\n");
+        Pause();
+
+        return 0;
     }
 
     novoVoo->prefixo = updateString(NULL, prefixo);
+    return 1;
 }
 
 char ehValidoPrefixo(char prefixo[]) {
     return (prefixo[0] != '\0' && strlen(prefixo) < MAX_PREFIXO_LENGTH);
 }
 
-void lerOrigemVoo(VooInfo *novoVoo) {
+int lerOrigemVoo(VooInfo *novoVoo) {
     char origemSigla[MAX_AEROPORTO_SIGLA_LENGTH + 1];
     char origemNome[MAX_AEROPORTO_NAME_LENGTH + 1];
 
@@ -107,17 +115,16 @@ void lerOrigemVoo(VooInfo *novoVoo) {
     fflush(stdin);
     fgets(origemSigla, MAX_AEROPORTO_SIGLA_LENGTH + 1, stdin);
     trim(origemSigla);
-    for(int i = 0; origemSigla[i]; origemSigla[i] = (char) toupper(origemSigla[i]), ++i)
-        ;
+    for (int i = 0; origemSigla[i]; origemSigla[i] = (char) toupper(origemSigla[i]), ++i);
 
     if (!ehValidoSiglaAeroporto(origemSigla)) {
         printf("\nSigla fornecida e invalida!\n");
         Pause();
 
-        return;
+        return 0;
     }
 
-    if(!(novoVoo->origem = procurarAeroportoSigla(origemSigla))) {
+    if (!(novoVoo->origem = procurarAeroportoSigla(origemSigla))) {
         printf("Origem: ");
         fflush(stdin);
         fgets(origemNome, MAX_AEROPORTO_NAME_LENGTH, stdin);
@@ -127,11 +134,12 @@ void lerOrigemVoo(VooInfo *novoVoo) {
             printf("\nOrigem fornecida e invalida!\n");
             Pause();
 
-            return;
+            return 0;
         }
         novoVoo->origem = createAeroporto(origemNome, origemSigla);
         ListaAeroportos = insert(ListaAeroportos, novoVoo->origem);
     }
+    return 1;
 }
 
 char ehValidoSiglaAeroporto(char sigla[]) {
@@ -153,7 +161,7 @@ char ehValidoNomeAeroporto(char nome[]) {
     return 0;
 }
 
-void lerDestinoVoo(VooInfo *novoVoo) {
+int lerDestinoVoo(VooInfo *novoVoo) {
     char destinoSigla[MAX_AEROPORTO_SIGLA_LENGTH + 1];
     char destinoNome[MAX_AEROPORTO_NAME_LENGTH + 1];
 
@@ -161,24 +169,23 @@ void lerDestinoVoo(VooInfo *novoVoo) {
     fflush(stdin);
     fgets(destinoSigla, MAX_AEROPORTO_NAME_LENGTH + 1, stdin);
     trim(destinoSigla);
-    for(int i = 0; destinoSigla[i]; destinoSigla[i] = (char) toupper(destinoSigla[i]), ++i)
-        ;
+    for (int i = 0; destinoSigla[i]; destinoSigla[i] = (char) toupper(destinoSigla[i]), ++i);
 
     if (!ehValidoSiglaAeroporto(destinoSigla)) {
         printf("\nSigla fornecida e invalida!\n");
         Pause();
 
-        return;
+        return 0;
     }
 
     if (!strcmp(novoVoo->origem->sigla, destinoSigla)) {
         printf("\nDestino e origem nao podem ser o mesmo!\n");
         Pause();
 
-        return;
+        return 0;
     }
 
-    if(!(novoVoo->destino = procurarAeroportoSigla(destinoSigla))) {
+    if (!(novoVoo->destino = procurarAeroportoSigla(destinoSigla))) {
         printf("Destino: ");
         fflush(stdin);
         fgets(destinoNome, MAX_AEROPORTO_NAME_LENGTH + 1, stdin);
@@ -188,18 +195,20 @@ void lerDestinoVoo(VooInfo *novoVoo) {
             printf("\nDestino fornecida e invalida!\n");
             Pause();
 
-            return;
+            return 0;
         }
         novoVoo->destino = createAeroporto(destinoNome, destinoSigla);
         ListaAeroportos = insert(ListaAeroportos, novoVoo->destino);
     }
+
+    return 1;
 }
 
 Aeroporto *procurarAeroportoSigla(char *sigla) {
     List *searchResult = search(sigla, ListaAeroportos, (int (*)(void *, void *)) &searchSigla);
     Aeroporto *result = NULL;
 
-    if(length(searchResult)) {
+    if (length(searchResult)) {
         result = searchResult->info;
     }
 
@@ -208,7 +217,7 @@ Aeroporto *procurarAeroportoSigla(char *sigla) {
     return result;
 }
 
-void lerPartidaVoo(VooInfo *novoVoo) {
+int lerPartidaVoo(VooInfo *novoVoo) {
     int hh, mm;
     Hora *horario;
     char buff[MAXSTR], *shh, *smm;
@@ -228,13 +237,15 @@ void lerPartidaVoo(VooInfo *novoVoo) {
 
     if (!ehValidoHorario(horario)) {
         printf("\nHorario de partida fornecido e invalido!\n");
-        free(horario);
+        deleteHora(&horario);
         Pause();
 
-        return;
+        return 0;
     }
 
     novoVoo->partida = horario;
+
+    return 1;
 }
 
 char ehValidoHorario(Hora *horario) {
@@ -242,7 +253,7 @@ char ehValidoHorario(Hora *horario) {
             horario->mm >= 0 && horario->mm < 59);
 }
 
-void lerChegadaVoo(VooInfo *novoVoo) {
+int lerChegadaVoo(VooInfo *novoVoo) {
     int hh, mm;
     Hora *horario;
     char buff[MAXSTR], *shh, *smm;
@@ -263,13 +274,14 @@ void lerChegadaVoo(VooInfo *novoVoo) {
         printf("\nHorario de chegada fornecido e invalido!\n");
         Pause();
 
-        return;
+        return 0;
     }
 
     novoVoo->chegada = horario;
+    return 1;
 }
 
-void lerDuracaoVoo(VooInfo *novoVoo) {
+int lerDuracaoVoo(VooInfo *novoVoo) {
     int hh, mm;
     Hora *horario;
     char buff[MAXSTR], *shh, *smm;
@@ -290,14 +302,16 @@ void lerDuracaoVoo(VooInfo *novoVoo) {
         printf("\nDuracao fornecida e invalida!\n");
         Pause();
 
-        return;
+        return 0;
     }
 
     novoVoo->duracao = horario;
+    return 1;
 }
 
-void lerModeloAeronaveVoo(VooInfo *novoVoo) {
+int lerModeloAeronaveVoo(VooInfo *novoVoo) {
     char aeronaveModelo[MAXSTR + 1];
+    char escolha[3];
 
     printf("Modelo aeronave: ");
     fflush(stdin);
@@ -308,25 +322,40 @@ void lerModeloAeronaveVoo(VooInfo *novoVoo) {
         printf("\nAeronave fornecida e invalida!\n");
         Pause();
 
-        return;
+        return 0;
     }
 
-    if(!(novoVoo->aeronave = procurarAeronaveModelo(aeronaveModelo))) {
+    if (!(novoVoo->aeronave = procurarAeronaveModelo(aeronaveModelo))) {
         novoVoo->aeronave = createAeronave();
         novoVoo->aeronave->modelo = updateString(NULL, aeronaveModelo);
 
-        /// TODO: Opção de cadastrar nova aeronave
+        printf("Esta modelo de aeronave ainda não foi cadastrado\n");
+        do {
+            printf("Deseja cadastra-la agora?\n");
+            printf("Y/N\n");
+
+            fflush(stdin);
+            fgets(escolha, 3, stdin);
+        } while (toupper(escolha[0]) != 'Y' && toupper(escolha[0]) != 'N');
+
+        if (toupper(escolha[0]) == 'N') {
+            deleteAeronave(&novoVoo->aeronave);
+            return 0;
+        }
+
+        inserirAeronave(novoVoo->aeronave);
 
         ListaAeronaves = insert(ListaAeronaves, novoVoo->aeronave);
     }
 
+    return 1;
 }
 
 Aeronave *procurarAeronaveModelo(char *modelo) {
     List *searchResult = search(modelo, ListaAeronaves, (int (*)(void *, void *)) &searchModelo);
     Aeronave *result = NULL;
 
-    if(length(searchResult)) {
+    if (length(searchResult)) {
         result = searchResult->info;
     }
 

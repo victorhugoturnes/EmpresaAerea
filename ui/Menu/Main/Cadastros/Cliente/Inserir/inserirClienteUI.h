@@ -19,19 +19,19 @@ void inserirCliente();
 
 void telaCabecalhoInserirCliente();
 
-void lerNomePrograma(Cliente *cliente);
+int lerNomePrograma(Cliente *cliente);
 
 char ehValidoNomePrograma(char *nome);
 
-void lerNomeCliente(Cliente *cliente);
+int lerNomeCliente(Cliente *cliente);
 
 char ehValidoNomeCliente(char *nome);
 
-void lerCpf(Cliente *cliente);
+int lerCpf(Cliente *cliente);
 
 char ehValidoCpf(char *cpf);
 
-void lerCategoria(Cliente *cliente);
+int lerCategoria(Cliente *cliente);
 
 char mostrarCadastroClienteOpcoes(Cliente *cliente);
 

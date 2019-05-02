@@ -13,20 +13,28 @@ void alterarCliente(Cliente *cliente) {
             case 1: //< Nome programa
                 free(cliente->nomePrograma);
                 cliente->nomePrograma = NULL;
-                lerNomePrograma(cliente);
+                while (!lerNomePrograma(cliente)) {
+                    ClearScreen();
+                }
                 break;
             case 2: //< Nome cliente
                 free(cliente->nomeCliente);
                 cliente->nomeCliente = NULL;
-                lerNomeCliente(cliente);
+                while (!lerNomeCliente(cliente)) {
+                    ClearScreen();
+                }
                 break;
             case 3: //< CPF
                 free(cliente->cpf);
                 cliente->cpf = NULL;
-                lerCpf(cliente);
+                while (!lerCpf(cliente)) {
+                    ClearScreen();
+                }
                 break;
             case 4: //< Categoria
-                lerCategoria(cliente);
+                while (!lerCategoria(cliente)) {
+                    ClearScreen();
+                }
                 break;
             default:
                 break;

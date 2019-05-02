@@ -13,39 +13,53 @@ void alterarVoo(VooInfo *voo) {
             case 1: //< prefixo
                 free(voo->prefixo);
                 voo->prefixo = NULL;
-                lerPrefixoVoo(voo);
+                while (!lerPrefixoVoo(voo)) {
+                    ClearScreen();
+                }
                 break;
             case 2: //< origem
                 voo->origem = NULL;
-                lerOrigemVoo(voo);
+                while (!lerOrigemVoo(voo)) {
+                    ClearScreen();
+                }
                 break;
             case 3: //< destino
                 voo->destino = NULL;
-                lerDestinoVoo(voo);
+                while (!lerDestinoVoo(voo)) {
+                    ClearScreen();
+                }
                 break;
             case 4: //< partida
                 deleteHora(&voo->partida);
                 voo->partida = NULL;
-                lerPartidaVoo(voo);
+                while (!lerPartidaVoo(voo)) {
+                    ClearScreen();
+                }
                 break;
             case 5: //< chegada
                 deleteHora(&voo->chegada);
                 voo->chegada = NULL;
-                lerChegadaVoo(voo);
+                while (!lerChegadaVoo(voo)) {
+                    ClearScreen();
+                }
                 break;
             case 6: //< duração
                 deleteHora(&voo->duracao);
                 voo->duracao = NULL;
-                lerDuracaoVoo(voo);
+                while (!lerDuracaoVoo(voo)) {
+                    ClearScreen();
+                }
                 break;
             case 7: //< aeronave
                 voo->aeronave = NULL;
-                lerModeloAeronaveVoo(voo);
+                while (!lerModeloAeronaveVoo(voo)) {
+                    ClearScreen();
+                }
                 break;
             default:
                 break;
         }
-        if (escolha >= 1 && escolha <= 4) {
+        if (escolha >= 1 && escolha <= 7) {
             escolha = 0;
             printf("Voo alterado com sucesso!\n");
         }
