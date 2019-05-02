@@ -37,7 +37,8 @@ char *vooInfoToString(VooInfo *voo) {
     int size;
     char *str;
 
-    size = sprintf(buffer, "Voo [%s]:\n\t- Origem: %s\n\t- Destino: %s\n\t- Partida: %s\n\t- Chegada: %s\n\t- Duracao: %s\n\t- Aeronave: %s\n",
+    size = sprintf(buffer,
+                   "Voo [%s]:\n\t- Origem: %s\n\t- Destino: %s\n\t- Partida: %s\n\t- Chegada: %s\n\t- Duracao: %s\n\t- Aeronave: %s\n",
                    voo->prefixo, aeroportoToString(voo->origem), aeroportoToString(voo->destino),
                    horaToString(voo->partida), horaToString(voo->chegada), horaToString(voo->duracao),
                    voo->aeronave->modelo);

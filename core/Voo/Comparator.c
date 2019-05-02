@@ -6,7 +6,7 @@
 #include "Comparator.h"
 
 int searchPrefixo(char *str, VooInfo *voo) {
-    return (strstr(str, voo->prefixo) != NULL);
+    return (voo->prefixo && strstr(str, voo->prefixo) != NULL);
 }
 
 int sortPrefixo(VooInfo *src, VooInfo *dst) {

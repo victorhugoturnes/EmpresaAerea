@@ -10,7 +10,7 @@ void cadastrosVoo() {
                 inserirVoo();
                 break;
             case 'c':
-				consultarVoo();
+                consultarVoo();
                 break;
             case '0':
                 ClearScreen();

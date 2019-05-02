@@ -168,7 +168,7 @@ char escolhaVoo() {
     printf("\n");
     printf("Opcao: ");
     fflush(stdin);
-    fgets(escolha, 2, stdin);
+    fgets(escolha, 3, stdin);
 
     if (!isdigit(escolha[0])) return (char) tolower(escolha[0]);
 

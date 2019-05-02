@@ -2,11 +2,6 @@
 // Created by last on 3/7/19.
 //
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-
 #include "string.h"
 
 char *readString() {
@@ -40,4 +35,24 @@ char *trim(char *src) {
     free(newStr);
 
     return src;
+}
+
+double stringToDouble(const char *str, int b) {
+    const char *p;
+    double ret = 0;
+    for (p = str; *p != '\0' && isspace(*p); p++);
+    for (; *p != '\0' && isdigit(*p); p++)
+        ret = b * ret + (*p - '0');
+
+    if (*p == '.') {
+        double fac = b;
+        for (p++; *p != '\0' && isdigit(*p); p++) {
+            ret += (*p - '0') / fac;
+            fac *= b;
+        }
+    } else if (*p != '\0') {
+        return 0;
+    }
+
+    return ret;
 }

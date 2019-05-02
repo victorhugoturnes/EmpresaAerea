@@ -6,7 +6,7 @@
 #include "Comparator.h"
 
 int searchModelo(char *str, Aeronave *aer) {
-    return (strstr(aer->modelo, str) != NULL);
+    return (aer->modelo && strstr(aer->modelo, str) != NULL);
 }
 
 int sortModelo(Aeronave *src, Aeronave *dst) {
