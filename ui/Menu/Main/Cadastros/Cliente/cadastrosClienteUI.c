@@ -15,7 +15,7 @@ void cadastrosCliente() {
                 inserirCliente();
                 break;
             case 'c':
-				consultarCliente();
+                consultarCliente();
                 break;
             case '0':
                 ClearScreen();
@@ -43,7 +43,7 @@ char escolhaCadastrosCliente() {
 
     if (!isdigit(escolha[0])) return (char) tolower(escolha[0]);
 
-return (char) ((escolha[0] - '0' < strlen(choiceList)) ? choiceList[escolha[0] - '0'] : 0);
+    return (char) ((escolha[0] - '0' < strlen(choiceList)) ? choiceList[escolha[0] - '0'] : 0);
 
 }
 

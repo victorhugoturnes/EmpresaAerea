@@ -30,7 +30,8 @@ char *clienteToString(Cliente *cliente) {
     int size;
     char *str;
 
-    size = sprintf(buffer, "Cliente: %s - CPF: %s - Programa: %s - Rank: %s - Saldo: %d\n", cliente->nomeCliente, cliente->cpf, cliente->nomePrograma, categoriaParaString(cliente->categoria), cliente->saldoMilhas);
+    size = sprintf(buffer, "Cliente: %s - CPF: %s - Programa: %s - Rank: %s - Saldo: %d\n", cliente->nomeCliente,
+                   cliente->cpf, cliente->nomePrograma, categoriaParaString(cliente->categoria), cliente->saldoMilhas);
     str = malloc(sizeof(char) * size + 1);
 
     strcpy(str, buffer);

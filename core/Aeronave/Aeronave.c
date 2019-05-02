@@ -22,32 +22,34 @@ Aeronave *createAeronave() {
 
     return Aeronave;
 }
+
 /*
     Nome da Funcao : aeronaveToString
     Recebe como parametro um ponteiro de Aeronave
     Objetivo : ler e criar uma string contendo qual o modelo da aeronave
     Returno : devolver string dizendo qual o modelo da aeronave
  */
-char *aeronaveToString(Aeronave *Aeronave){
+char *aeronaveToString(Aeronave *Aeronave) {
     char buffer[MAXSTR];
     int size;
     char *str;
 
-    size = sprintf(buffer, "Modelo: %s", Aeronave->modelo);
+    size = sprintf(buffer, "[%s]", Aeronave->modelo);
     str = malloc(sizeof(char) * size + 1);
 
     strcpy(str, buffer);
     return str;
 }
+
 /*
     Nome da Funcao : updateAeronave
     Recebe como parametro um ponteiro de Aeronave, um ponteiro de void e um ponteiro de char com novo modelo
     Objetivo : atualizar o modelo da aeronave
     Retorno : Nada
  */
-void updateAeronave(Aeronave *Aeronave, void *update, char* field){
-    if(!update) return;
-    if(!strcmp("modelo", field)) {
+void updateAeronave(Aeronave *Aeronave, void *update, char *field) {
+    if (!update) return;
+    if (!strcmp("modelo", field)) {
         updateString(Aeronave->modelo, update);
     }
 }
@@ -58,7 +60,7 @@ void updateAeronave(Aeronave *Aeronave, void *update, char* field){
     Objetivo : Limpar memoria q esta sendo usada para alocar Aeronave]
     Retorno : Nada
  */
-void deleteAeronave(Aeronave **Aeronave){
+void deleteAeronave(Aeronave **Aeronave) {
     free((*Aeronave)->modelo);
     free((*Aeronave));
     *Aeronave = NULL;

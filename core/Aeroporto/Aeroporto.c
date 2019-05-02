@@ -29,7 +29,7 @@ char *aeroportoToString(Aeroporto *aeroporto) {
     int size;
     char *str;
 
-    size = sprintf(buffer, "Aeroporto: %s - Sigla: %s", aeroporto->nome, aeroporto->sigla);
+    size = sprintf(buffer, "Aeroporto (%s)%s", aeroporto->sigla, aeroporto->nome);
     str = malloc(sizeof(char) * size + 1);
 
     strcpy(str, buffer);

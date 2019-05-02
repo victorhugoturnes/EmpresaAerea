@@ -13,7 +13,7 @@ void menuCadastros() {
                 cadastrosCliente();
                 break;
             case 'a':
-				cadastrosAeronave();
+                cadastrosAeronave();
                 break;
             case '0':
                 ClearScreen();

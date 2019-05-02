@@ -4,7 +4,6 @@
 
 #include "alterarClienteUI.h"
 
-
 void alterarCliente(Cliente *cliente) {
     char escolha = 0, *str;
 
@@ -61,7 +60,7 @@ char escolhaAlterarCliente() {
 void telaAlterarCliente() {
     ClearScreen();
 
-    printf("Menu Alterar Novo Cliente:\n\n");
+    printf("Menu Alterar Cliente:\n\n");
 
     printf("Selecione o campo a ser alterado:\n\n");
 
