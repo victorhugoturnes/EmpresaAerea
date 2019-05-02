@@ -77,9 +77,9 @@ char *statusVoo(VooInfo *voo) {
         result = "embarque imediato";
     } else if (horaDif < 600) {
         result = "ultima chamada";
-    } else if (horaDif < -600) {
+    } else if (horaDif < 0) {
         result = "partindo";
-    } else {
+    } else if (horaDif < -600) {
         result = "voo encerrado";
     }
 
