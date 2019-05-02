@@ -64,7 +64,7 @@ void telaCadastros() {
 
     printf("1) Cadastrar (V)oo\n");
     printf("2) Cadastrar (C)liente\n");
-    printf("4) Cadastrar (A)eronave\n");
+    printf("3) Cadastrar (A)eronave\n");
     printf("\n");
     printf("0) Sair do Menu de Cadastros\n");
 }

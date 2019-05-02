@@ -26,6 +26,9 @@ int main() {
             case 't':
                 testarCadastros();
                 break;
+            case 'p':
+                populateLists();
+                break;
                 /// caso de saída
             case '0':
                 if (!confirmacaoSaidaMainMenu())

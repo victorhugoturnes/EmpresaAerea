@@ -9,7 +9,7 @@
 #include "Aeroporto.h"
 #include "../../input/string.h"
 
-Aeroporto *createAeroporto(char *nome, char *sigla) {
+Aeroporto *createAeroporto(char *sigla, char *nome) {
     if (!nome || !sigla) return NULL;
     if (strlen(sigla) != 3) return NULL;
 

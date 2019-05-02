@@ -10,7 +10,7 @@ typedef struct aeroporto {
     char *sigla;
 } Aeroporto;
 
-Aeroporto *createAeroporto(char *nome, char *sigla);
+Aeroporto *createAeroporto(char *sigla, char *nome);
 
 char *aeroportoToString(Aeroporto *aeroporto);
 
