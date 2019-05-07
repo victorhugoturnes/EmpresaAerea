@@ -26,4 +26,5 @@ void printaVoos() {
     }
 
     Pause();
+    Pause();
 }

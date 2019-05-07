@@ -7,6 +7,8 @@
 void consultarVoo() {
     char escolha = 0;
 
+    getchar();
+
     escolha = consultarVooEscolha();
     do {
         switch (escolha) {
@@ -37,10 +39,10 @@ char consultarVooEscolha() {
     printf("Opcao: ");
     fflush(stdin);
     fgets(escolha, 2, stdin);
+    getchar();
 
     /// se não é número, retorna a letra minuscula
     if (!isdigit(escolha[0])) return (char) tolower(escolha[0]);
-
     /// se for número, converte e retorna letra equivalente
     return (char) ((escolha[0] - '0' < strlen(choiceList)) ? choiceList[escolha[0] - '0'] : 0);
 }

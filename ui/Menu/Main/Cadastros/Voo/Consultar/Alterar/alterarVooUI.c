@@ -7,6 +7,8 @@
 void alterarVoo(VooInfo *voo) {
     char escolha = 0, *str;
 
+    getchar();
+
     escolha = escolhaAlterarVoo();
     do {
         switch (escolha) {
@@ -79,6 +81,7 @@ char escolhaAlterarVoo() {
     printf("Opcao: ");
     fflush(stdin);
     fgets(escolha, 16, stdin);
+    getchar();
 
     if (!isdigit(escolha[0])) return -1;
 

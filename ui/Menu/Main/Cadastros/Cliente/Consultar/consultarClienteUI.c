@@ -7,6 +7,8 @@
 void consultarCliente() {
     char escolha = 0;
 
+    getchar();
+
     escolha = consultarClienteEscolha();
     do {
         switch (escolha) {
@@ -46,6 +48,7 @@ char consultarClienteEscolha() {
     printf("Opcao: ");
     fflush(stdin);
     fgets(escolha, 2, stdin);
+    getchar();
 
     /// se não é número, retorna a letra minuscula
     if (!isdigit(escolha[0])) return (char) tolower(escolha[0]);

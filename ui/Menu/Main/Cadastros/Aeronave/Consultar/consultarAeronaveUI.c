@@ -7,6 +7,8 @@
 void consultarAeronave() {
     char escolha = 0;
 
+    getchar();
+
     escolha = consultarAeronaveEscolha();
     do {
         switch (escolha) {
@@ -37,6 +39,7 @@ char consultarAeronaveEscolha() {
     printf("Opcao: ");
     fflush(stdin);
     fgets(escolha, 2, stdin);
+    getchar();
 
     /// se não é número, retorna a letra minuscula
     if (!isdigit(escolha[0])) return (char) tolower(escolha[0]);

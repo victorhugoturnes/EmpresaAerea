@@ -7,6 +7,8 @@
 void alterarCliente(Cliente *cliente) {
     char escolha = 0, *str;
 
+    getchar();
+
     escolha = escolhaAlterarCliente();
     do {
         switch (escolha) {
@@ -59,6 +61,7 @@ char escolhaAlterarCliente() {
     printf("Opcao: ");
     fflush(stdin);
     fgets(escolha, 2, stdin);
+    getchar();
 
     if (!isdigit(escolha[0])) return -1;
 

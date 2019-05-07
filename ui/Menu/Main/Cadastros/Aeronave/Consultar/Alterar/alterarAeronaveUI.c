@@ -7,6 +7,8 @@
 void alterarAeronave(Aeronave *aeronave) {
     char escolha = 0, *str;
 
+    getchar();
+
     escolha = escolhaAlterarAeronave();
     do {
         switch (escolha) {
@@ -82,6 +84,7 @@ char escolhaAlterarAeronave() {
     printf("Opcao: ");
     fflush(stdin);
     fgets(escolha, 2, stdin);
+    getchar();
 
     if (!isdigit(escolha[0])) return -1;
 
