@@ -347,5 +347,6 @@ void populateMisto(const char *fileName) {
 
     fclose(f);
     Pause();
+    Pause();
 
 }
