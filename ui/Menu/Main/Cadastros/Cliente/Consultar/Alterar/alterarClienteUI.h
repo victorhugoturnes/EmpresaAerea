@@ -1,7 +1,3 @@
-//
-// Created by Jedson on 4/30/2019.
-//
-
 #ifndef AEROTRACKER_ALTERARCLIENTE_H
 #define AEROTRACKER_ALTERARCLIENTE_H
 

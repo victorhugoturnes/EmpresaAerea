@@ -1,7 +1,3 @@
-//
-// Created by last on 4/19/19.
-//
-
 #ifndef AEROTRACKER_CLIENTE_COMPARATOR_H
 #define AEROTRACKER_CLIENTE_COMPARATOR_H
 

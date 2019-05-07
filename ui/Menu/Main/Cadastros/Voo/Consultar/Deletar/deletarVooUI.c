@@ -1,7 +1,3 @@
-//
-// Created by Jedson on 5/2/2019.
-//
-
 #include "deletarVooUI.h"
 
 void deletarVoo(VooInfo *voo) {

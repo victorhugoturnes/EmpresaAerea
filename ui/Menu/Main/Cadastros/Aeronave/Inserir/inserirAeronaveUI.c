@@ -1,7 +1,3 @@
-//
-// Created by Jedson on 3/19/2019.
-//
-
 #include "inserirAeronaveUI.h"
 
 void inserirAeronave(Aeronave *novaAeronave) {

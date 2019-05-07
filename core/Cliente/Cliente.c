@@ -1,7 +1,3 @@
-//
-// Created by last on 3/13/19.
-//
-
 #include "Cliente.h"
 
 Cliente *createCliente() {

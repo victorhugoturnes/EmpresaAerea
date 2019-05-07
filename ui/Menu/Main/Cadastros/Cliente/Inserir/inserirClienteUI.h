@@ -1,7 +1,3 @@
-//
-// Created by Jedson on 3/19/2019.
-//
-
 #ifndef AEROTRACKER_INSERIRCLIENTEUI_H
 #define AEROTRACKER_INSERIRCLIENTEUI_H
 

@@ -1,7 +1,3 @@
-//
-// Created by Jedson on 4/22/2019.
-//
-
 #include "consultarAeronaveUI.h"
 
 void consultarAeronave() {

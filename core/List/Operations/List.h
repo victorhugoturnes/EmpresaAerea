@@ -1,7 +1,3 @@
-//
-// Created by last on 4/16/19.
-//
-
 #ifndef AEROTRACKER_LIST_H
 #define AEROTRACKER_LIST_H
 

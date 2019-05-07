@@ -1,7 +1,3 @@
-//
-// Created by Jedson on 5/2/2019.
-//
-
 #ifndef AEROTRACKER_STATUSMENUUI_H
 #define AEROTRACKER_STATUSMENUUI_H
 

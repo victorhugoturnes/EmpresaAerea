@@ -1,7 +1,3 @@
-//
-// Created by Jedson on 4/30/2019.
-//
-
 #include "alterarAeronaveUI.h"
 
 void alterarAeronave(Aeronave *aeronave) {

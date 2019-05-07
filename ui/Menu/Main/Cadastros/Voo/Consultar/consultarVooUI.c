@@ -1,7 +1,3 @@
-//
-// Created by Jedson on 5/2/2019.
-//
-
 #include "consultarVooUI.h"
 
 void consultarVoo() {

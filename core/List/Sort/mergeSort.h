@@ -1,7 +1,3 @@
-//
-// Created by last on 4/7/19.
-//
-
 #ifndef PLAYGROUND_MERGESORT_H
 #define PLAYGROUND_MERGESORT_H
 

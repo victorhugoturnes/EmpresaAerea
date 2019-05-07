@@ -1,7 +1,3 @@
-//
-// Created by Jedson on 4/30/2019.
-//
-
 #include "alterarClienteUI.h"
 
 void alterarCliente(Cliente *cliente) {

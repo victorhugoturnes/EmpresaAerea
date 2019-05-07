@@ -1,7 +1,3 @@
-//
-// Created by Jedson on 3/19/2019.
-//
-
 #include "inserirClienteUI.h"
 
 void inserirCliente() {

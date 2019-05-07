@@ -1,7 +1,3 @@
-//
-// Created by Jedson on 4/30/2019.
-//
-
 #include "deletarClienteUI.h"
 
 void deletarCliente(Cliente *cliente) {

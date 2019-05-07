@@ -1,7 +1,3 @@
-//
-// Created by Jedson on 3/19/2019.
-//
-
 #ifndef AEROTRACKER_CADASTROSAERONAVEUI_H
 #define AEROTRACKER_CADASTROSAERONAVEUI_H
 

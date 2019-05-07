@@ -1,7 +1,3 @@
-//
-// Created by Jedson on 4/30/2019.
-//
-
 #ifndef AEROTRACKER_ALTERARAERONAVE_H
 #define AEROTRACKER_ALTERARAERONAVE_H
 

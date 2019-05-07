@@ -1,7 +1,3 @@
-//
-// Created by last on 4/7/19.
-//
-
 #include <malloc.h>
 #include "mergeSort.h"
 

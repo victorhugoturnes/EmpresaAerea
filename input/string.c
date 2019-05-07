@@ -1,7 +1,3 @@
-//
-// Created by last on 3/7/19.
-//
-
 #include "string.h"
 
 char *readString() {
