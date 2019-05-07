@@ -10,7 +10,6 @@
 #include "../Aeronave/Aeronave.h"
 #include "../../input/string.h"
 
-
 #define MAX_PREFIXO_LENGTH 16
 #define MAX_AEROPORTO_NAME_LENGTH 64
 #define MAX_AEROPORTO_SIGLA_LENGTH 4
@@ -36,5 +35,7 @@ Hora *createHora(char hh, char mm);
 void deleteHora(Hora **hora);
 
 char *horaToString(Hora *hora);
+
+char *statusVoo(VooInfo *voo);
 
 #endif // VOOINFO_H

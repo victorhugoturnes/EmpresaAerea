@@ -60,6 +60,13 @@ char *horaToString(Hora *hora) {
     return str;
 }
 
+Hora *horaAtual() {
+    time_t T = time(NULL);
+    struct tm tm = *localtime(&T);
+
+    return createHora((char) tm.tm_hour, (char) tm.tm_min);
+}
+
 char *statusVoo(VooInfo *voo) {
     char *result = NULL;
     Hora *horaSistema = horaAtual();
@@ -85,11 +92,4 @@ char *statusVoo(VooInfo *voo) {
 
     deleteHora(&horaSistema);
     return result;
-}
-
-Hora *horaAtual() {
-    time_t T = time(NULL);
-    struct tm tm = *localtime(&T);
-
-    return createHora((char) tm.tm_hour, (char) tm.tm_min);
 }

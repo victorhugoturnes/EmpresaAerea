@@ -54,8 +54,8 @@ char *categoriaParaString(Categoria categoria) {
             return "Madeira";
         case Pedra:
             return "Pedra";
-        case Ferro:
-            return "Ferro";
+        case Prata:
+            return "Prata";
         case Ouro:
             return "Ouro";
         case Diamante:
@@ -67,4 +67,14 @@ char *categoriaParaString(Categoria categoria) {
     }
 
     return NULL;
+}
+
+Categoria getCategoriaFromString(char *cat) {
+    int i;
+    for (i = 0; i < CATEGORIA_LENGTH; ++i) {
+        if (!strcmp(categoriaParaString((Categoria) i), cat))
+            return (Categoria) i;
+    }
+
+    return Nenhuma;
 }

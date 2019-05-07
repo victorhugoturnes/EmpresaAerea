@@ -6,8 +6,10 @@ List *ListaVoos = NULL;
 List *ListaAeronaves = NULL;
 List *ListaAeroportos = NULL;
 
-int main() {
+int main(int argc, char const *argv[]) {
     char escolha = 0;
+
+    if (argc > 1) populateMisto(argv[1]);
 
     /// printa menu principal e recolhe escolha do usuário
     escolha = mainMenuEscolha();

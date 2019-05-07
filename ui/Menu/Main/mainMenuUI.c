@@ -190,108 +190,162 @@ void populateLists() {
 void populateAeroportos() {
     FILE *f = fopen("./populate files/aeroportos.txt", "r");
     char line[MAXSTR];
-    char sigla[MAXSTR], nome[MAXSTR];
 
     printf("\nAeroportos:\n");
     while (!feof(f)) {
         fgets(line, MAXSTR, f);
         printf("%s\n", line);
-        sscanf(line, "%[^;];%[^;];", sigla, nome);
-        if (!contains(sigla, ListaAeroportos, (int (*)(void *, void *)) &searchSigla))
-            ListaAeroportos = insert(ListaAeroportos, createAeroporto(sigla, nome));
+        addAeroportoFromLine(line);
     }
 
     fclose(f);
 }
 
+void addAeroportoFromLine(char *line) {
+    char sigla[MAXSTR], nome[MAXSTR];
+
+    sscanf(line, "%[^;];%[^\n]", sigla, nome);
+    if (!contains(sigla, ListaAeroportos, (int (*)(void *, void *)) &searchSigla))
+        ListaAeroportos = insert(ListaAeroportos, createAeroporto(sigla, nome));
+}
+
 void populateAeronaves() {
     FILE *f = fopen("./populate files/aeronaves.txt", "r");
-    Aeronave *aeronave = NULL;
-    char line[MAXSTR], modelo[MAXSTR];
-    double comprimento, altura, envergadura, velocidadeCruzeiro, alcanceMaximo;
-    int qntAcentos, qntBanheiros;
+    char line[MAXSTR];
 
     printf("\nAeronaves:\n");
     while (!feof(f)) {
         fgets(line, MAXSTR, f);
         printf("%s\n", line);
-        sscanf(line, "%[^;];%lf;%lf;%lf;%lf;%lf;%d;%d;", // NOLINT(cert-err34-c)
-               modelo, &comprimento, &altura, &envergadura, &velocidadeCruzeiro, &alcanceMaximo, &qntAcentos,
-               &qntBanheiros);
-        if (!contains(modelo, ListaAeronaves, (int (*)(void *, void *)) &searchModelo)) {
-            aeronave = createAeronave();
-            aeronave->modelo = updateString(NULL, modelo);
-            aeronave->comprimento = comprimento;
-            aeronave->altura = altura;
-            aeronave->envergadura = envergadura;
-            aeronave->velocidadeCruzeiro = velocidadeCruzeiro;
-            aeronave->alcanceMaximo = alcanceMaximo;
-            aeronave->qntAcentos = qntAcentos;
-            aeronave->qntBanheiros = qntBanheiros;
-            ListaAeronaves = insert(ListaAeronaves, aeronave);
-        }
+        addAeronavesFromLine(line);
     }
 
     fclose(f);
 }
 
+void addAeronavesFromLine(char *line) {
+    Aeronave *aeronave = NULL;
+
+    char modelo[MAXSTR];
+    double comprimento, altura, envergadura, velocidadeCruzeiro, alcanceMaximo;
+    int qntAcentos, qntBanheiros;
+
+    sscanf(line, "%[^;];%lf;%lf;%lf;%lf;%lf;%d;%d", // NOLINT(cert-err34-c)
+           modelo, &comprimento, &altura, &envergadura, &velocidadeCruzeiro, &alcanceMaximo, &qntAcentos,
+           &qntBanheiros);
+    if (!contains(modelo, ListaAeronaves, (int (*)(void *, void *)) &searchModelo)) {
+        aeronave = createAeronave();
+        aeronave->modelo = updateString(NULL, modelo);
+        aeronave->comprimento = comprimento;
+        aeronave->altura = altura;
+        aeronave->envergadura = envergadura;
+        aeronave->velocidadeCruzeiro = velocidadeCruzeiro;
+        aeronave->alcanceMaximo = alcanceMaximo;
+        aeronave->qntAcentos = qntAcentos;
+        aeronave->qntBanheiros = qntBanheiros;
+        ListaAeronaves = insert(ListaAeronaves, aeronave);
+    }
+}
+
 void populateClientes() {
-    Cliente *cliente = NULL;
     FILE *f = fopen("./populate files/clientes.txt", "r");
     char line[MAXSTR];
-    char nomePrograma[MAXSTR], nomeCliente[MAXSTR];
-    char cpf[MAXSTR];
-    Categoria categoria;
-    int saldoMilhas;
 
     printf("\nClientes:n");
     while (!feof(f)) {
         fgets(line, MAXSTR, f);
         printf("%s\n", line);
-        sscanf(line, "%[^;];%[^;];%[^;];%d;%d", // NOLINT(cert-err34-c)
-               nomePrograma, nomeCliente, cpf, &categoria, &saldoMilhas);
-        if (!contains(cpf, ListaClientes, (int (*)(void *, void *)) &searchCpf)) {
-            cliente = createCliente();
-            cliente->nomeCliente = updateString(NULL, nomeCliente);
-            cliente->nomePrograma = updateString(NULL, nomePrograma);
-            cliente->cpf = updateString(NULL, cpf);
-            cliente->categoria = categoria;
-            cliente->saldoMilhas = saldoMilhas;
-            ListaClientes = insert(ListaClientes, cliente);
-        }
+        addClienteFromLine(line);
     }
 
     fclose(f);
 }
 
+void addClienteFromLine(char *line) {
+    Cliente *cliente = NULL;
+
+    char nomePrograma[MAXSTR], nomeCliente[MAXSTR];
+    char cpf[MAXSTR], sCategoria[MAXSTR];
+    int saldoMilhas;
+
+    sscanf(line, "%[^;];%[^;];%[^;];%[^;];%d", // NOLINT(cert-err34-c)
+           nomePrograma, nomeCliente, cpf, sCategoria, &saldoMilhas);
+    if (!contains(cpf, ListaClientes, (int (*)(void *, void *)) &searchCpf)) {
+        cliente = createCliente();
+        cliente->nomeCliente = updateString(NULL, nomeCliente);
+        cliente->nomePrograma = updateString(NULL, nomePrograma);
+        cliente->cpf = updateString(NULL, cpf);
+        cliente->categoria = getCategoriaFromString(sCategoria);
+        cliente->saldoMilhas = saldoMilhas;
+        ListaClientes = insert(ListaClientes, cliente);
+    }
+}
+
 void populateVoos() {
-    VooInfo *vooInfo = NULL;
     FILE *f = fopen("./populate files/voos.txt", "r");
     char line[MAXSTR];
-    char prefixo[MAXSTR], origem[MAXSTR], destino[MAXSTR];
-    int partidaHH, partidaMM, chegadaHH, chegadaMM, duracaoHH, duracaoMM;
-    char aeronave[MAXSTR];
 
     printf("\nVoos:\n");
     while (!feof(f)) {
         fgets(line, MAXSTR, f);
         printf("%s\n", line);
-        sscanf(line, "%[^;];%[^;];%[^;];%d:%d;%d:%d;%d:%d;%[^;];", // NOLINT(cert-err34-c)
-               prefixo, origem, destino, &partidaHH, &partidaMM, &chegadaHH, &chegadaMM, &duracaoHH, &duracaoMM,
-               aeronave);
-        if (!contains(prefixo, ListaVoos, (int (*)(void *, void *)) &searchPrefixo)) {
-            vooInfo = createVooInfo();
-            vooInfo->prefixo = updateString(NULL, prefixo);
-            vooInfo->origem = procurarAeroportoSigla(origem);
-            vooInfo->destino = procurarAeroportoSigla(destino);
-            vooInfo->partida = createHora((char) partidaHH, (char) partidaMM);
-            vooInfo->chegada = createHora((char) chegadaHH, (char) chegadaMM);
-            vooInfo->duracao = createHora((char) duracaoHH, (char) duracaoMM);
-            vooInfo->aeronave = procurarAeronaveModelo(aeronave);
+        addVooFromLine(line);
+    }
 
-            ListaVoos = insert(ListaVoos, vooInfo);
+    fclose(f);
+}
+
+void addVooFromLine(char line[]) {
+    VooInfo *vooInfo = NULL;
+    char prefixo[MAXSTR], origem[MAXSTR], destino[MAXSTR];
+    int partidaHH, partidaMM, chegadaHH, chegadaMM, duracaoHH, duracaoMM;
+    char aeronave[MAXSTR];
+
+    sscanf(line, "%[^;];%[^;];%[^;];%d:%d;%d:%d;%d:%d;%[^\n]%*c", // NOLINT(cert-err34-c)
+           prefixo, origem, destino, &partidaHH, &partidaMM, &chegadaHH, &chegadaMM, &duracaoHH, &duracaoMM,
+           aeronave);
+    if (!contains(prefixo, ListaVoos, (int (*)(void *, void *)) &searchPrefixo)) {
+        vooInfo = createVooInfo();
+        vooInfo->prefixo = updateString(NULL, prefixo);
+        vooInfo->origem = procurarAeroportoSigla(origem);
+        if (!vooInfo->origem) {
+            vooInfo->origem = createAeroporto("NAN", origem);
+        }
+        vooInfo->destino = procurarAeroportoSigla(destino);
+        if (!vooInfo->destino) {
+            vooInfo->destino = createAeroporto("NAN", origem);
+        }
+        vooInfo->partida = createHora((char) partidaHH, (char) partidaMM);
+        vooInfo->chegada = createHora((char) chegadaHH, (char) chegadaMM);
+        vooInfo->duracao = createHora((char) duracaoHH, (char) duracaoMM);
+        vooInfo->aeronave = procurarAeronaveModelo(aeronave);
+        if (!vooInfo->aeronave) {
+            vooInfo->aeronave = createAeronave();
+            vooInfo->aeronave->modelo = updateString(NULL, aeronave);
+        }
+
+        ListaVoos = insert(ListaVoos, vooInfo);
+    }
+}
+
+void populateMisto(const char *fileName) {
+    FILE *f = fopen(fileName, "r");
+
+    char line[MAXSTR];
+
+//    printf("\nMisto:\n");
+    while (!feof(f)) {
+        fgets(line, MAXSTR, f);
+        printf("--> %s\n", line);
+        if (line[0] == 'P') {
+            addClienteFromLine(line + 2);
+        }
+        if (line[0] == 'V') {
+            addVooFromLine(line + 2);
         }
     }
 
     fclose(f);
+    Pause();
+
 }
