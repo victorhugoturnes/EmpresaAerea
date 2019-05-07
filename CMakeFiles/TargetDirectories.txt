@@ -1,0 +1,3 @@
+/home/last/CLionProjects/EmpresaAerea/CMakeFiles/rebuild_cache.dir
+/home/last/CLionProjects/EmpresaAerea/CMakeFiles/AeroTracker.dir
+/home/last/CLionProjects/EmpresaAerea/CMakeFiles/edit_cache.dir
