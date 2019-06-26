@@ -33,16 +33,6 @@ void menuStatus();
 
 void testarCadastros();
 
-void populateLists();
-
-void populateAeroportos();
-
-void populateAeronaves();
-
-void populateClientes();
-
-void populateVoos();
-
 /*!
 	@brief confirmacaoSaidaMainMenu, pergunta ao usuário se este confirma \
 	saída do programa
@@ -50,5 +40,25 @@ void populateVoos();
 	@postcondition nenhuma
 */
 char confirmacaoSaidaMainMenu();
+
+void populateLists();
+
+void populateAeroportos();
+
+void addAeroportoFromLine(char line[]);
+
+void populateAeronaves();
+
+void addAeronavesFromLine(char line[]);
+
+void populateClientes();
+
+void addClienteFromLine(char line[]);
+
+void populateVoos();
+
+void addVooFromLine(char line[]);
+
+void populateMisto(const char *fileName);
 
 #endif // MAINMENUUI_H

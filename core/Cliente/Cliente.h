@@ -18,7 +18,7 @@ typedef enum Categoria {
     Papel,
     Madeira,
     Pedra,
-    Ferro,
+    Prata,
     Ouro,
     Diamante,
     Obsidian,
@@ -39,5 +39,7 @@ char *clienteToString(Cliente *cliente);
 void deleteCliente(Cliente **pCliente);
 
 char *categoriaParaString(Categoria categoria);
+
+Categoria getCategoriaFromString(char *cat);
 
 #endif //CLIENTE_H

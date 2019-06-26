@@ -9,7 +9,7 @@
 #include "../../../../../../Environment.h"
 #include "../../../../../../input/string.h"
 #include "../../../../../../core/Aeronave/Aeronave.h"
-#include "../../../../../../core/aeronave/Comparator.h"
+#include "../../../../../../core/Aeronave/Comparator.h"
 
 void inserirAeronave(Aeronave *novaAeronave);
 

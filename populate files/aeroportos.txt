@@ -1,0 +1,8 @@
+CNF;Contins
+IGU;Foz do Iguacu
+GRU;Guarulhos
+BVB;Boa vista
+GIG;Galeao
+SDU;Santos Dumont
+CWB;Curitiba
+POA;Porto Alegre

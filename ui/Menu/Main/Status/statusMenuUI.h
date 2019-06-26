@@ -5,7 +5,10 @@
 #include <stdlib.h>
 
 #include "../../../../Environment.h"
+#include "../../../../core/Voo/VooInfo.h"
 
 void menuStatus();
+
+void printaVoos();
 
 #endif //AEROTRACKER_STATUSMENUUI_H
