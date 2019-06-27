@@ -4,20 +4,36 @@
 #include "Cliente.h"
 #include <string.h>
 
+/*
+    Nome da Funcao : searchCategoria
+    Recebe como parametro uma string e um ponteiro de Cliente
+    Objetivo : faz a comparacao da string de forma generica
+    Retorno : Boleana se existe a substring
+ */
 int searchCategoria(Categoria *cat, Cliente *clie);
 
-int sortCategoria(Cliente *src, Cliente *dst);
-
+/*
+    Nome da Funcao : searchCpf
+    Recebe como parametro uma string e um ponteiro de Cliente
+    Objetivo : faz a comparacao da string de forma generica
+    Retorno : Boleana se existe a substring
+ */
 int searchCpf(char *str, Cliente *clie);
 
-int sortCpf(Cliente *src, Cliente *dst);
-
+/*
+    Nome da Funcao : searchNomeCliente
+    Recebe como parametro uma string e um ponteiro de Cliente
+    Objetivo : faz a comparacao da string de forma generica
+    Retorno : Boleana se existe a substring
+ */
 int searchNomeCliente(char *str, Cliente *clie);
 
-int sortNomeCliente(Cliente *src, Cliente *dst);
-
+/*
+    Nome da Funcao : searchNomePrograma
+    Recebe como parametro uma string e um ponteiro de Cliente
+    Objetivo : faz a comparacao da string de forma generica
+    Retorno : Boleana se existe a substring
+ */
 int searchNomePrograma(char *str, Cliente *clie);
-
-int sortNomePrograma(Cliente *src, Cliente *dst);
 
 #endif //AEROTRACKER_CLIENTE_COMPARATOR_H

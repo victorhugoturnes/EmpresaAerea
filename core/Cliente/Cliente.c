@@ -1,5 +1,11 @@
 #include "Cliente.h"
 
+/*
+    Nome da Funcao : createCliente
+    Nao recebe Parametros
+    Objetivo : Criar Cliente
+    Retorno : Cliente criado
+ */
 Cliente *createCliente() {
     Cliente *novoCliente = (Cliente *) malloc(sizeof(Cliente));
 
@@ -12,15 +18,12 @@ Cliente *createCliente() {
     return novoCliente;
 }
 
-void deleteCliente(Cliente **pCliente) {
-    free((*pCliente)->nomePrograma);
-    free((*pCliente)->nomeCliente);
-    free((*pCliente)->cpf);
-
-    free(*pCliente);
-    *pCliente = NULL;
-}
-
+/*
+    Nome da Funcao : clienteToString
+    Recebe como parametro um ponteiro de Cliente
+    Objetivo : ler e criar uma string contendo informacoes do Cliente
+    Returno : devolver string dizendo quais as informacoes do Cliente
+ */
 char *clienteToString(Cliente *cliente) {
     char buffer[MAXSTR];
     int size;
@@ -39,7 +42,28 @@ char *clienteToString(Cliente *cliente) {
     return str;
 }
 
+/*
+    Nome da Funcao : deleteCliente
+    Recebe como parametro um ponteiro de ponteiro de Cliente
+    Objetivo : Limpar memoria q esta sendo usada para alocar Cliente
+    Retorno : Nada
+ */
+void deleteCliente(Cliente **pCliente) {
+    free((*pCliente)->nomePrograma);
+    free((*pCliente)->nomeCliente);
+    free((*pCliente)->cpf);
 
+    free(*pCliente);
+    *pCliente = NULL;
+}
+
+
+/*
+    Nome da Funcao : categoriaParaString
+    Recebe como parametro uma Categoria
+    Objetivo : retorna a string equivalente a categoria
+    Retorno : string equivalente a categoria
+ */
 char *categoriaParaString(Categoria categoria) {
     switch (categoria) {
         case Nenhuma:
@@ -65,6 +89,12 @@ char *categoriaParaString(Categoria categoria) {
     return NULL;
 }
 
+/*
+    Nome da Funcao : getCategoriaFromString
+    Recebe como parametro uma  String
+    Objetivo : retorna a categoria do cliente
+    Retorno : Categoria do cliente
+ */
 Categoria getCategoriaFromString(char *cat) {
     int i;
     for (i = 0; i < CATEGORIA_LENGTH; ++i) {

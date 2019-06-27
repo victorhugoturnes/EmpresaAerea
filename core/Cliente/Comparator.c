@@ -1,36 +1,42 @@
 #include <stdio.h>
 #include "Comparator.h"
 
+/*
+    Nome da Funcao : searchCategoria
+    Recebe como parametro uma string e um ponteiro de Cliente
+    Objetivo : faz a comparacao da string de forma generica
+    Retorno : Boleana se existe a substring
+ */
 int searchCategoria(Categoria *cat, Cliente *cliente) {
     return cliente->categoria == *cat;
 }
 
-int sortCategoria(Cliente *src, Cliente *dst) {
-    if (dst->categoria < src->categoria) return -1;
-    return src->categoria > dst->categoria;
-}
-
+/*
+    Nome da Funcao : searchCpf
+    Recebe como parametro uma string e um ponteiro de Cliente
+    Objetivo : faz a comparacao da string de forma generica
+    Retorno : Boleana se existe a substring
+ */
 int searchCpf(char *str, Cliente *cliente) {
     return (strstr(cliente->cpf, str) != NULL);
 }
 
-int sortCpf(Cliente *src, Cliente *dst) {
-    return strcmp(src->cpf, dst->cpf);
-}
-
+/*
+    Nome da Funcao : searchNomeCliente
+    Recebe como parametro uma string e um ponteiro de Cliente
+    Objetivo : faz a comparacao da string de forma generica
+    Retorno : Boleana se existe a substring
+ */
 int searchNomeCliente(char *str, Cliente *cliente) {
     return (strstr(cliente->nomeCliente, str) != NULL);
 }
 
-int sortNomeCliente(Cliente *src, Cliente *dst) {
-    return strcmp(src->nomeCliente, dst->nomeCliente);
-}
-
+/*
+    Nome da Funcao : searchNomePrograma
+    Recebe como parametro uma string e um ponteiro de Cliente
+    Objetivo : faz a comparacao da string de forma generica
+    Retorno : Boleana se existe a substring
+ */
 int searchNomePrograma(char *str, Cliente *cliente) {
     return (strstr(cliente->nomePrograma, str) != NULL);
 }
-
-int sortNomePrograma(Cliente *src, Cliente *dst) {
-    return strcmp(src->nomePrograma, dst->nomePrograma);
-}
-

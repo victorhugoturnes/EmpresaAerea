@@ -32,14 +32,44 @@ typedef struct Cliente {
     int saldoMilhas;
 } Cliente;
 
+/*
+    Nome da Funcao : createCliente
+    Nao recebe Parametros
+    Objetivo : Criar Cliente
+    Retorno : Cliente criado
+ */
 Cliente *createCliente();
 
+/*
+    Nome da Funcao : clienteToString
+    Recebe como parametro um ponteiro de Cliente
+    Objetivo : ler e criar uma string contendo informacoes do Cliente
+    Returno : devolver string dizendo quais as informacoes do Cliente
+ */
 char *clienteToString(Cliente *cliente);
 
+/*
+    Nome da Funcao : deleteCliente
+    Recebe como parametro um ponteiro de ponteiro de Cliente
+    Objetivo : Limpar memoria q esta sendo usada para alocar Cliente
+    Retorno : Nada
+ */
 void deleteCliente(Cliente **pCliente);
 
+/*
+    Nome da Funcao : categoriaParaString
+    Recebe como parametro uma Categoria
+    Objetivo : retorna a string equivalente a categoria
+    Retorno : string equivalente a categoria
+ */
 char *categoriaParaString(Categoria categoria);
 
+/*
+    Nome da Funcao : getCategoriaFromString
+    Recebe como parametro uma  String
+    Objetivo : retorna a categoria do cliente
+    Retorno : Categoria do cliente
+ */
 Categoria getCategoriaFromString(char *cat);
 
 #endif //CLIENTE_H

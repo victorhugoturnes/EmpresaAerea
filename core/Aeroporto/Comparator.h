@@ -4,12 +4,12 @@
 #include "Aeroporto.h"
 #include <string.h>
 
-int searchNome(char *str, Aeroporto *aer);
-
+/*
+    Nome da Funcao : searchSigla
+    Recebe como parametro uma string e um ponteiro de Aeroporto
+    Objetivo : faz a comparacao da string de forma generica
+    Retorno : Boleana se existe a substring
+ */
 int searchSigla(char *str, Aeroporto *aer);
-
-int sortNome(Aeroporto *src, Aeroporto *dst);
-
-int sortSigla(Aeroporto *src, Aeroporto *dst);
 
 #endif //AEROTRACKER_AEROPORTO_COMPARATOR_H
